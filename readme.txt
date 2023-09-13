@@ -1,7 +1,7 @@
-=== Fuel Cost Calculator Slider ===
+=== Fuel Savings Calculator Slider ===
 Contributors: jlanda
 Donate link:
-Tags: cost, calculator, slider
+Tags: savings, calculator, slider
 Requires at least: 4.2
 Tested up to: 6.0
 Stable tag: trunk
@@ -22,4 +22,4 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 == Upgrade notice ==
 
-There is a new version of Fuel Cost Calculator Slider available.
+There is a new version of Fuel Savings Calculator Slider available.
