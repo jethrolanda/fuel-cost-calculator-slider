@@ -81,34 +81,37 @@ jQuery(document).ready(function($){
 
   });
 
-  $('input[type="range"]').on('change', function(){
-    // var a = parseInt($("#estimated-gallons-per-fill-input").val());
-    // var b = parseInt($("#number-of-units-input").val());
-    // var c = parseInt($("#number-of-operators-input").val());
-    // var d = parseInt($("#hourly-rate-input").val());
-    // var e = parseInt($("#round-trip-per-fueling-input").val());
-    // var f = parseInt($("#frequency-of-fueling-input").val());
+  $('input[type="text"]').on('keyup', function(){
+    var id = $(this).attr("id");
+    var value = parseInt(this.value);
 
-    // // Estimated Gallons Consumed per Month
-    // var estimated_gallons_consumed_per_month = a * b * f * weeks / months;
-    // $("#estimated-gallons-consumed-per-month").text(Math.round(estimated_gallons_consumed_per_month));
+    if(value === undefined) return;
 
-    // // Man Hours Allocated to Fueling per Week
-    // var man_hours_allocated_to_fueling_per_week = e * c * b * f / minutes_in_an_hour;
-    // $("#man-hours-allocated-to-fueling-per-week").text(Math.round(man_hours_allocated_to_fueling_per_week));
+    switch(id) {
+      case "estimated-gallons-per-fill-input":
+        $('#estimated-gallons-per-fill').val(value).change();
+        break;
 
-    // // Lost Asset Production per Week
-    // var lost_asset_product_per_week = e * b * f / minutes_in_an_hour;
-    // $("#lost-asset-production-per-week").text(Math.round(lost_asset_product_per_week));
+      case "number-of-units-input":
+        $('#number-of-units').val(value).change();
+        break;
 
-    // // Estimated Cost of Self Fueling
-    // var estimated_cost_of_self_fueling = rate_per_minute * e * c * b * f;
-    // $("#estimated-cost-of-self-fueling").text("$"+Math.round(estimated_cost_of_self_fueling));
+      case "number-of-operators-input":
+        $('#number-of-operators').val(value).change();
+        break;
 
+      case "hourly-rate-input":
+        $('#hourly-rate').val(value).change();
+        break;
 
-    // // Estimated Savings Annually
-    // var estimated_savings_annually = rate_per_minute * e * c * b * f * weeks;
-    // $("#estimated-savings-annually").text("$"+Math.round(estimated_savings_annually));
+      case "round-trip-per-fueling-input":
+        $('#round-trip-per-fueling').val(value).change();
+        break;
+        
+      case "frequency-of-fueling-input":
+        $('#frequency-of-fueling').val(value).change();
+        break;
+    }
 
   });
 });
