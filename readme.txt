@@ -1,7 +1,7 @@
-=== WP Spoiler ===
+=== Fuel Cost Calculator Slider ===
 Contributors: jlanda
 Donate link:
-Tags: censor, keyword, curse, obscenity
+Tags: cost, calculator, slider
 Requires at least: 4.2
 Tested up to: 6.0
 Stable tag: trunk
@@ -13,13 +13,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 ***Key Features (Free Plugin):***
 
-* Input keywords or phrase you want to censor
-* Select which content you want to search for the keywords to censor
-* Check if case-sensitive or not
-* Search for exact word or phrase or only part of it
-* Option to censor all words or only part of it
-* Set what character to use for censoring words
-* Apply changes only to login users or visitor
+* List down key Features
 
 == Changelog ==
 
@@ -28,4 +22,4 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 == Upgrade notice ==
 
-There is a new version of WP Simple Movie Library available.
+There is a new version of Fuel Cost Calculator Slider available.
