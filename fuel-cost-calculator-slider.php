@@ -31,9 +31,11 @@ add_shortcode('fuel_cost_calculator_slider', 'calculator_slider_shortcode');
 function load_front_end_styles_and_scripts()
 {
   global $post;
-error_log(print_r(__DIR__,true));
+  
   if(has_shortcode($post->post_content, 'fuel_cost_calculator_slider')){
+    wp_enqueue_style('range-slider-style-custom', plugins_url() . '/fuel-cost-calculator-slider/css/style.css');
     wp_enqueue_style('range-slider-style', 'https://cdnjs.cloudflare.com/ajax/libs/rangeslider.js/2.3.3/rangeslider.min.css');
+
     wp_enqueue_script('range-slider-script', 'https://cdnjs.cloudflare.com/ajax/libs/rangeslider.js/2.3.3/rangeslider.min.js', array(), '1.0.0', true);
     wp_enqueue_script('range-slider-setup-script', plugins_url() . '/fuel-cost-calculator-slider/js/slider-options.js', array(), '1.0.0', true);
     
