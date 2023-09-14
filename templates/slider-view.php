@@ -1,4 +1,4 @@
-<div id="fuel-savings-calculator">
+<div id="fuel-savings-calculator" class="ct-section-inner-wrap">
   <div class="row">
     <div class="label">Estimated gallons per a fill<span class="dashicons dashicons-editor-help label1"></span></div>
     <div class="range-slider">
