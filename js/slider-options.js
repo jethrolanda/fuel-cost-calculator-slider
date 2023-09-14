@@ -1,7 +1,7 @@
 jQuery(document).ready(function($){
   var weeks = 52;
   var months = 12;
-  var rate_per_minute = 0.3667;
+  var rate_per_minute = 0;
   var minutes_in_an_hour = 60;
 
   function numberWithCommas(x) {
@@ -44,6 +44,7 @@ jQuery(document).ready(function($){
       var e = parseInt($("#round-trip-per-fueling-input").val());
       var f = parseInt($("#frequency-of-fueling-input").val());
 
+      rate_per_minute = d / 60;
       // Estimated Gallons Consumed per Month
       var estimated_gallons_consumed_per_month = a * b * f * weeks / months;
       estimated_gallons_consumed_per_month = Math.round(estimated_gallons_consumed_per_month);
@@ -68,12 +69,12 @@ jQuery(document).ready(function($){
       estimated_cost_of_self_fueling = numberWithCommas(estimated_cost_of_self_fueling);
       $("#estimated-cost-of-self-fueling").text("$"+estimated_cost_of_self_fueling);
 
-
       // Estimated Savings Annually
       var estimated_savings_annually = rate_per_minute * e * c * b * f * weeks;
       estimated_savings_annually = Math.round(estimated_savings_annually);
       estimated_savings_annually = numberWithCommas(estimated_savings_annually);
       $("#estimated-savings-annually").text("$"+estimated_savings_annually);
+
     },
 
     // Callback function
@@ -114,4 +115,36 @@ jQuery(document).ready(function($){
     }
 
   });
+
+  // TOOLTIPS
+  tippy('.label1', {
+    content: 'On average, how many gallons are you pumping into each vehicle?',
+    animation: 'scale',
+  });
+
+  tippy('.label2', {
+    content: 'How many vehicles do you have in your fleet?',
+    animation: 'scale',
+  });
+
+  tippy('.label3', {
+    content: 'How many employees are typically in the vehicle?',
+    animation: 'scale',
+  });
+
+  tippy('.label4', {
+    content: 'What’s the average hourly rate? Include burden, insurance, and vacation.',
+    animation: 'scale',
+  });
+
+  tippy('.label5', {
+    content: 'How many minutes does it take to drive to the fuel station, fill up, and drive back?',
+    animation: 'scale',
+  });
+
+  tippy('.label6', {
+    content: 'On average, how many days per week are you fueling your fleet?',
+    animation: 'scale',
+  });
+  
 });

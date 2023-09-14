@@ -39,6 +39,12 @@ function load_front_end_styles_and_scripts()
     wp_enqueue_script('range-slider-script', 'https://cdnjs.cloudflare.com/ajax/libs/rangeslider.js/2.3.3/rangeslider.min.js', array(), '1.0.0', true);
     wp_enqueue_script('range-slider-setup-script', plugins_url() . '/fuel-savings-calculator-slider/js/slider-options.js', array(), '1.0.0', true);
     
+    // Tooltip
+    wp_enqueue_style('range-slider-style-tippy-css-animation', 'https://unpkg.com/tippy.js@6/animations/scale.css');
+    
+    wp_enqueue_script('range-slider-tooltip-popper', 'https://unpkg.com/@popperjs/core@2', array(), '1.0.0', true);
+    wp_enqueue_script('range-slider-tooltip-tippy', 'https://unpkg.com/tippy.js@6', array(), '1.0.0', true);
+    
   }
   
   
