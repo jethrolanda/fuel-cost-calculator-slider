@@ -1,3 +1,12 @@
+.fuel-savings-calculator{
+  font-size: 18px;
+}
+
+.fuel-savings-calculator h5{
+  text-align: center;
+  font-weight: 400;
+}
+
 #fuel-savings-calculator .rangeslider__handle{
   background: white;
     border-radius: 50%;
@@ -28,6 +37,9 @@
 
 #fuel-savings-calculator input[type=text]{
   text-align: center;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 8px 4px;
 }
 
 #fuel-savings-calculator .row{
@@ -41,13 +53,9 @@
   padding-top: 15px;
 }
 
-#fuel-savings-calculator input[type=text]{
-  padding: 4px;
-}
-
 .estimated-savings{
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: auto auto auto auto;
   gap: 10px;
   justify-content: space-between;
 }
@@ -59,10 +67,38 @@
   border-radius: 5px;
   box-shadow: 1px 1px 16px 0 rgba(0, 0, 0, 0.08);
   padding: 15px 20px;
+  transition: box-shadow .3s;
 }
 
 .estimated-savings div span{
-  font-weight: 600;
+  font-weight: 500;
+  font-size: 40px;
+  display: block;
+}
+
+
+.estimated-savings div:hover{
+  box-shadow: 0 0 11px rgba(33,33,33,.2); 
+}
+
+.estimated-savings-annually{
+  margin-top: 10px;
+}
+
+.estimated-savings-annually div{
+  max-width: 100%;
+  text-align: center;
+  border: 1px solid #DEE4EC;
+  border-radius: 5px;
+  box-shadow: 1px 1px 16px 0 rgba(0, 0, 0, 0.08);
+  padding: 15px 20px;
+  transition: box-shadow .3s;
+  background: rgb(162 205 58);
+  color: #fff;
+}
+
+.estimated-savings-annually div span{
+  font-weight: 500;
   font-size: 40px;
   display: block;
 }
@@ -70,4 +106,9 @@
 .dashicons{
   margin-top: 6px;
   margin-left: 10px;
+}
+
+.calculator-contact-us-now{
+  display: block;
+  text-align: center;
 }

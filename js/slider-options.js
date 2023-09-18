@@ -73,7 +73,7 @@ jQuery(document).ready(function($){
       var estimated_savings_annually = rate_per_minute * e * c * b * f * weeks;
       estimated_savings_annually = Math.round(estimated_savings_annually);
       estimated_savings_annually = numberWithCommas(estimated_savings_annually);
-      $("#estimated-savings-annually").text("$"+estimated_savings_annually);
+      $("#estimated-savings-annually").text("$"+estimated_savings_annually+" / year");
 
     },
 
@@ -117,34 +117,34 @@ jQuery(document).ready(function($){
   });
 
   // TOOLTIPS
-  tippy('.label1', {
-    content: 'On average, how many gallons are you pumping into each vehicle?',
-    animation: 'scale',
-  });
+  // tippy('.label1', {
+  //   content: 'On average, how many gallons are you pumping into each vehicle?',
+  //   animation: 'scale',
+  // });
 
-  tippy('.label2', {
-    content: 'How many vehicles do you have in your fleet?',
-    animation: 'scale',
-  });
+  // tippy('.label2', {
+  //   content: 'How many vehicles do you have in your fleet?',
+  //   animation: 'scale',
+  // });
 
-  tippy('.label3', {
-    content: 'How many employees are typically in the vehicle?',
-    animation: 'scale',
-  });
+  // tippy('.label3', {
+  //   content: 'How many employees are typically in the vehicle?',
+  //   animation: 'scale',
+  // });
 
-  tippy('.label4', {
-    content: 'What’s the average hourly rate? Include burden, insurance, and vacation.',
-    animation: 'scale',
-  });
+  // tippy('.label4', {
+  //   content: 'What’s the average hourly rate? Include burden, insurance, and vacation.',
+  //   animation: 'scale',
+  // });
 
-  tippy('.label5', {
-    content: 'How many minutes does it take to drive to the fuel station, fill up, and drive back?',
-    animation: 'scale',
-  });
+  // tippy('.label5', {
+  //   content: 'How many minutes does it take to drive to the fuel station, fill up, and drive back?',
+  //   animation: 'scale',
+  // });
 
-  tippy('.label6', {
-    content: 'On average, how many days per week are you fueling your fleet?',
-    animation: 'scale',
-  });
+  // tippy('.label6', {
+  //   content: 'On average, how many days per week are you fueling your fleet?',
+  //   animation: 'scale',
+  // });
   
 });

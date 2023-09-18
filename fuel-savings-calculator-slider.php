@@ -27,12 +27,17 @@ function calculator_slider_shortcode() {
 add_shortcode('fuel_savings_calculator_slider', 'calculator_slider_shortcode');
 
 
-// Load scripts
+// Load frontend and backend scripts
 function load_front_end_styles_and_scripts()
 {
   global $post;
-  
-  if(has_shortcode($post->post_content, 'fuel_savings_calculator_slider')){
+  $screen = "";
+
+  if(is_admin()){
+    $screen = get_current_screen();
+  }
+
+  if(has_shortcode($post->post_content, 'fuel_savings_calculator_slider') || ($screen && $screen->parent_base == 'edit')) {
     wp_enqueue_style('range-slider-style-custom', plugins_url() . '/fuel-savings-calculator-slider/css/style.css');
     wp_enqueue_style('range-slider-style', 'https://cdnjs.cloudflare.com/ajax/libs/rangeslider.js/2.3.3/rangeslider.min.css');
 
@@ -51,3 +56,4 @@ function load_front_end_styles_and_scripts()
 }
 
 add_action('wp_enqueue_scripts', 'load_front_end_styles_and_scripts' );
+add_action('admin_enqueue_scripts', 'load_front_end_styles_and_scripts' );
