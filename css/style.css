@@ -81,23 +81,23 @@
   box-shadow: 0 0 11px rgba(33,33,33,.2); 
 }
 
-.estimated-savings-annually{
+.estimated-savings-annually-wrap{
   margin-top: 10px;
 }
 
-.estimated-savings-annually div{
+.estimated-savings-annually-wrap div{
   max-width: 100%;
   text-align: center;
   border: 1px solid #DEE4EC;
   border-radius: 5px;
   box-shadow: 1px 1px 16px 0 rgba(0, 0, 0, 0.08);
-  padding: 15px 20px;
+  padding: 30px;
   transition: box-shadow .3s;
   background: rgb(162 205 58);
   color: #fff;
 }
 
-.estimated-savings-annually div span{
+.estimated-savings-annually-wrap div span{
   font-weight: 500;
   font-size: 40px;
   display: block;

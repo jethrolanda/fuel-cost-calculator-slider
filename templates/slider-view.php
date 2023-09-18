@@ -73,7 +73,7 @@
     <div><span id="estimated-cost-of-self-fueling">$0</span>Estimated Cost of Self Fueling</div>
   </div>
 
-  <div class="estimated-savings-annually">
-    <div><span id="estimated-savings-annually-result">$0 / year</span>Estimated Savings Annually</div>
+  <div class="estimated-savings-annually-wrap">
+    <div><span id="estimated-savings-annually">$0 / year</span>Estimated Savings Annually</div>
   </div>
 </div>
