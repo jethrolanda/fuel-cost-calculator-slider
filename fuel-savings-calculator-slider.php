@@ -31,13 +31,9 @@ add_shortcode('fuel_savings_calculator_slider', 'calculator_slider_shortcode');
 function load_front_end_styles_and_scripts()
 {
   global $post;
-  $screen = "";
+  $ct_builder = isset($_GET['ct_builder']) && $_GET['ct_builder'] === "true" ? true : false;
 
-  if(is_admin()){
-    $screen = get_current_screen();
-  }
-
-  if(has_shortcode($post->post_content, 'fuel_savings_calculator_slider') || ($screen && $screen->parent_base == 'edit')) {
+  if(has_shortcode($post->post_content, 'fuel_savings_calculator_slider') || $ct_builder) {
     wp_enqueue_style('range-slider-style-custom', plugins_url() . '/fuel-savings-calculator-slider/css/style.css');
     wp_enqueue_style('range-slider-style', 'https://cdnjs.cloudflare.com/ajax/libs/rangeslider.js/2.3.3/rangeslider.min.css');
 
