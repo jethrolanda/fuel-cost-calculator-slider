@@ -1,4 +1,4 @@
-<div class="ct-section-inner-wrap fuel-savings-calculator">
+<div class="ct-section-inner-wrap fuel-savings-calculator-wapper">
   <div id="fuel-savings-calculator">
     <div class="row">
       <div class="label">Estimated gallons per a fill</div>

@@ -1,4 +1,5 @@
-jQuery(document).ready(function($){
+(function($) {
+  
   var weeks = 52;
   var months = 12;
   var rate_per_minute = 0;
@@ -115,36 +116,5 @@ jQuery(document).ready(function($){
     }
 
   });
-
-  // TOOLTIPS
-  // tippy('.label1', {
-  //   content: 'On average, how many gallons are you pumping into each vehicle?',
-  //   animation: 'scale',
-  // });
-
-  // tippy('.label2', {
-  //   content: 'How many vehicles do you have in your fleet?',
-  //   animation: 'scale',
-  // });
-
-  // tippy('.label3', {
-  //   content: 'How many employees are typically in the vehicle?',
-  //   animation: 'scale',
-  // });
-
-  // tippy('.label4', {
-  //   content: 'What’s the average hourly rate? Include burden, insurance, and vacation.',
-  //   animation: 'scale',
-  // });
-
-  // tippy('.label5', {
-  //   content: 'How many minutes does it take to drive to the fuel station, fill up, and drive back?',
-  //   animation: 'scale',
-  // });
-
-  // tippy('.label6', {
-  //   content: 'On average, how many days per week are you fueling your fleet?',
-  //   animation: 'scale',
-  // });
   
-});
+})(jQuery);
