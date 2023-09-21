@@ -1,5 +1,6 @@
-(function($) {
-  
+jQuery(document).ready(function ($) {
+
+  var fuel_savings_calculator_wrapper = $('body').find('.fuel-savings-calculator-wapper');
   var weeks = 52;
   var months = 12;
   var rate_per_minute = 0;
@@ -9,7 +10,7 @@
       return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ", ");
   }
 
-  $('input[type="range"]').rangeslider({
+  fuel_savings_calculator_wrapper.find('input[type="range"]').rangeslider({
 
     // Feature detection the default is `true`.
     // Set this to `false` if you want to use
@@ -83,7 +84,7 @@
 
   });
 
-  $('input[type="text"]').on('keyup', function(){
+  fuel_savings_calculator_wrapper.find('input[type="text"]').on('keyup', function(){
     var id = $(this).attr("id");
     var value = parseInt(this.value);
 
@@ -117,4 +118,4 @@
 
   });
   
-})(jQuery);
+});
