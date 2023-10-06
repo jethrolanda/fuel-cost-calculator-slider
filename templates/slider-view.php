@@ -1,7 +1,11 @@
-<div class="ct-section-inner-wrap fuel-savings-calculator-wapper">
+<div class="fuel-savings-calculator-wapper">
   <div id="fuel-savings-calculator">
     <div class="row">
-      <div class="label">Estimated gallons per a fill</div>
+      <div class="label">Estimated gallons per a fill
+        <div class="help-tip">
+          <p>On average, how many gallons are you pumping into each vehicle?</p>
+        </div>
+      </div>
       <div class="range-slider">
         <input id="estimated-gallons-per-fill" type="range" min="0" max="100" step="1" value="0" data-orientation="horizontal">
       </div>
@@ -11,7 +15,11 @@
     </div>
     
     <div class="row">
-      <div class="label">Number of units in fleet</div>
+      <div class="label">Number of units in fleet
+        <div class="help-tip">
+          <p>How many vehicles do you have in your fleet? Include gas and diesel.</p>
+        </div>
+      </div>
       <div class="range-slider">
         <input id="number-of-units" type="range" min="0" max="100" step="1" value="0" data-orientation="horizontal">
       </div>
@@ -21,7 +29,11 @@
     </div>
 
     <div class="row">
-      <div class="label">Number of operators</div>
+      <div class="label">Number of operators
+        <div class="help-tip">
+          <p>How many employees are typically in the vehicle?</p>
+        </div>
+      </div>
       <div class="range-slider">
         <input id="number-of-operators" type="range" min="0" max="10" step="1" value="0" data-orientation="horizontal">
       </div>
@@ -31,9 +43,13 @@
     </div>
     
     <div class="row">
-      <div class="label">Average hourly rate per operator</div>
+      <div class="label">Average hourly rate
+        <div class="help-tip">
+          <p>What’s the average hourly rate? Include burden, insurance, and vacation.</p>
+        </div>
+      </div>
       <div class="range-slider">
-        <input id="hourly-rate" type="range" min="0" max="70" step="1" value="0" data-orientation="horizontal">
+        <input id="hourly-rate" type="range" min="0" max="50" step="1" value="0" data-orientation="horizontal">
       </div>
       <div class="range-value">
         <input id="hourly-rate-input" type="text" size="4" min="20" max="1500" value="0">
@@ -41,7 +57,11 @@
     </div>
     
     <div class="row">
-      <div class="label">Round-trip per fueling</div>
+      <div class="label">Round-trip per fueling
+        <div class="help-tip">
+          <p>How many minutes does it take to drive to the fuel station, fill up, and drive back?</p>
+        </div>
+      </div>
       <div class="range-slider">
         <input id="round-trip-per-fueling" type="range" min="0" max="120" step="1" value="0" data-orientation="horizontal">
       </div>
@@ -51,7 +71,11 @@
     </div>
 
     <div class="row">
-      <div class="label">Frequency of fueling</div>
+      <div class="label">Frequency of fueling
+        <div class="help-tip">
+          <p>On average, how many days per week are you fueling your fleet?</p>
+        </div>
+      </div>
       <div class="range-slider">
         <input id="frequency-of-fueling" type="range" min="0" max="20" step="1" value="0" data-orientation="horizontal">
       </div>
@@ -64,16 +88,11 @@
 
 
   <br/><br/><br/>
-  <h5>Estimated Fuel Savings</h5>
+  <h5>Estimated Savings: <span id="estimated-savings-annually">$0 / year</span></h5>
   <br/>
   <div class="estimated-savings">
-    <div><span id="estimated-gallons-consumed-per-month">0</span>Estimated Gallons Consumed per Month</div>
-    <div><span id="man-hours-allocated-to-fueling-per-week">0</span>Man Hours Allocated to Fueling per Week</div>
-    <div><span id="lost-asset-production-per-week">0</span>Lost Asset Production per Week</div>
-    <div><span id="estimated-cost-of-self-fueling">$0</span>Estimated Cost of Self Fueling</div>
-  </div>
-
-  <div class="estimated-savings-annually-wrap">
-    <div><span id="estimated-savings-annually">$0 / year</span>Estimated Savings Annually</div>
+    <div><span id="lost-assets-and-labor-hours">0</span>Lost Assets & Labor Hours</div>
+    <div><span id="labor-savings-per-week">$0</span>Labor Savings Per Week</div>
+    <div><span id="every-gallon-you-pump-costs-an-additional">0</span>Every Gallon You Pump Costs You An Additional</div>
   </div>
 </div>
