@@ -139,14 +139,16 @@ add_action('wp_print_footer_scripts', function() { ?>
                   // Estimated Gallons Consumed per Month
                   var estimated_gallons_consumed_per_month = a * b * f * weeks / months;
                   estimated_gallons_consumed_per_month = Math.round(estimated_gallons_consumed_per_month);
-                  estimated_gallons_consumed_per_month = numberWithCommas(estimated_gallons_consumed_per_month);
-                  $("#estimated-gallons-consumed-per-month").text(estimated_gallons_consumed_per_month);
 
                   // Man Hours Allocated to Fueling per Week
                   var man_hours_allocated_to_fueling_per_week = e * c * b * f / minutes_in_an_hour;
                   man_hours_allocated_to_fueling_per_week = Math.round(man_hours_allocated_to_fueling_per_week);
-                  man_hours_allocated_to_fueling_per_week = numberWithCommas(man_hours_allocated_to_fueling_per_week);
-                  $("#man-hours-allocated-to-fueling-per-week").text(man_hours_allocated_to_fueling_per_week);
+
+                  // Lost Assets and Labor Hours
+                  var lost_assets_and_labor_hours = estimated_gallons_consumed_per_month + man_hours_allocated_to_fueling_per_week;
+                  lost_assets_and_labor_hours = Math.round(lost_assets_and_labor_hours);
+                  lost_assets_and_labor_hours = numberWithCommas(lost_assets_and_labor_hours);
+                  $("#lost-assets-and-labor-hours").text(lost_assets_and_labor_hours);
 
                   // Lost Asset Production per Week
                   var lost_asset_product_per_week = e * b * f / minutes_in_an_hour;
@@ -154,17 +156,25 @@ add_action('wp_print_footer_scripts', function() { ?>
                   lost_asset_product_per_week = numberWithCommas(lost_asset_product_per_week)
                   $("#lost-asset-production-per-week").text(lost_asset_product_per_week);
 
-                  // Estimated Cost of Self Fueling
-                  var estimated_cost_of_self_fueling = rate_per_minute * e * c * b * f;
-                  estimated_cost_of_self_fueling = Math.round(estimated_cost_of_self_fueling);
-                  estimated_cost_of_self_fueling = numberWithCommas(estimated_cost_of_self_fueling);
-                  $("#estimated-cost-of-self-fueling").text("$"+estimated_cost_of_self_fueling);
+                  // Estimated Cost of Self Fueling / Labor Savings Per Week
+                  var labor_savings_per_week = rate_per_minute * e * c * b * f;
+                  labor_savings_per_week = Math.round(labor_savings_per_week);
+                  labor_savings_per_week = numberWithCommas(labor_savings_per_week);
+                  $("#labor-savings-per-week").text("$"+labor_savings_per_week);
 
+                  // Every Gallon You Pump Costs You An Additional
+                  var additional_costs = rate_per_minute * e * c * b * f;
+                  if(additional_costs > 0 && estimated_gallons_consumed_per_month > 0) {
+                    additional_costs = additional_costs / estimated_gallons_consumed_per_month;
+                    additional_costs = additional_costs.toFixed(2);
+                    $("#every-gallon-you-pump-costs-an-additional").text("$"+additional_costs);
+                  }
+                  
                   // Estimated Savings Annually
                   var estimated_savings_annually = rate_per_minute * e * c * b * f * weeks;
                   estimated_savings_annually = Math.round(estimated_savings_annually);
                   estimated_savings_annually = numberWithCommas(estimated_savings_annually);
-                  $("#estimated-savings-annually").text("$"+estimated_savings_annually+" / year");
+                  $("#estimated-savings-annually").text("$"+estimated_savings_annually);
 
                 },
 

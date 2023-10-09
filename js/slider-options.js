@@ -85,7 +85,7 @@ jQuery(document).ready(function ($) {
       var estimated_savings_annually = rate_per_minute * e * c * b * f * weeks;
       estimated_savings_annually = Math.round(estimated_savings_annually);
       estimated_savings_annually = numberWithCommas(estimated_savings_annually);
-      $("#estimated-savings-annually").text("$"+estimated_savings_annually+" / year");
+      $("#estimated-savings-annually").text("$"+estimated_savings_annually);
 
     },
 

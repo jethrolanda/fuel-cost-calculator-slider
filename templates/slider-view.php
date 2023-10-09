@@ -88,7 +88,7 @@
 
 
   <br/><br/><br/>
-  <h5>Estimated Savings: <span id="estimated-savings-annually">$0 / year</span></h5>
+  <h5>Estimated Savings Annually <span id="estimated-savings-annually">$0</span></h5>
   <br/>
   <div class="estimated-savings">
     <div><span id="lost-assets-and-labor-hours">0</span>Lost Assets & Labor Hours</div>
