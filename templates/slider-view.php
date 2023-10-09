@@ -1,7 +1,7 @@
 <div class="fuel-savings-calculator-wapper">
   <div id="fuel-savings-calculator">
     <div class="row">
-      <div class="label">Estimated gallons per a fill
+      <div class="label">Estimated gallons per fill
         <div class="help-tip">
           <p>On average, how many gallons are you pumping into each vehicle?</p>
         </div>

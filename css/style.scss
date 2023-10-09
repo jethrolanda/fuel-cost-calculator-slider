@@ -36,13 +36,18 @@
   
   .row{
     display: grid;
-    grid-gap: 50px;
-    grid-template-columns: 260px 1fr 100px;
+    grid-gap: 40px;
+    grid-template-columns: 280px 1fr 100px;
     padding: 30px 0px;
+
+    .range-value{
+      text-align: right;
+      margin-top: -4px;
+    }
   }
   
   .range-slider{
-    padding-top: 15px;
+    padding-top: 10px;
   }
   
   .label{
@@ -59,6 +64,7 @@
   grid-column-gap: 10px;
   justify-content: space-between;
   grid-template-columns: repeat(3, minmax(0, 1fr));
+  width: 100%;
 
   div{
     max-width: 340px;
