@@ -234,7 +234,9 @@
 @media only screen and (max-width: 480px) {
   #fuel-savings-calculator{
     .label{
-      display: grid;
+      .help-tip{
+        display: none;
+      }
     }
   }
 }
