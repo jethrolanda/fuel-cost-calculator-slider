@@ -67,7 +67,6 @@
   width: 100%;
 
   div{
-    max-width: 340px;
     text-align: center;
     border: 1px solid #DEE4EC;
     border-radius: 5px;
@@ -203,8 +202,15 @@
       gap: 0px;
 
       .help-tip{
-        position: unset;
+        position: relative;
+        top: 0px;
+        right: 0px;
         display: inline-block;
+
+        p{
+          top: -38px;
+          left: 30px;
+        }
       }
       
       .range-value{
