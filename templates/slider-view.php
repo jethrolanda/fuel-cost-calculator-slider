@@ -1,7 +1,7 @@
 <div class="fuel-savings-calculator-wapper">
   <div id="fuel-savings-calculator">
     <div class="row">
-      <div class="label">Estimated gallons per fill
+      <div class="label">Estimated Gallons Per Fill
         <div class="help-tip">
           <p>On average, how many gallons are you pumping into each vehicle?</p>
         </div>
@@ -13,23 +13,9 @@
         <input id="estimated-gallons-per-fill-input" type="text" size="4" min="20" max="1500" value="0">
       </div>
     </div>
-    
-    <div class="row">
-      <div class="label">Number of units in fleet
-        <div class="help-tip">
-          <p>How many vehicles do you have in your fleet? Include gas and diesel.</p>
-        </div>
-      </div>
-      <div class="range-slider">
-        <input id="number-of-units" type="range" min="0" max="100" step="1" value="0" data-orientation="horizontal">
-      </div>
-      <div class="range-value">
-        <input id="number-of-units-input" type="text" size="4" min="20" max="1500" value="0">
-      </div>
-    </div>
 
     <div class="row">
-      <div class="label">Number of operators
+      <div class="label">Number of Operators
         <div class="help-tip">
           <p>How many employees are typically in the vehicle?</p>
         </div>
@@ -43,7 +29,7 @@
     </div>
     
     <div class="row">
-      <div class="label">Average hourly rate
+      <div class="label">Average Hourly Rate
         <div class="help-tip">
           <p>What’s the average hourly rate? Include burden, insurance, and vacation.</p>
         </div>
@@ -57,7 +43,7 @@
     </div>
     
     <div class="row">
-      <div class="label">Round-trip per fueling
+      <div class="label">Round-Trip Per Fueling
         <div class="help-tip">
           <p>How many minutes does it take to drive to the fuel station, fill up, and drive back?</p>
         </div>
@@ -71,7 +57,7 @@
     </div>
 
     <div class="row">
-      <div class="label">Frequency of fueling
+      <div class="label">Frequency of Fueling
         <div class="help-tip">
           <p>On average, how many days per week are you fueling your fleet?</p>
         </div>
@@ -81,6 +67,20 @@
       </div>
       <div class="range-value">
         <input id="frequency-of-fueling-input" type="text" size="4" min="20" max="1500" value="0">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="label">Number of Units in Fleet
+        <div class="help-tip">
+          <p>How many vehicles do you have in your fleet? Include gas and diesel.</p>
+        </div>
+      </div>
+      <div class="range-slider">
+        <input id="number-of-units" type="range" min="0" max="100" step="1" value="0" data-orientation="horizontal">
+      </div>
+      <div class="range-value">
+        <input id="number-of-units-input" type="text" size="4" min="20" max="1500" value="0">
       </div>
     </div>
     
