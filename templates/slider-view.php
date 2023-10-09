@@ -15,7 +15,7 @@
     </div>
 
     <div class="row">
-      <div class="label">Number of Operators
+      <div class="label">Number Of Operators
         <div class="help-tip">
           <p>How many employees are typically in the vehicle?</p>
         </div>
@@ -57,7 +57,7 @@
     </div>
 
     <div class="row">
-      <div class="label">Frequency of Fueling
+      <div class="label">Frequency Of Fueling
         <div class="help-tip">
           <p>On average, how many days per week are you fueling your fleet?</p>
         </div>
@@ -71,7 +71,7 @@
     </div>
 
     <div class="row">
-      <div class="label">Number of Units in Fleet
+      <div class="label">Number Of Units in Fleet
         <div class="help-tip">
           <p>How many vehicles do you have in your fleet? Include gas and diesel.</p>
         </div>
