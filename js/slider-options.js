@@ -6,10 +6,6 @@ jQuery(document).ready(function ($) {
   var rate_per_minute = 0;
   var minutes_in_an_hour = 60;
 
-  function numberWithCommas(x) {
-      return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ", ");
-  }
-
   fuel_savings_calculator_wrapper.find('input[type="range"]').rangeslider({
 
     // Feature detection the default is `true`.
@@ -57,35 +53,27 @@ jQuery(document).ready(function ($) {
 
       // Lost Assets and Labor Hours
       var lost_assets_and_labor_hours = estimated_gallons_consumed_per_month + man_hours_allocated_to_fueling_per_week;
-      lost_assets_and_labor_hours = Math.round(lost_assets_and_labor_hours);
-      lost_assets_and_labor_hours = numberWithCommas(lost_assets_and_labor_hours);
-      $("#lost-assets-and-labor-hours").text(lost_assets_and_labor_hours);
-
-      // Lost Asset Production per Week
-      var lost_asset_product_per_week = e * b * f / minutes_in_an_hour;
-      lost_asset_product_per_week = Math.round(lost_asset_product_per_week);
-      lost_asset_product_per_week = numberWithCommas(lost_asset_product_per_week)
-      $("#lost-asset-production-per-week").text(lost_asset_product_per_week);
+      if(lost_assets_and_labor_hours > 0) {
+        lost_assets_and_labor_hours = Math.round(lost_assets_and_labor_hours);
+        $("#lost-assets-and-labor-hours").text(lost_assets_and_labor_hours.toLocaleString());
+      }
 
       // Estimated Cost of Self Fueling / Labor Savings Per Week
       var labor_savings_per_week = rate_per_minute * e * c * b * f;
       labor_savings_per_week = Math.round(labor_savings_per_week);
-      labor_savings_per_week = numberWithCommas(labor_savings_per_week);
-      $("#labor-savings-per-week").text("$"+labor_savings_per_week);
+      $("#labor-savings-per-week").text("$"+labor_savings_per_week.toLocaleString());
 
       // Every Gallon You Pump Costs You An Additional
       var additional_costs = rate_per_minute * e * c * b * f;
       if(additional_costs > 0 && estimated_gallons_consumed_per_month > 0) {
         additional_costs = additional_costs / estimated_gallons_consumed_per_month;
-        additional_costs = additional_costs.toFixed(2);
-        $("#every-gallon-you-pump-costs-an-additional").text("$"+additional_costs);
+        $("#every-gallon-you-pump-costs-an-additional").text("$"+additional_costs.toLocaleString('en-US', {maximumFractionDigits:2}));
       }
       
       // Estimated Savings Annually
       var estimated_savings_annually = rate_per_minute * e * c * b * f * weeks;
       estimated_savings_annually = Math.round(estimated_savings_annually);
-      estimated_savings_annually = numberWithCommas(estimated_savings_annually);
-      $("#estimated-savings-annually").text("$"+estimated_savings_annually);
+      $("#estimated-savings-annually").text("$"+estimated_savings_annually.toLocaleString('en-US', {maximumFractionDigits:2}));
 
     },
 

@@ -60,7 +60,7 @@ function plugin_scripts(){
   wp_enqueue_style('range-slider-style', plugins_url() . '/fuel-savings-calculator-slider/css/rangeslider.min.css');
 
   wp_enqueue_script('range-slider-script', plugins_url() . '/fuel-savings-calculator-slider/js/rangeslider.min.js', array('jquery'), '1.0.0', false);
-  wp_enqueue_script('range-slider-setup-script', plugins_url() . '/fuel-savings-calculator-slider/js/slider-options.min.js', array('jquery'), '1.0.0', false);
+  wp_enqueue_script('range-slider-setup-script', plugins_url() . '/fuel-savings-calculator-slider/js/slider-options.js', array('jquery'), '1.0.0', false);
 
 }
 
