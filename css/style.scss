@@ -32,13 +32,14 @@
     border: 1px solid #ddd;
     border-radius: 8px;
     padding: 8px 4px;
+    width: 100%;
   }
   
   .row{
     display: grid;
     grid-gap: 40px;
-    grid-template-columns: 280px 1fr 100px;
-    padding: 30px 0px;
+    grid-template-columns: 280px 1fr 60px;
+    padding: 20px 0px;
 
     .range-value{
       text-align: right;
@@ -101,7 +102,7 @@
 .help-tip {
   position: absolute;
   top: 5px;
-  right: 16px;
+  right: 0px;
   margin-left: 10px;
   text-align: center;
   background-color: #2b2d2f;
@@ -178,9 +179,9 @@
 
 #estimated-savings-annually{
   color: #A2CC3A;
-  background: yellow;
   font-weight: 600;
   padding: 8px;
+  text-decoration: underline;
 }
 
 // RESPONSIVE
