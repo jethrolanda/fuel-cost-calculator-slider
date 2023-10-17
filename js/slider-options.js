@@ -1,6 +1,6 @@
 jQuery(document).ready(function ($) {
 
-  var fuel_savings_calculator_wrapper = $('body').find('.fuel-savings-calculator-wapper');
+  var fuel_savings_calculator_wrapper = $('body').find('.fuel-savings-calculator-wrapper');
   var weeks = 52;
   var months = 12;
   var rate_per_minute = 0;

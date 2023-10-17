@@ -1,187 +1,196 @@
-#fuel-savings-calculator{
-  .rangeslider__handle{
-    background: white;
+.fuel-savings-calculator-wrapper{
+  #fuel-savings-calculator{
+    .rangeslider__handle{
+      background: white;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      border: 2px solid black;
+      cursor: pointer;
+      opacity: a0;
+      top: -5px;
+    }
+  
+    .rangeslider__fill{
+      height: 8px;
+      -webkit-appearance: none;
+      background: black;
+      border: none;
+      outline: none;
+    }
+  
+    .rangeslider {
+      float: left;
+      background: #ddd;
+      height: 8px;
+      /* width: calc(100% - 330px); */
+      border-radius: 4px;
+      box-shadow: none;
+    }
+    
+    input[type=text]{
+      text-align: center;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 8px 4px;
+      width: 100%;
+    }
+    
+    .row{
+      display: grid;
+      grid-gap: 40px;
+      grid-template-columns: 280px 1fr 60px;
+      padding: 20px 0px;
+  
+      .range-value{
+        text-align: right;
+        margin-top: -4px;
+      }
+    }
+    
+    .range-slider{
+      padding-top: 10px;
+    }
+    
+    .label{
+      position: relative;
+    }
+  
+    input[type=range]{
+      display: none;
+    }
+  }
+
+  .estimated-savings{
+    display: grid;
+    grid-column-gap: 10px;
+    justify-content: space-between;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    width: 100%;
+  
+    div{
+      text-align: center;
+      border: 1px solid #DEE4EC;
+      border-radius: 5px;
+      box-shadow: 1px 1px 16px 0 rgba(0, 0, 0, 0.08);
+      padding: 15px 20px;
+      transition: box-shadow .3s;
+    }
+    
+    div span{
+      font-weight: 500;
+      font-size: 40px;
+      display: block;
+    }
+    
+    
+    div:hover{
+      box-shadow: 0 0 11px rgba(33,33,33,.2); 
+    }
+  }
+  
+  .dashicons{
+    margin-top: 6px;
+    margin-left: 10px;
+  }
+  
+  .calculator-contact-us-now{
+    display: block;
+    text-align: center;
+  }
+  
+  /* TOOLTIP */
+  .help-tip {
+    position: absolute;
+    top: 5px;
+    right: 0px;
+    margin-left: 10px;
+    text-align: center;
+    background-color: #2b2d2f;
     border-radius: 50%;
     width: 20px;
     height: 20px;
-    border: 2px solid black;
-    cursor: pointer;
-    opacity: a0;
-    top: -5px;
-  }
-
-  .rangeslider__fill{
-    height: 8px;
-    -webkit-appearance: none;
-    background: black;
-    border: none;
-    outline: none;
-  }
-
-  .rangeslider {
-    float: left;
-    background: #ddd;
-    height: 8px;
-    /* width: calc(100% - 330px); */
-    border-radius: 4px;
-    box-shadow: none;
-  }
-  
-  input[type=text]{
-    text-align: center;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 8px 4px;
-    width: 100%;
-  }
-  
-  .row{
-    display: grid;
-    grid-gap: 40px;
-    grid-template-columns: 280px 1fr 60px;
-    padding: 20px 0px;
-
-    .range-value{
-      text-align: right;
-      margin-top: -4px;
-    }
-  }
-  
-  .range-slider{
-    padding-top: 10px;
-  }
-  
-  .label{
-    position: relative;
-  }
-
-  input[type=range]{
-    display: none;
-  }
-}
-
-.estimated-savings{
-  display: grid;
-  grid-column-gap: 10px;
-  justify-content: space-between;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  width: 100%;
-
-  div{
-    text-align: center;
-    border: 1px solid #DEE4EC;
-    border-radius: 5px;
-    box-shadow: 1px 1px 16px 0 rgba(0, 0, 0, 0.08);
-    padding: 15px 20px;
-    transition: box-shadow .3s;
-  }
-  
-  div span{
-    font-weight: 500;
-    font-size: 40px;
-    display: block;
-  }
-  
-  
-  div:hover{
-    box-shadow: 0 0 11px rgba(33,33,33,.2); 
-  }
-}
-
-.dashicons{
-  margin-top: 6px;
-  margin-left: 10px;
-}
-
-.calculator-contact-us-now{
-  display: block;
-  text-align: center;
-}
-
-/* TOOLTIP */
-.help-tip {
-  position: absolute;
-  top: 5px;
-  right: 0px;
-  margin-left: 10px;
-  text-align: center;
-  background-color: #2b2d2f;
-  border-radius: 50%;
-  width: 20px;
-  height: 20px;
-  font-size: 12px;
-  line-height: 22px;
-  cursor: default;
-
-  &:hover {
-    cursor: pointer;
-    background-color: #2b2d2f;
-  }
-  
-  &:before {
-    content: '?';
-    font-weight: 700;
-    color: #fff;
-  }
-  
-  p {
-    visibility: hidden;
-    opacity: 0;
-    text-align: left;
-    background-color: #2b2d2f;
-    padding: 20px;
-    width: 300px;
-    position: absolute;
-    border-radius: 4px;
-    color: #fff;
-    font-size: 13px;
-    line-height: normal;
-    transition: opacity .6s;
-    z-index: 9999;
-    top: -40px;
-    left: 160%;
-  }
-  
-  &:hover p {
+    font-size: 12px;
+    line-height: 22px;
     cursor: default;
-    visibility: visible;
-    opacity: 1;
-    transform: scale(1.0);
-  }
   
-  p:before {
-    content: " ";
-    position: absolute;
-    top: 50%;
-    right: 100%; /* To the left of the tooltip */
-    margin-top: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: transparent #2b2d2f transparent transparent;
-  }
-  
-  a {
-    color: #fff;
-    font-weight: 700;
-
-    &:hover, &:focus {
-      color: #fff;
-      text-decoration: underline;
+    &:hover {
+      cursor: pointer;
+      background-color: #2b2d2f;
     }
+    
+    &:before {
+      content: '?';
+      font-weight: 700;
+      color: #fff;
+    }
+    
+    p {
+      visibility: hidden;
+      opacity: 0;
+      text-align: left;
+      background-color: #2b2d2f;
+      padding: 20px;
+      width: 300px;
+      position: absolute;
+      border-radius: 4px;
+      color: #fff;
+      font-size: 13px;
+      line-height: normal;
+      transition: opacity .6s;
+      z-index: 9999;
+      top: -40px;
+      left: 160%;
+    }
+    
+    &:hover p {
+      cursor: default;
+      visibility: visible;
+      opacity: 1;
+      transform: scale(1.0);
+    }
+    
+    p:before {
+      content: " ";
+      position: absolute;
+      top: 50%;
+      right: 100%; /* To the left of the tooltip */
+      margin-top: -5px;
+      border-width: 5px;
+      border-style: solid;
+      border-color: transparent #2b2d2f transparent transparent;
+    }
+    
+    a {
+      color: #fff;
+      font-weight: 700;
+  
+      &:hover, &:focus {
+        color: #fff;
+        text-decoration: underline;
+      }
+    }
+    
   }
-}
+  
+  #estimated-savings-annually{
+    color: #A2CC3A;
+    font-weight: 600;
+    border-bottom: 2px solid #a2cc3a;
+  }
 
+  .desc{
+    text-align: center;
+  }
+  h5{
+    text-align: center;
+    font-weight: 300;
+  }
+
+}
 
 .ct-shortcode{
   width: 100%;
-}
-
-
-#estimated-savings-annually{
-  color: #A2CC3A;
-  font-weight: 600;
-  padding: 8px;
-  text-decoration: underline;
 }
 
 // RESPONSIVE

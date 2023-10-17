@@ -1,4 +1,4 @@
-<div class="fuel-savings-calculator-wapper">
+<div class="fuel-savings-calculator-wrapper">
   <div id="fuel-savings-calculator">
 
     <div class="row">
@@ -87,13 +87,15 @@
     
   </div>
 
-  <br/><br/><br/>
-  <p>See how much you could save annually by optimizing your fueling process with our service.</p>
-  <h5>Estimated Yearly Savings: <span id="estimated-savings-annually">$0</span></h5>
   <br/>
+  <p class="desc">See how much you could save annually by optimizing your fueling process with our service.</p>
+  <h5>Estimated Yearly Savings: <span id="estimated-savings-annually">$0</span></h5>
+  <br/><br/>
+
   <div class="estimated-savings">
     <div><span id="lost-assets-and-labor-hours">0</span>Lost Assets & Labor Hours</div>
     <div><span id="labor-savings-per-week">$0</span>Labor Savings Per Week</div>
     <div><span id="every-gallon-you-pump-costs-an-additional">$0</span>Every Gallon You Pump Costs You An Additional</div>
   </div>
+
 </div>
