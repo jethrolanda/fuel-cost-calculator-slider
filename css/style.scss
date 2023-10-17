@@ -52,6 +52,8 @@
     
     .range-slider{
       padding-top: 10px;
+      padding-left: 30px;
+      padding-right: 30px;
     }
     
     .label{
@@ -216,6 +218,10 @@
         padding-top: 20px;
         text-align: left; 
       }
+    }
+    .range-slider{
+      padding-left: 0px;
+      padding-right: 0px;
     }
   }
   .estimated-savings{
