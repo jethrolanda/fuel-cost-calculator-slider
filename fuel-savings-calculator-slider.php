@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Fuel Savings Calculator Slider
- * Description: Calculate saved fuel
+ * Description: Calculate yearly saved fuel
  * Version: 1.0
  * Author: Jethro Landa
  * Author URI: https://jethrolanda.com/
