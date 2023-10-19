@@ -250,3 +250,27 @@
   width: 100%;
 }
 
+
+// PDF Report
+.fuel-savings-pdf-report-wrapper{
+  a{
+    background-color: #1e73be;
+    border: 1px solid #1e73be;
+    color: #ffffff;
+    padding: 10px 16px;
+  }
+}
+
+#pdf-report.modal{
+  padding: 40px 50px;
+  
+  p{
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    padding: 10px 0px;
+  }
+
+  button{
+    float: right;
+  }
+}
