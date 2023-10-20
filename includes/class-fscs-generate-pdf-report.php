@@ -211,8 +211,7 @@ class FSCS_Generate_PDF_Report
 
       $subject = "Your Fuel Savings Report from Fuel Logic";
 
-      $body = "
-      Dear [Name],
+      $body = "Dear [Name],
 
       Thank you for using the Fuel Logic Savings Calculator. We understand that optimizing your fueling strategy is crucial for your operations, and we're here to help you uncover potential savings and efficiencies.
 
@@ -241,7 +240,7 @@ class FSCS_Generate_PDF_Report
       Fuel Logic";
 
       // wp_mail( $to, $subject, $message, $headers, $attachments );
-      $test = wp_mail( 'jethrol@xammis.com', $subject, $body );
+      $test = wp_mail( 'jethrol@xammis.com', $subject, $body, array(), array(FSCS_PLUGIN_DIR.'/pdf-report.pdf') );
 
     }
 
