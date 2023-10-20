@@ -65,6 +65,10 @@ class FSCS_Generate_PDF_Report
       $output = $dompdf->output();
       file_put_contents(FSCS_PLUGIN_DIR.'/pdf-report.pdf', $output);
 
+      // wp_mail( $to, $subject, $message, $headers, $attachments );
+      $test = wp_mail( 'jethrol@xammis.com', 'PDF Report', 'The quick brown fox jumps over the lazy dog' );
+      error_log(print_r($test,true));
+
       wp_send_json(array('status' => 'success'));
     }
 

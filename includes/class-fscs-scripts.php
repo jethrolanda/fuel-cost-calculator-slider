@@ -74,6 +74,10 @@ class FSCS_Scripts
         wp_enqueue_script('pdf-report-modal-script', FSCS_JS_ROOT_URL . '/jquery-modal/jquery.modal.min.js', array('jquery'), '1.0.0', false);
         wp_enqueue_style('pdf-report-modal-style', FSCS_JS_ROOT_URL . '/jquery-modal/jquery.modal.min.css');
       
+        // Toastr
+        wp_enqueue_script('pdf-report-toastr-script', FSCS_JS_ROOT_URL . '/toastr/toastr.min.js', array('jquery'), '1.0.0', false);
+        wp_enqueue_style('pdf-report-toastr-style', FSCS_JS_ROOT_URL . '/toastr/toastr.min.css');
+
     }
 
     /**

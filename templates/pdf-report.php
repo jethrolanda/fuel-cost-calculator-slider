@@ -6,12 +6,14 @@
   <form id="pdf-report" class="modal">
     <p>
       <label>Name:</label>
-      <input type="text">
+      <input type="text" id="name">
     </p>
     <p>
       <label>Email:</label>
-      <input type="email">
+      <input type="email" id="email">
     </p>
-    <button id="send-pdf-report" class="btn-primary">Submit</button>
+    <span>
+      <img src="<?php echo FSCS_IMAGES_ROOT_URL; ?>spinner.gif"><button id="send-pdf-report" class="btn-primary">Submit</button>
+    </span>
   </form>
 </div>

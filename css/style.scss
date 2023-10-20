@@ -270,7 +270,17 @@
     padding: 10px 0px;
   }
 
+  span{
+    text-align: right;
+    display: inline-block;
+    width: 100%;
+  }
+  
+  img{
+    display: none;
+  }
+  
   button{
-    float: right;
+    margin-left: 10px;
   }
 }

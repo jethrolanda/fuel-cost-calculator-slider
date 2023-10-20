@@ -54,13 +54,14 @@ jQuery(document).ready(function ($) {
     $("#estimated-savings-annually").text(estimated_savings_annually);
 
     var data = {
+      // Slider data
       'number_of_operators' : c,
       'number_of_units_in_fleet' : b,
       'frequency_of_fueling': f,
       'round_trip_per_fueling': e,
       'estimated_gallons_per_fill': a,
       'average_hourly_rate' : d,
-      // Calculations
+      // Calculations data
       'every_gallon_you_pump_cost_an' : additional_costs,
       'estimated_gallons_consumed_per_week' : (estimated_gallons_consumed_per_month / 7).toLocaleString('en-US', {maximumFractionDigits:2}),
       'man_hours_allocated_to_fueling_per_week' : man_hours_allocated_to_fueling_per_week,
