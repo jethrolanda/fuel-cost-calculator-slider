@@ -64,10 +64,9 @@ class FSCS_Generate_PDF_Report
 
       $output = $dompdf->output();
       file_put_contents(FSCS_PLUGIN_DIR.'/pdf-report.pdf', $output);
-
-      // wp_mail( $to, $subject, $message, $headers, $attachments );
-      $test = wp_mail( 'jethrol@xammis.com', 'PDF Report', 'The quick brown fox jumps over the lazy dog' );
-      error_log(print_r($test,true));
+      
+      // Send email
+      $this->send_email();
 
       wp_send_json(array('status' => 'success'));
     }
@@ -204,6 +203,45 @@ class FSCS_Generate_PDF_Report
       <?php
 
       return ob_get_clean();
+
+    }
+
+    private function send_email() {
+
+
+      $subject = "Your Fuel Savings Report from Fuel Logic";
+
+      $body = "
+      Dear [Name],
+
+      Thank you for using the Fuel Logic Savings Calculator. We understand that optimizing your fueling strategy is crucial for your operations, and we're here to help you uncover potential savings and efficiencies.
+
+      Attached to this email, you'll find a detailed report outlining the savings and benefits you could achieve by partnering with Fuel Logic. This report provides a comprehensive breakdown based on the data you provided, showcasing how our services can transform your fueling process.
+
+      Key highlights from your report:
+
+      ⦁ Potential Annual Savings: On average, our clients save $21,840 annually.
+
+      ⦁ Efficiency Boost: Reduce downtime, streamline refueling, and ensure your fleet is always ready.
+
+      ⦁ Transparent Pricing: Experience the benefits of clear, upfront pricing with no hidden fees.
+
+      At Fuel Logic, we pride ourselves on offering tailored solutions that cater to your unique needs. Whether you're looking to buy fuel in bulk, require direct-to-equipment fueling, or need a comprehensive fuel management program, we've got you covered.
+
+      If you have any questions or would like to discuss the report in more detail, our team of fuel experts is here to assist. Feel free to reply to this email, call us at 866-311-3571, or book a virtual consultation.
+
+      Thank you for considering Fuel Logic. We look forward to the opportunity to help you optimize your fueling strategy and boost your bottom line.
+
+      Warm regards,
+
+      [Name]
+
+      [Position]
+
+      Fuel Logic";
+
+      // wp_mail( $to, $subject, $message, $headers, $attachments );
+      $test = wp_mail( 'jethrol@xammis.com', $subject, $body );
 
     }
 
