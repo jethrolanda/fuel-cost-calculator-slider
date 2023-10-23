@@ -44,7 +44,7 @@ class FSCS_Generate_PDF_Report
      */
     public function fscs_generate_pdf() {
       
-      error_log(print_r($_POST,true));
+      error_log(print_r($this->validate_recaptcha(),true));
       // Get html data
       // ob_start();
       // include_once FSCS_TEMPLATES_ROOT_DIR. 'pdf-template.html';
@@ -246,6 +246,29 @@ class FSCS_Generate_PDF_Report
 
       // wp_mail( $to, $subject, $message, $headers, $attachments );
       $test = wp_mail( $_POST['email'], $subject, $body, array(), array(FSCS_PLUGIN_DIR.'/pdf-report.pdf') );
+
+    }
+
+    private function validate_recaptcha() {
+
+      // Google reCAPTCHA API keys settings 
+      $secretKey  = '6Le7JcQoAAAAAIPtH-Ie4u98A41Z2WMHU4smoaJi'; 
+
+      // Validate reCAPTCHA checkbox 
+      if(isset($_POST['g_recaptcha_response']) && !empty($_POST['g_recaptcha_response'])) { 
+
+        // Verify the reCAPTCHA API response 
+        $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$secretKey.'&response='.$_POST['g_recaptcha_response']); 
+             
+          // Decode JSON data of API response 
+          $responseData = json_decode($verifyResponse); 
+           
+          // If the reCAPTCHA API response is valid 
+          return $responseData->success;
+
+      }
+
+      return false;
 
     }
 

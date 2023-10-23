@@ -22,6 +22,8 @@ jQuery(document).ready(function ($) {
     
     var name = $("#pdf-report").find("#name").val();
     var email = $("#pdf-report").find("#email").val();
+    var g_recaptcha_response = $("#pdf-report").find("#g-recaptcha-response")
+console.log(g_recaptcha_response)
 
     if (name === "" || email === "") 
       toastr.info('Name and Email are required.')
@@ -33,7 +35,7 @@ jQuery(document).ready(function ($) {
       jQuery.ajax({
           url         :   "/wp-admin/admin-ajax.php",
           type        :   "POST",
-          data        :   { action : "fscs_generate_pdf", name, email, calculator_data },
+          data        :   { action : "fscs_generate_pdf", name, email, calculator_data, g_recaptcha_response },
           dataType    :   "json"
       })
       .done(function (data, textStatus, jqXHR) {
