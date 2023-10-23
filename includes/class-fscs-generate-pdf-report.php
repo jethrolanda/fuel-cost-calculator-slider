@@ -44,7 +44,6 @@ class FSCS_Generate_PDF_Report
      */
     public function fscs_generate_pdf() {
       
-      error_log(print_r($this->validate_recaptcha(),true));
       // Get html data
       // ob_start();
       // include_once FSCS_TEMPLATES_ROOT_DIR. 'pdf-template.html';
@@ -65,10 +64,19 @@ class FSCS_Generate_PDF_Report
       $output = $dompdf->output();
       file_put_contents(FSCS_PLUGIN_DIR.'/pdf-report.pdf', $output);
       
-      // Send email
-      $this->send_email();
+      // Validate recaptcha
+      if($this->validate_recaptcha()){
 
-      wp_send_json(array('status' => 'success'));
+        // Send email
+        $this->send_email();
+        wp_send_json(array('status' => 'success'));
+
+      } else {
+        
+        wp_send_json(array('error' => 'Recaptcha is invalid.'));
+        
+      }
+      
     }
 
     /**
@@ -249,6 +257,11 @@ class FSCS_Generate_PDF_Report
 
     }
 
+    /**
+     * Validate google recaptcha
+     * 
+     * @since 1.0
+     */
     private function validate_recaptcha() {
 
       // Google reCAPTCHA API keys settings 
