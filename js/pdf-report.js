@@ -28,6 +28,8 @@ jQuery(document).ready(function ($) {
       toastr.info('Name and Email are required.')
     else if (!validateEmail(email))
       toastr.info('The email is invalid.')
+    else if(g_recaptcha_response === "")
+      toastr.info('Recaptcha is required.')
     else {
       // Display loader
       $('#pdf-report').find('img').show();
@@ -46,9 +48,9 @@ jQuery(document).ready(function ($) {
           $('#pdf-report').find('img').hide();
 
           // Reload page after sending the auto generated pdf
-          setTimeout(function() {
-            location.reload();
-          }, 1000);
+          // setTimeout(function() {
+          //   location.reload();
+          // }, 1000);
           
       })
       .fail(function(jqXHR, textStatus, errorThrown){
