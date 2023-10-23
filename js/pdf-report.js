@@ -22,8 +22,7 @@ jQuery(document).ready(function ($) {
     
     var name = $("#pdf-report").find("#name").val();
     var email = $("#pdf-report").find("#email").val();
-    var g_recaptcha_response = $("#pdf-report").find("#g-recaptcha-response")
-console.log(g_recaptcha_response)
+    var g_recaptcha_response = $("#g-recaptcha-response").val();
 
     if (name === "" || email === "") 
       toastr.info('Name and Email are required.')
