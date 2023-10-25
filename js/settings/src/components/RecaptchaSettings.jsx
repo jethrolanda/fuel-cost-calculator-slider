@@ -1,4 +1,4 @@
-import {useEffect} from 'react';
+import {useState, useEffect} from 'react';
 import { Button, Form, Input, notification } from 'antd';
 
 import {
@@ -10,6 +10,7 @@ import {
 import { useSelector, useDispatch } from 'react-redux';
 
 const RecaptchaSettings = () => {
+  const [loading, setLoading] = useState(false)
   const [api, contextHolder] = notification.useNotification();
   const openNotificationWithIcon = (type, message, description) => {
     api[type]({
@@ -23,20 +24,21 @@ const RecaptchaSettings = () => {
   let secret_key = useSelector(secretKey);
 
   form.setFieldsValue({
-    site_key: site_key, secret_key: secret_key
- });
+    site_key, secret_key
+  });
  
   const validateMessages = {
     required: '${label} is required!'
   };
   
   const formSubmit = (values) => {
-    console.log(values)
+    setLoading(true);
     dispatch(saveRecaptchaValues({values, cb: (data) => {
+      setLoading(false);
       if(data.status==='success') {
         openNotificationWithIcon('success', 'Success', 'Successfully saved.')
       } else {
-        openNotificationWithIcon('error', 'Error', 'Unable to save.')
+        openNotificationWithIcon('error', 'Error', data?.message)
       }
     }}))
   }
@@ -53,29 +55,21 @@ const RecaptchaSettings = () => {
     }
 
   }
+
   useEffect(()=> {
     dispatch(fetchRecaptchaValues())
-  }, [site_key, secret_key]);
+  }, []);
 
   return <>
       {contextHolder}
       <Form
-            form = {form}
-            name="wrap"
-            labelCol={{
-              flex: '110px',
-            }}
-            labelAlign="left"
-            labelWrap
-            wrapperCol={{
-              flex: 1,
-            }}
-            colon={false}
-            style={{
-              maxWidth: 600,
-            }}
-            validateMessages={validateMessages}
-            onFinish={(e)=>formSubmit(e)}
+          form = {form}
+          layout="vertical"
+          style={{
+            maxWidth: 600,
+          }}
+          validateMessages={validateMessages}
+          onFinish={(e)=>formSubmit(e)}
         >
           <h3>Recaptcha Settings</h3>
           <Form.Item
@@ -103,8 +97,8 @@ const RecaptchaSettings = () => {
           </Form.Item>
 
           <Form.Item label=" ">
-            <Button type="primary" htmlType="submit" onClick={()=>errorCheck()}>
-              Submit
+            <Button type="primary" htmlType="submit" onClick={()=>errorCheck()} loading={loading}>
+              Save
             </Button>
           </Form.Item>
         </Form>

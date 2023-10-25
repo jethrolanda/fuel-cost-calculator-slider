@@ -13,8 +13,9 @@
       <input type="email" id="email">
     </p>
     <span>
-      <div class="g-recaptcha" data-sitekey="6Le7JcQoAAAAAP_lzaT0xXp2_IpmSTXZOlSyB8po"></div>
+      <div class="g-recaptcha" data-sitekey="<?php echo get_option('fscs_site_key'); ?>"></div>
       <img src="<?php echo FSCS_IMAGES_ROOT_URL; ?>spinner.gif"><button id="send-pdf-report" class="btn-primary">Submit</button>
     </span>
+    <?php wp_nonce_field( 'submit_pdf_report' ); ?>
   </form>
 </div>

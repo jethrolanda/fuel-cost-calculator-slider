@@ -44,6 +44,17 @@ class FSCS_Generate_PDF_Report
      */
     public function fscs_generate_pdf() {
       
+      if (!defined('DOING_AJAX') || !DOING_AJAX) {
+        wp_die();
+      }
+
+      /**
+       * Verify nonce
+       */
+      if (isset($_POST['_wpnonce']) && !wp_verify_nonce($_POST['_wpnonce'], 'submit_pdf_report')) {
+        wp_die();
+      }
+
       // Get html data
       // ob_start();
       // include_once FSCS_TEMPLATES_ROOT_DIR. 'pdf-template.html';
@@ -221,36 +232,13 @@ class FSCS_Generate_PDF_Report
      */
     private function send_email() {
 
+      $subject = get_option('fscs_email_subject');
+      $subject = empty($subject) ? FSCS_EMAIL_SUBJECT : $subject;
 
-      $subject = "Your Fuel Savings Report from Fuel Logic";
+      $body = get_option('fscs_email_body');
+      $body = empty($body) ? FSCS_EMAIL_BODY : $body;
 
-      $body = "Dear ". $_POST['name'] .",
-
-      Thank you for using the Fuel Logic Savings Calculator. We understand that optimizing your fueling strategy is crucial for your operations, and we're here to help you uncover potential savings and efficiencies.
-
-      Attached to this email, you'll find a detailed report outlining the savings and benefits you could achieve by partnering with Fuel Logic. This report provides a comprehensive breakdown based on the data you provided, showcasing how our services can transform your fueling process.
-
-      Key highlights from your report:
-
-      ⦁ Potential Annual Savings: On average, our clients save $21,840 annually.
-
-      ⦁ Efficiency Boost: Reduce downtime, streamline refueling, and ensure your fleet is always ready.
-
-      ⦁ Transparent Pricing: Experience the benefits of clear, upfront pricing with no hidden fees.
-
-      At Fuel Logic, we pride ourselves on offering tailored solutions that cater to your unique needs. Whether you're looking to buy fuel in bulk, require direct-to-equipment fueling, or need a comprehensive fuel management program, we've got you covered.
-
-      If you have any questions or would like to discuss the report in more detail, our team of fuel experts is here to assist. Feel free to reply to this email, call us at 866-311-3571, or book a virtual consultation.
-
-      Thank you for considering Fuel Logic. We look forward to the opportunity to help you optimize your fueling strategy and boost your bottom line.
-
-      Warm regards,
-
-      [Name]
-
-      [Position]
-
-      Fuel Logic";
+      $body = str_replace('{customer_name}', $_POST['name'], $body);
 
       // wp_mail( $to, $subject, $message, $headers, $attachments );
       $test = wp_mail( $_POST['email'], $subject, $body, array(), array(FSCS_PLUGIN_DIR.'/pdf-report.pdf') );
@@ -265,7 +253,7 @@ class FSCS_Generate_PDF_Report
     private function validate_recaptcha() {
 
       // Google reCAPTCHA API keys settings 
-      $secretKey  = '6Le7JcQoAAAAAIPtH-Ie4u98A41Z2WMHU4smoaJi'; 
+      $secretKey  = get_option('fscs_secret_key'); 
 
       // Validate reCAPTCHA checkbox 
       if(isset($_POST['g_recaptcha_response']) && !empty($_POST['g_recaptcha_response'])) { 

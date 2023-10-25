@@ -64,7 +64,7 @@ class FSCS_Settings
     }
     
     /**
-     * Fetch settings.
+     * Fetch recaptcha settings.
      * 
      * @since 1.0
      */
@@ -81,19 +81,30 @@ class FSCS_Settings
             wp_die();
         }
         
-        $site_key = get_option('fscs_site_key', '');
-        $secret_key = get_option('fscs_secret_key', '');
-        
-        wp_send_json(array(
-            'status' => 'success',
-            'site_key' => $site_key,
-            'secret_key' => $secret_key
-        ));
+        try {
+
+            $site_key = get_option('fscs_site_key', '');
+            $secret_key = get_option('fscs_secret_key', '');
+            
+            wp_send_json(array(
+                'status' => 'success',
+                'site_key' => $site_key,
+                'secret_key' => $secret_key
+            ));
+
+        } catch (Exception $e) {
+
+            wp_send_json(array(
+                'status' => 'error',
+                'message' => $e->getMessage()
+            ));
+
+        }
         
     }
 
     /**
-     * Save settings.
+     * Save recaptcha settings.
      * 
      * @since 1.0
      */
@@ -110,17 +121,131 @@ class FSCS_Settings
             wp_die();
         }  
 
-        $site_key = isset($_POST['site_key']) ? sanitize_text_field($_POST['site_key']) : '';
-        $secret_key = isset($_POST['secret_key']) ? sanitize_text_field($_POST['secret_key']) : '';
+        try{
 
-        update_option('fscs_site_key', $site_key);
-        update_option('fscs_secret_key', $secret_key);
+            $site_key = isset($_POST['site_key']) ? sanitize_text_field($_POST['site_key']) : '';
+            $secret_key = isset($_POST['secret_key']) ? sanitize_text_field($_POST['secret_key']) : '';
+
+            update_option('fscs_site_key', $site_key);
+            update_option('fscs_secret_key', $secret_key);
+            
+            wp_send_json(array(
+                'status' => 'success',
+                'site_key' => $site_key,
+                'secret_key' => $secret_key
+            ));
+
+        } catch (Exception $e) {
+
+            wp_send_json(array(
+                'status' => 'error',
+                'message' => $e->getMessage()
+            ));
+
+        }
         
-        wp_send_json(array(
-            'status' => 'success',
-            'site_key' => $site_key,
-            'secret_key' => $secret_key
-        ));
+    }
+
+    /**
+     * Fetch email settings.
+     * 
+     * @since 1.0
+     */
+    public function fscs_settings_get_email_data() {
+        
+        if (!defined('DOING_AJAX') || !DOING_AJAX) {
+            wp_die();
+        }
+        
+        /**
+         * Verify nonce
+         */
+        if (isset($_POST['nonce']) && !wp_verify_nonce($_POST['nonce'], 'settings_nonce')) {
+            wp_die();
+        }
+        
+        try {
+
+            $subject = get_option('fscs_email_subject', '');
+            $body = get_option('fscs_email_body', '');
+            
+            wp_send_json(array(
+                'status' => 'success',
+                'subject' => $subject,
+                'body' => $body
+            ));
+
+        } catch (Exception $e) {
+
+            wp_send_json(array(
+                'status' => 'error',
+                'message' => $e->getMessage()
+            ));
+
+        }
+        
+    }
+
+    /**
+     * Save email settings.
+     * 
+     * @since 1.0
+     */
+    public function fscs_settings_save_email_data() {
+        
+        if (!defined('DOING_AJAX') || !DOING_AJAX) {
+            wp_die();
+        }
+
+        /**
+         * Verify nonce
+         */
+        if (isset($_POST['nonce']) && !wp_verify_nonce($_POST['nonce'], 'settings_nonce')) {
+            wp_die();
+        }  
+
+        try {
+            
+            $subject = isset($_POST['subject']) ? sanitize_text_field($_POST['subject']) : '';
+            $allowed_tags = array( 
+                'a' => array(
+                    'href' => array(),
+                    'title' => array()
+                ),
+                'p' => array(
+                    'class' => array()
+                ), 
+                'br' => array(), 
+                'ul' => array(), 
+                'ol' => array(), 
+                'li' => array(), 
+                'i' => array(), 
+                'b' => array(), 
+                'u' => array(), 
+                'h1' => array(), 
+                'h2' => array(), 
+                's' => array(), 
+                'blockquote' => array() 
+            );
+            $body = isset($_POST['body']) ? wp_kses_post($_POST['body'], $allowed_tags) : '';
+            
+            update_option('fscs_email_subject', $subject);
+            update_option('fscs_email_body', $body);
+            
+            wp_send_json(array(
+                'status' => 'success',
+                'subject' => $subject,
+                'body' => wp_unslash($body)
+            ));
+
+        } catch (Exception $e) {
+
+            wp_send_json(array(
+                'status' => 'error',
+                'message' => $e->getMessage()
+            ));
+
+        }
         
     }
 
@@ -135,11 +260,17 @@ class FSCS_Settings
         // Add new menu
         add_action('admin_menu', array($this, 'custom_menu'), 10);
         
-        // Fetch setting via ajax 
+        // Fetch recaptcha setting via ajax 
         add_action("wp_ajax_fscs_settings_get_recaptcha_data", array($this, 'fscs_settings_get_recaptcha_data'));
 
-        // Save setting via ajax 
+        // Save recaptcha setting via ajax 
         add_action("wp_ajax_fscs_settings_save_recaptcha_data", array($this, 'fscs_settings_save_recaptcha_data'));
+
+        // Fetch email setting via ajax 
+        add_action("wp_ajax_fscs_settings_get_email_data", array($this, 'fscs_settings_get_email_data'));
+
+        // Save email setting via ajax 
+        add_action("wp_ajax_fscs_settings_save_email_data", array($this, 'fscs_settings_save_email_data'));
 
     }
 

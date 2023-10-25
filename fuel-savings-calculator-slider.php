@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Fuel Savings Calculator Slider
- * Description: Calculate yearly saved fuel
+ * Description: Calculate saved fuel annually.
  * Version: 1.0
  * Author: Jethro Landa
  * Author URI: https://jethrolanda.com/
@@ -35,6 +35,39 @@ define( 'FSCS_VIEWS_ROOT_DIR',        FSCS_PLUGIN_DIR . 'views/' );
 define( 'FSCS_LANGUAGES_ROOT_URL',    FSCS_PLUGIN_URL . 'languages/' );
 define( 'FSCS_LANGUAGES_ROOT_DIR',    FSCS_PLUGIN_DIR . 'languages/' );
 
+// Email Defaut Values
+$body = "Dear {customer_name},<br/><br/>";
+
+$body .= "Thank you for using the Fuel Logic Savings Calculator. We understand that optimizing your fueling strategy is crucial for your operations, and we're here to help you uncover potential savings and efficiencies.<br/><br/>";
+
+$body .= "Attached to this email, you'll find a detailed report outlining the savings and benefits you could achieve by partnering with Fuel Logic. This report provides a comprehensive breakdown based on the data you provided, showcasing how our services can transform your fueling process.<br/><br/>";
+
+$body .= "Key highlights from your report:<br/><br/>";
+
+$body .= "<ul>";
+$body .= "<li>Potential Annual Savings: On average, our clients save $21,840 annually.</li>";
+$body .= "<li>Efficiency Boost: Reduce downtime, streamline refueling, and ensure your fleet is always ready.</li>";
+$body .= "<li>Transparent Pricing: Experience the benefits of clear, upfront pricing with no hidden fees.</li>";
+$body .= "</ul><br/>";
+
+$body .= "At Fuel Logic, we pride ourselves on offering tailored solutions that cater to your unique needs. Whether you're looking to buy fuel in bulk, require direct-to-equipment fueling, or need a comprehensive fuel management program, we've got you covered.<br/><br/>";
+
+$body .= "If you have any questions or would like to discuss the report in more detail, our team of fuel experts is here to assist. Feel free to reply to this email, call us at 866-311-3571, or book a virtual consultation.<br/><br/>";
+
+$body .= "Thank you for considering Fuel Logic. We look forward to the opportunity to help you optimize your fueling strategy and boost your bottom line.<br/><br/>";
+
+$body .= "Warm regards,<br/><br/>";
+
+$body .= "[Name]<br/>";
+
+$body .= "[Position]<br/>";
+
+$body .= "Fuel Logic";
+
+define( 'FSCS_EMAIL_SUBJECT', "Your Fuel Savings Report from Fuel Logic" );
+define( 'FSCS_EMAIL_BODY', $body );
+
+// Run
 require_once 'fuel-savings-calculator-slider.plugin.php';
 $fscs = Fuel_Savings_Calculator_Slider::instance();
 $GLOBALS['fscs'] = $fscs;

@@ -64,7 +64,58 @@ class Fuel_Savings_Calculator_Slider {
 
       return self::$_instance;
     }
-    
+
+    /**
+     * Trigger on activation
+     *
+     * @since 1.0.0
+     */
+    public function activate() {
+      
+      if(get_option('fscs_email_subject') == "") {
+        update_option('fscs_email_subject', FSCS_EMAIL_SUBJECT);
+      }
+      
+      if(get_option('fscs_email_body') == "") {
+
+        $allowed_tags = array( 
+            'a' => array(
+                'href' => array(),
+                'title' => array()
+            ),
+            'p' => array(
+                'class' => array()
+            ), 
+            'br' => array(), 
+            'ul' => array(), 
+            'ol' => array(), 
+            'li' => array(), 
+            'i' => array(), 
+            'b' => array(), 
+            'u' => array(), 
+            'h1' => array(), 
+            'h2' => array(), 
+            's' => array(), 
+            'blockquote' => array() 
+        );
+
+        $body = wp_kses(FSCS_EMAIL_BODY, $allowed_tags);
+
+        update_option('fscs_email_body', $body);
+
+      }
+
+    }
+
+    /**
+     * Trigger on deactivation
+     *
+     * @since 1.0.0
+     */
+    public function deactivate() {
+
+    }
+
     /**
      * Triggers the execution codes of the plugin models.
      *
@@ -72,7 +123,14 @@ class Fuel_Savings_Calculator_Slider {
      * @access public
      */
     public function run() {
+      
+      // Register Activation Hook
+      register_activation_hook(FSCS_PLUGIN_DIR . 'fuel-savings-calculator-slider.php', array($this, 'activate'));
 
+      // Register Deactivation Hook
+      register_deactivation_hook(FSCS_PLUGIN_DIR . 'fuel-savings-calculator-slider.php', array($this, 'deactivate'));
+
+      // Run all the class hooks
       $this->_fscs_scripts->run();
       $this->_fscs_slider_shortcode->run();
       $this->_fscs_pdf_report_shortcode->run();
