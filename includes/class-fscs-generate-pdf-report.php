@@ -240,8 +240,10 @@ class FSCS_Generate_PDF_Report
 
       $body = str_replace('{customer_name}', $_POST['name'], $body);
 
+      $headers = array('Content-Type: text/html; charset=UTF-8');
+
       // wp_mail( $to, $subject, $message, $headers, $attachments );
-      $test = wp_mail( $_POST['email'], $subject, $body, array(), array(FSCS_PLUGIN_DIR.'/pdf-report.pdf') );
+      $test = wp_mail( $_POST['email'], $subject, $body, $headers, array(FSCS_PLUGIN_DIR.'/pdf-report.pdf') );
 
     }
 
