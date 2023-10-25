@@ -48,11 +48,11 @@ $body .= "<ul>";
 $body .= "<li>Potential Annual Savings: On average, our clients save $21,840 annually.</li>";
 $body .= "<li>Efficiency Boost: Reduce downtime, streamline refueling, and ensure your fleet is always ready.</li>";
 $body .= "<li>Transparent Pricing: Experience the benefits of clear, upfront pricing with no hidden fees.</li>";
-$body .= "</ul><br/>";
+$body .= "</ul>";
 
 $body .= "<p>At Fuel Logic, we pride ourselves on offering tailored solutions that cater to your unique needs. Whether you're looking to buy fuel in bulk, require direct-to-equipment fueling, or need a comprehensive fuel management program, we've got you covered.</p>";
 
-$body .= "<p>If you have any questions or would like to discuss the report in more detail, our team of fuel experts is here to assist. Feel free to reply to this email, call us at 866-311-3571, or book a virtual consultation.<p>";
+$body .= "<p>If you have any questions or would like to discuss the report in more detail, our team of fuel experts is here to assist. Feel free to reply to this email, call us at 866-311-3571, or book a virtual consultation.</p>";
 
 $body .= "<p>Thank you for considering Fuel Logic. We look forward to the opportunity to help you optimize your fueling strategy and boost your bottom line.</p>";
 
