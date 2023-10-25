@@ -36,7 +36,7 @@ define( 'FSCS_LANGUAGES_ROOT_URL',    FSCS_PLUGIN_URL . 'languages/' );
 define( 'FSCS_LANGUAGES_ROOT_DIR',    FSCS_PLUGIN_DIR . 'languages/' );
 
 // Email Defaut Values
-$body = "<p>Dear {customer_name},<p>";
+$body = "<p>Dear {customer_name},</p>";
 
 $body .= "<p>Thank you for using the Fuel Logic Savings Calculator. We understand that optimizing your fueling strategy is crucial for your operations, and we're here to help you uncover potential savings and efficiencies.</p>";
 
