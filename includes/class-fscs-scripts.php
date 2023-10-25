@@ -45,7 +45,18 @@ class FSCS_Scripts
             $this->plugin_scripts();
             
         }
-    
+
+        // Backend Settings Page React App
+        if(isset($_GET['page']) && $_GET['page'] == 'fuel_savings_settings'){
+            wp_enqueue_style('fuel-savings-setting-style', FSCS_PLUGIN_URL . '/js/settings/build/index.css');
+            wp_enqueue_script('fuel-savings-setting-script', FSCS_PLUGIN_URL . '/js/settings/build/index.js', array('wp-element', 'wp-i18n'), '1.0.0', true);
+            wp_localize_script('fuel-savings-setting-script', 'fscs_settings', array(
+                'rest_url'   => esc_url_raw( get_rest_url() ),
+                'nonce' => wp_create_nonce( 'wp_rest' ),
+                'ajax_url' => admin_url('admin-ajax.php'),
+                'settings_nonce' => wp_create_nonce( 'settings_nonce' ),
+            ));
+        }
     }
 
     /**

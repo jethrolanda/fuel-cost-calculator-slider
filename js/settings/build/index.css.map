@@ -1,0 +1,1 @@
+{"version":3,"file":"index.css","mappings":";;;AAAA;AACA;AACA;AAEA;EACE;AAAF,C","sources":["webpack://settings/./style/main.scss"],"sourcesContent":["@tailwind base;\r\n@tailwind components;\r\n@tailwind utilities;\r\n\r\nh1{\r\n  font-size: 200px;\r\n}"],"names":[],"sourceRoot":""}

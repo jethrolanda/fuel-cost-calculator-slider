@@ -1,0 +1,23 @@
+{
+  "name": "settings",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "wp-scripts build",
+    "start": "wp-scripts start"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@wordpress/scripts": "^25.5.1"
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^1.9.7",
+    "antd": "^5.10.2",
+    "axios": "^1.5.1",
+    "react-quill": "^2.0.0",
+    "react-redux": "^8.1.3"
+  }
+}

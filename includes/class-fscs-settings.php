@@ -40,11 +40,11 @@ class FSCS_Settings
      */
     public function custom_menu() {
         add_menu_page(
-            'Spoiler',
-            'Spoiler',
+            'Fuel Savings',
+            'Fuel Savings',
             'edit_posts',
-            'spoiler_settings',
-            array($this, 'spoiler_settings_page'),
+            'fuel_savings_settings',
+            array($this, 'fuel_savings_settings_page'),
             'dashicons-media-spreadsheet'
         );
     }
@@ -54,10 +54,10 @@ class FSCS_Settings
      * 
      * @since 1.0
      */
-    public function spoiler_settings_page() {
+    public function fuel_savings_settings_page() {
       ?>
         <div class="wrap">
-            <div id="spoiler-settings">
+            <div id="fuel-savings-settings">
                 <h2>Loading...</h2>
             </div>
         </div><?php
@@ -68,24 +68,26 @@ class FSCS_Settings
      * 
      * @since 1.0
      */
-    public function wps_fetch_settings() {
+    public function fscs_settings_get_recaptcha_data() {
         
         if (!defined('DOING_AJAX') || !DOING_AJAX) {
             wp_die();
         }
         
         /**
-         * Verify nonce if its the same as we created, if not then we return
+         * Verify nonce
          */
         if (isset($_POST['nonce']) && !wp_verify_nonce($_POST['nonce'], 'settings_nonce')) {
             wp_die();
         }
         
-        $data = get_option('wps_setting', array());
+        $site_key = get_option('fscs_site_key', '');
+        $secret_key = get_option('fscs_secret_key', '');
         
         wp_send_json(array(
             'status' => 'success',
-            'data' => $data
+            'site_key' => $site_key,
+            'secret_key' => $secret_key
         ));
         
     }
@@ -95,27 +97,50 @@ class FSCS_Settings
      * 
      * @since 1.0
      */
-    public function wps_save_settings() {
+    public function fscs_settings_save_recaptcha_data() {
         
         if (!defined('DOING_AJAX') || !DOING_AJAX) {
             wp_die();
         }
 
         /**
-         * Verify nonce if its the same as we created, if not then we return
+         * Verify nonce
          */
         if (isset($_POST['nonce']) && !wp_verify_nonce($_POST['nonce'], 'settings_nonce')) {
             wp_die();
         }  
 
-        $data = isset($_POST['data']) && is_array($_POST['data']) ? $_POST['data'] : array();
-        update_option('wps_setting', $data);
+        $site_key = isset($_POST['site_key']) ? sanitize_text_field($_POST['site_key']) : '';
+        $secret_key = isset($_POST['secret_key']) ? sanitize_text_field($_POST['secret_key']) : '';
+
+        update_option('fscs_site_key', $site_key);
+        update_option('fscs_secret_key', $secret_key);
         
         wp_send_json(array(
             'status' => 'success',
-            'data' => $data
+            'site_key' => $site_key,
+            'secret_key' => $secret_key
         ));
         
+    }
+
+    /**
+     * Execute Model.
+     *
+     * @since 1.0
+     * @access public
+     */
+    public function run() { 
+
+        // Add new menu
+        add_action('admin_menu', array($this, 'custom_menu'), 10);
+        
+        // Fetch setting via ajax 
+        add_action("wp_ajax_fscs_settings_get_recaptcha_data", array($this, 'fscs_settings_get_recaptcha_data'));
+
+        // Save setting via ajax 
+        add_action("wp_ajax_fscs_settings_save_recaptcha_data", array($this, 'fscs_settings_save_recaptcha_data'));
+
     }
 
 }
