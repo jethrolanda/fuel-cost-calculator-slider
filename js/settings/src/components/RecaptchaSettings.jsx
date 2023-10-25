@@ -22,11 +22,7 @@ const RecaptchaSettings = () => {
   const dispatch = useDispatch();
   let site_key = useSelector(siteKey);
   let secret_key = useSelector(secretKey);
-
-  form.setFieldsValue({
-    site_key, secret_key
-  });
- 
+  
   const validateMessages = {
     required: '${label} is required!'
   };
@@ -60,6 +56,12 @@ const RecaptchaSettings = () => {
     dispatch(fetchRecaptchaValues())
   }, []);
 
+  useEffect(()=>{
+    form.setFieldsValue({
+      site_key, secret_key
+    });
+  }, [site_key, secret_key]);
+
   return <>
       {contextHolder}
       <Form
@@ -81,7 +83,7 @@ const RecaptchaSettings = () => {
               },
             ]}
           >
-            <Input value={site_key}/>
+            <Input/>
           </Form.Item>
 
           <Form.Item
@@ -93,7 +95,7 @@ const RecaptchaSettings = () => {
               },
             ]}
           >
-            <Input value={secret_key}/>
+            <Input/>
           </Form.Item>
 
           <Form.Item label=" ">

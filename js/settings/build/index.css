@@ -959,4 +959,8 @@
   float: right;
 }
 
+.ql-editor p {
+  margin: 1em 0 !important;
+}
+
 /*# sourceMappingURL=index.css.map*/

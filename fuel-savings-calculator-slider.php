@@ -36,13 +36,13 @@ define( 'FSCS_LANGUAGES_ROOT_URL',    FSCS_PLUGIN_URL . 'languages/' );
 define( 'FSCS_LANGUAGES_ROOT_DIR',    FSCS_PLUGIN_DIR . 'languages/' );
 
 // Email Defaut Values
-$body = "Dear {customer_name},<br/><br/>";
+$body = "<p>Dear {customer_name},<p>";
 
-$body .= "Thank you for using the Fuel Logic Savings Calculator. We understand that optimizing your fueling strategy is crucial for your operations, and we're here to help you uncover potential savings and efficiencies.<br/><br/>";
+$body .= "<p>Thank you for using the Fuel Logic Savings Calculator. We understand that optimizing your fueling strategy is crucial for your operations, and we're here to help you uncover potential savings and efficiencies.</p>";
 
-$body .= "Attached to this email, you'll find a detailed report outlining the savings and benefits you could achieve by partnering with Fuel Logic. This report provides a comprehensive breakdown based on the data you provided, showcasing how our services can transform your fueling process.<br/><br/>";
+$body .= "<p>Attached to this email, you'll find a detailed report outlining the savings and benefits you could achieve by partnering with Fuel Logic. This report provides a comprehensive breakdown based on the data you provided, showcasing how our services can transform your fueling process.</p>";
 
-$body .= "Key highlights from your report:<br/><br/>";
+$body .= "<p>Key highlights from your report:</p>";
 
 $body .= "<ul>";
 $body .= "<li>Potential Annual Savings: On average, our clients save $21,840 annually.</li>";
@@ -50,19 +50,17 @@ $body .= "<li>Efficiency Boost: Reduce downtime, streamline refueling, and ensur
 $body .= "<li>Transparent Pricing: Experience the benefits of clear, upfront pricing with no hidden fees.</li>";
 $body .= "</ul><br/>";
 
-$body .= "At Fuel Logic, we pride ourselves on offering tailored solutions that cater to your unique needs. Whether you're looking to buy fuel in bulk, require direct-to-equipment fueling, or need a comprehensive fuel management program, we've got you covered.<br/><br/>";
+$body .= "<p>At Fuel Logic, we pride ourselves on offering tailored solutions that cater to your unique needs. Whether you're looking to buy fuel in bulk, require direct-to-equipment fueling, or need a comprehensive fuel management program, we've got you covered.</p>";
 
-$body .= "If you have any questions or would like to discuss the report in more detail, our team of fuel experts is here to assist. Feel free to reply to this email, call us at 866-311-3571, or book a virtual consultation.<br/><br/>";
+$body .= "<p>If you have any questions or would like to discuss the report in more detail, our team of fuel experts is here to assist. Feel free to reply to this email, call us at 866-311-3571, or book a virtual consultation.<p>";
 
-$body .= "Thank you for considering Fuel Logic. We look forward to the opportunity to help you optimize your fueling strategy and boost your bottom line.<br/><br/>";
+$body .= "<p>Thank you for considering Fuel Logic. We look forward to the opportunity to help you optimize your fueling strategy and boost your bottom line.</p>";
 
-$body .= "Warm regards,<br/><br/>";
+$body .= "<p>Warm regards,</p>";
 
-$body .= "[Name]<br/>";
-
+$body .= "<p>[Name]<br/>";
 $body .= "[Position]<br/>";
-
-$body .= "Fuel Logic";
+$body .= "Fuel Logic</p>";
 
 define( 'FSCS_EMAIL_SUBJECT', "Your Fuel Savings Report from Fuel Logic" );
 define( 'FSCS_EMAIL_BODY', $body );

@@ -28,10 +28,6 @@ export default function EmailSettings() {
   let email_subject = useSelector(subject);
   let email_body = useSelector(body);
 
-  form.setFieldsValue({
-    subject: email_subject,
-    body: email_body
-  });
 
   const modules = {
     toolbar: [
@@ -84,6 +80,13 @@ export default function EmailSettings() {
     dispatch(fetchEmailValues())
   }, []);
 
+  useEffect(()=>{
+    form.setFieldsValue({
+      subject: email_subject,
+      body: email_body
+    });
+  },[email_subject, email_body]);
+  
   return (
     <>
     {contextHolder}
@@ -124,7 +127,7 @@ export default function EmailSettings() {
              }
           ]}
         >
-          <ReactQuill theme="snow" modules={modules} formats={formats} />
+          <ReactQuill theme="snow" modules={modules} formats={formats} preserveWhitespace />
         </Form.Item>
 
         <Form.Item label=" ">

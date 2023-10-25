@@ -172,7 +172,7 @@ class FSCS_Settings
             wp_send_json(array(
                 'status' => 'success',
                 'subject' => $subject,
-                'body' => $body
+                'body' => wp_unslash($body)
             ));
 
         } catch (Exception $e) {

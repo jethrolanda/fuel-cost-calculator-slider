@@ -24446,10 +24446,6 @@ function EmailSettings() {
   const dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_4__.useDispatch)();
   let email_subject = (0,react_redux__WEBPACK_IMPORTED_MODULE_4__.useSelector)(_store_reducer_emailSlice__WEBPACK_IMPORTED_MODULE_3__.subject);
   let email_body = (0,react_redux__WEBPACK_IMPORTED_MODULE_4__.useSelector)(_store_reducer_emailSlice__WEBPACK_IMPORTED_MODULE_3__.body);
-  form.setFieldsValue({
-    subject: email_subject,
-    body: email_body
-  });
   const modules = {
     toolbar: [[{
       'header': [1, 2, false]
@@ -24498,6 +24494,12 @@ function EmailSettings() {
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     dispatch((0,_store_reducer_emailSlice__WEBPACK_IMPORTED_MODULE_3__.fetchEmailValues)());
   }, []);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    form.setFieldsValue({
+      subject: email_subject,
+      body: email_body
+    });
+  }, [email_subject, email_body]);
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, contextHolder, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(antd__WEBPACK_IMPORTED_MODULE_5__["default"], {
     form: form,
     layout: "vertical",
@@ -24527,7 +24529,8 @@ function EmailSettings() {
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)((react_quill__WEBPACK_IMPORTED_MODULE_1___default()), {
     theme: "snow",
     modules: modules,
-    formats: formats
+    formats: formats,
+    preserveWhitespace: true
   })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(antd__WEBPACK_IMPORTED_MODULE_5__["default"].Item, {
     label: " "
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(antd__WEBPACK_IMPORTED_MODULE_8__["default"], {
@@ -24574,10 +24577,6 @@ const RecaptchaSettings = () => {
   const dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useDispatch)();
   let site_key = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useSelector)(_store_reducer_recaptchaSlice__WEBPACK_IMPORTED_MODULE_1__.siteKey);
   let secret_key = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useSelector)(_store_reducer_recaptchaSlice__WEBPACK_IMPORTED_MODULE_1__.secretKey);
-  form.setFieldsValue({
-    site_key,
-    secret_key
-  });
   const validateMessages = {
     required: '${label} is required!'
   };
@@ -24608,6 +24607,12 @@ const RecaptchaSettings = () => {
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     dispatch((0,_store_reducer_recaptchaSlice__WEBPACK_IMPORTED_MODULE_1__.fetchRecaptchaValues)());
   }, []);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    form.setFieldsValue({
+      site_key,
+      secret_key
+    });
+  }, [site_key, secret_key]);
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, contextHolder, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(antd__WEBPACK_IMPORTED_MODULE_4__["default"], {
     form: form,
     layout: "vertical",
@@ -24622,17 +24627,13 @@ const RecaptchaSettings = () => {
     rules: [{
       required: true
     }]
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(antd__WEBPACK_IMPORTED_MODULE_5__["default"], {
-    value: site_key
-  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(antd__WEBPACK_IMPORTED_MODULE_4__["default"].Item, {
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(antd__WEBPACK_IMPORTED_MODULE_5__["default"], null)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(antd__WEBPACK_IMPORTED_MODULE_4__["default"].Item, {
     label: "Secret Key",
     name: "secret_key",
     rules: [{
       required: true
     }]
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(antd__WEBPACK_IMPORTED_MODULE_5__["default"], {
-    value: secret_key
-  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(antd__WEBPACK_IMPORTED_MODULE_4__["default"].Item, {
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(antd__WEBPACK_IMPORTED_MODULE_5__["default"], null)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(antd__WEBPACK_IMPORTED_MODULE_4__["default"].Item, {
     label: " "
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(antd__WEBPACK_IMPORTED_MODULE_6__["default"], {
     type: "primary",
