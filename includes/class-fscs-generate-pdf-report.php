@@ -239,7 +239,7 @@ class FSCS_Generate_PDF_Report
       $body = empty($body) ? FSCS_EMAIL_BODY : $body;
 
       $body = str_replace('{customer_name}', $_POST['name'], $body);
-
+      $body = wp_unslash($body);
       $headers = array('Content-Type: text/html; charset=UTF-8');
 
       // wp_mail( $to, $subject, $message, $headers, $attachments );

@@ -24453,10 +24453,6 @@ function EmailSettings() {
       'list': 'ordered'
     }, {
       'list': 'bullet'
-    }, {
-      'indent': '-1'
-    }, {
-      'indent': '+1'
     }], ['link'] //'image'
     // ['clean']
     ],
@@ -24532,7 +24528,8 @@ function EmailSettings() {
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)((react_quill__WEBPACK_IMPORTED_MODULE_1___default()), {
     theme: "snow",
     modules: modules,
-    formats: formats
+    formats: formats,
+    preserveWhitespace: true
   })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(antd__WEBPACK_IMPORTED_MODULE_5__["default"].Item, {
     label: " "
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(antd__WEBPACK_IMPORTED_MODULE_8__["default"], {

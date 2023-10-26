@@ -33,7 +33,7 @@ export default function EmailSettings() {
     toolbar: [
       [{ 'header': [1, 2, false] }],
       ['bold', 'italic', 'underline','strike', 'blockquote'],
-      [{'list': 'ordered'}, {'list': 'bullet'}, {'indent': '-1'}, {'indent': '+1'}],
+      [{'list': 'ordered'}, {'list': 'bullet'}],
       ['link'], //'image'
       // ['clean']
     ],
@@ -130,7 +130,7 @@ export default function EmailSettings() {
              }
           ]}
         >
-          <ReactQuill theme="snow" modules={modules} formats={formats}/>
+          <ReactQuill theme="snow" modules={modules} formats={formats} preserveWhitespace/>
         </Form.Item>
 
         <Form.Item label=" ">
