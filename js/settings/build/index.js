@@ -24459,9 +24459,12 @@ function EmailSettings() {
       'indent': '+1'
     }], ['link'] //'image'
     // ['clean']
-    ]
-  };
+    ],
 
+    clipboard: {
+      matchVisual: false
+    }
+  };
   const formats = ['header', 'bold', 'italic', 'underline', 'strike', 'blockquote', 'list', 'bullet', 'indent', 'link', 'image'];
   const validateMessages = {
     required: '${label} is required!'
@@ -24529,8 +24532,7 @@ function EmailSettings() {
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)((react_quill__WEBPACK_IMPORTED_MODULE_1___default()), {
     theme: "snow",
     modules: modules,
-    formats: formats,
-    preserveWhitespace: true
+    formats: formats
   })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(antd__WEBPACK_IMPORTED_MODULE_5__["default"].Item, {
     label: " "
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(antd__WEBPACK_IMPORTED_MODULE_8__["default"], {

@@ -36,7 +36,10 @@ export default function EmailSettings() {
       [{'list': 'ordered'}, {'list': 'bullet'}, {'indent': '-1'}, {'indent': '+1'}],
       ['link'], //'image'
       // ['clean']
-    ]
+    ],
+    clipboard: {
+      matchVisual: false
+    },
   }
 
   const formats = [
@@ -127,7 +130,7 @@ export default function EmailSettings() {
              }
           ]}
         >
-          <ReactQuill theme="snow" modules={modules} formats={formats} preserveWhitespace />
+          <ReactQuill theme="snow" modules={modules} formats={formats}/>
         </Form.Item>
 
         <Form.Item label=" ">

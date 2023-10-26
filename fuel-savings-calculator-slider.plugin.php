@@ -77,32 +77,8 @@ class Fuel_Savings_Calculator_Slider {
       }
       
       if(get_option('fscs_email_body') == "") {
-
-        $allowed_tags = array( 
-            'a' => array(
-                'href' => array(),
-                'title' => array()
-            ),
-            'p' => array(
-                'class' => array()
-            ), 
-            'br' => array(), 
-            'ul' => array(), 
-            'ol' => array(), 
-            'li' => array(), 
-            'i' => array(), 
-            'b' => array(), 
-            'u' => array(), 
-            'h1' => array(), 
-            'h2' => array(), 
-            's' => array(), 
-            'blockquote' => array() 
-        );
-
-        $body = wp_kses(FSCS_EMAIL_BODY, $allowed_tags);
-
-        update_option('fscs_email_body', $body);
-
+        update_option('fscs_email_body', FSCS_EMAIL_BODY);
+        error_log(print_r(FSCS_EMAIL_BODY,true));
       }
 
     }
