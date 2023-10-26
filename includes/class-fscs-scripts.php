@@ -67,14 +67,14 @@ class FSCS_Scripts
     public function plugin_scripts() {
   
         // Range Slider
-        wp_enqueue_style('range-slider-style-custom', FSCS_CSS_ROOT_URL . '/style.min.css');
-        wp_enqueue_style('range-slider-style', FSCS_CSS_ROOT_URL . '/rangeslider.min.css');
+        wp_enqueue_style('range-slider-style-custom', FSCS_CSS_ROOT_URL . 'style.min.css');
+        wp_enqueue_style('range-slider-style', FSCS_CSS_ROOT_URL . 'rangeslider.min.css');
       
-        wp_enqueue_script('range-slider-script', FSCS_JS_ROOT_URL . '/rangeslider.min.js', array('jquery'), '1.0.0', false);
-        wp_enqueue_script('range-slider-setup-script', FSCS_JS_ROOT_URL . '/slider-options.js', array('jquery'), '1.0.0', false);
+        wp_enqueue_script('range-slider-script', FSCS_JS_ROOT_URL . 'rangeslider.min.js', array('jquery'), '1.0.0', false);
+        wp_enqueue_script('range-slider-setup-script', FSCS_JS_ROOT_URL . 'slider-options.js', array('jquery'), '1.0.0', false);
       
         // jQuery modal
-        wp_enqueue_script('pdf-report-script', FSCS_JS_ROOT_URL . '/pdf-report.js', array('jquery'), '1.0.0', false);
+        wp_enqueue_script('pdf-report-script', FSCS_JS_ROOT_URL . 'pdf-report.js', array('jquery'), '1.0.0', false);
         wp_localize_script('pdf-report-script',
                     'options',
                     array(
@@ -82,12 +82,12 @@ class FSCS_Scripts
                     )
                 );
 
-        wp_enqueue_script('pdf-report-modal-script', FSCS_JS_ROOT_URL . '/jquery-modal/jquery.modal.min.js', array('jquery'), '1.0.0', false);
-        wp_enqueue_style('pdf-report-modal-style', FSCS_JS_ROOT_URL . '/jquery-modal/jquery.modal.min.css');
+        wp_enqueue_script('pdf-report-modal-script', FSCS_JS_ROOT_URL . 'jquery-modal/jquery.modal.min.js', array('jquery'), '1.0.0', false);
+        wp_enqueue_style('pdf-report-modal-style', FSCS_JS_ROOT_URL . 'jquery-modal/jquery.modal.min.css');
       
         // Toastr
-        wp_enqueue_script('pdf-report-toastr-script', FSCS_JS_ROOT_URL . '/toastr/toastr.min.js', array('jquery'), '1.0.0', false);
-        wp_enqueue_style('pdf-report-toastr-style', FSCS_JS_ROOT_URL . '/toastr/toastr.min.css');
+        wp_enqueue_script('pdf-report-toastr-script', FSCS_JS_ROOT_URL . 'toastr/toastr.min.js', array('jquery'), '1.0.0', false);
+        wp_enqueue_style('pdf-report-toastr-style', FSCS_JS_ROOT_URL . 'toastr/toastr.min.css');
 
         // Google Recaptcha
         wp_enqueue_script('pdf-report-google-recaptcha-script', 'https://www.google.com/recaptcha/api.js', array('jquery'), '1.0.0', false);
