@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react';
-import { Button, Form, Input, notification } from 'antd';
+import { Button, Form, Input, notification, Divider } from 'antd';
 
 import {
   siteKey,
@@ -64,6 +64,9 @@ const RecaptchaSettings = () => {
 
   return <>
       {contextHolder}
+      <Divider orientation="left" orientationMargin="0">
+        Recaptcha Settings
+      </Divider>
       <Form
           form = {form}
           layout="vertical"
@@ -73,7 +76,6 @@ const RecaptchaSettings = () => {
           validateMessages={validateMessages}
           onFinish={(e)=>formSubmit(e)}
         >
-          <h3>Recaptcha Settings</h3>
           <Form.Item
             label="Site Key"
             name="site_key"

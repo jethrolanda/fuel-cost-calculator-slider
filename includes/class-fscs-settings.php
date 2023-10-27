@@ -167,11 +167,13 @@ class FSCS_Settings
         try {
 
             $subject = get_option('fscs_email_subject', '');
+            $cc = get_option('fscs_email_cc', '');
             $body = get_option('fscs_email_body', '');
             
             wp_send_json(array(
                 'status' => 'success',
                 'subject' => $subject,
+                'cc' => $cc,
                 'body' => wp_unslash($body)
             ));
 
@@ -207,6 +209,8 @@ class FSCS_Settings
         try {
             
             $subject = isset($_POST['subject']) ? sanitize_text_field($_POST['subject']) : '';
+            $cc = isset($_POST['emails']) ? $_POST['emails'] : '';
+            
             $allowed_tags = array( 
                 'a' => array(
                     'href' => array(),
@@ -228,14 +232,57 @@ class FSCS_Settings
                 'blockquote' => array() 
             );
             $body = isset($_POST['body']) ? wp_kses_post($_POST['body'], $allowed_tags) : '';
-            
+            $body = str_replace("\t", '&nbsp;&nbsp;&nbsp;&nbsp;', $body);
+
             update_option('fscs_email_subject', $subject);
+            update_option('fscs_email_cc', $cc);
             update_option('fscs_email_body', $body);
             
             wp_send_json(array(
                 'status' => 'success',
                 'subject' => $subject,
+                'cc' => $cc,
                 'body' => wp_unslash($body)
+            ));
+
+        } catch (Exception $e) {
+
+            wp_send_json(array(
+                'status' => 'error',
+                'message' => $e->getMessage()
+            ));
+
+        }
+        
+    }
+    
+    /**
+     * Send a test email.
+     * 
+     * @since 1.0
+     */
+    public function fscs_settings_send_test_email() {
+        
+        if (!defined('DOING_AJAX') || !DOING_AJAX) {
+            wp_die();
+        }
+
+        /**
+         * Verify nonce
+         */
+        if (isset($_POST['nonce']) && !wp_verify_nonce($_POST['nonce'], 'settings_nonce')) {
+            wp_die();
+        }  
+
+        try{
+
+            $cc = get_option('fscs_email_cc');
+
+            error_log(print_r($cc,true));
+            $email = isset($_POST['email']) ? sanitize_email($_POST['email']) : '';
+            error_log(print_r($email,true));
+            wp_send_json(array(
+                'status' => 'success',
             ));
 
         } catch (Exception $e) {
@@ -272,6 +319,9 @@ class FSCS_Settings
         // Save email setting via ajax 
         add_action("wp_ajax_fscs_settings_save_email_data", array($this, 'fscs_settings_save_email_data'));
 
+        // Send test email via ajax
+        add_action("wp_ajax_fscs_settings_send_test_email", array($this, 'fscs_settings_send_test_email'));
+        
     }
 
 }

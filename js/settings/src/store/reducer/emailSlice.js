@@ -7,11 +7,15 @@ export const emailSlice = createSlice({
   name: 'emailState',
   initialState: {
     subject: '',
+    cc: '',
     body: ''
   },
   reducers: {
     setSubject: (state, action) => {
       state.subject = action.payload;
+    },
+    setCC: (state, action) => {
+      state.cc = action.payload;
     },
     setBody: (state, action) => {
       state.body = action.payload;
@@ -19,12 +23,13 @@ export const emailSlice = createSlice({
   },
 })
 
-export const { setSubject, setBody } = emailSlice.actions
+export const { setSubject, setCC, setBody } = emailSlice.actions
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of
 // in the slice file. For example: `useSelector((state) => state.counter.value)`
 export const subject = (state) => state.emailState.subject
+export const cc = (state) => state.emailState.cc
 export const body = (state) => state.emailState.body
 
 // Get email values
@@ -36,6 +41,7 @@ export const fetchEmailValues = () => (dispatch) => {
     data: []
   })).then(({data}) => {
     dispatch(setSubject(data?.subject));
+    dispatch(setCC(data?.cc));
     dispatch(setBody(data?.body));
   });
   
@@ -43,14 +49,26 @@ export const fetchEmailValues = () => (dispatch) => {
 
 // Save email values
 export const saveEmailValues = ({values, cb}) => (dispatch) => {
-  
   axios.post(fscs_settings.ajax_url, qs.stringify({
     action: "fscs_settings_save_email_data",
     nonce: fscs_settings.settings_nonce,
     ...values
   })).then(({data}) => {
     dispatch(setSubject(data?.subject));
+    dispatch(setCC(data?.cc));
     dispatch(setBody(data?.body));
+    if (typeof cb === "function") cb(data);
+  });
+  
+}
+
+// Send test email
+export const sendTestEmail = ({email, cb}) => (dispatch) => {
+  axios.post(fscs_settings.ajax_url, qs.stringify({
+    action: "fscs_settings_send_test_email",
+    nonce: fscs_settings.settings_nonce,
+    email
+  })).then(({data}) => {
     if (typeof cb === "function") cb(data);
   });
   

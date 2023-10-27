@@ -1,19 +1,23 @@
 import { useState, useEffect } from 'react'
 import ReactQuill from 'react-quill';
-import { Button, Form, Input, notification } from 'antd';
+import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
+import { Button, Form, Input, notification, Space, Divider } from 'antd';
 import 'react-quill/dist/quill.snow.css';
 
 import {
   subject,
   body,
+  cc,
   fetchEmailValues,
-  saveEmailValues
+  saveEmailValues,
+  sendTestEmail
 } from '../store/reducer/emailSlice';
 import { useSelector, useDispatch } from 'react-redux';
 
 export default function EmailSettings() {
 
   const [loading, setLoading] = useState(false);
+  const [loading2, setLoading2] = useState(false);
   const [form] = Form.useForm();
 
   const [api, contextHolder] = notification.useNotification();
@@ -27,13 +31,14 @@ export default function EmailSettings() {
   const dispatch = useDispatch();
   let email_subject = useSelector(subject);
   let email_body = useSelector(body);
+  let email_cc = useSelector(cc);
 
 
   const modules = {
     toolbar: [
       [{ 'header': [1, 2, false] }],
       ['bold', 'italic', 'underline','strike', 'blockquote'],
-      [{'list': 'ordered'}, {'list': 'bullet'}],
+      [{'list': 'ordered'}, {'list': 'bullet'}, {'indent': '-1'}, {'indent': '+1'}],
       ['link'], //'image'
       // ['clean']
     ],
@@ -50,7 +55,10 @@ export default function EmailSettings() {
   ];
 
   const validateMessages = {
-    required: '${label} is required!'
+    required: '${label} is required!',
+    types: {
+      email: 'The email is not valid!',
+    },
   };
 
   const errorCheck = () => {
@@ -64,9 +72,10 @@ export default function EmailSettings() {
     } else if(bodyValue === "") {
       openNotificationWithIcon('error', 'Error', 'Body is required.')
     }
-
+// console.log(fields)
   }
 
+  // Save Email Setting
   const formSubmit = (values) => {
     setLoading(true);
     dispatch(saveEmailValues({values, cb: (data) => {
@@ -79,27 +88,44 @@ export default function EmailSettings() {
     }}))
   }
 
+  // Send Test Email
+  const formSendTestEmail = ({email}) => {
+    setLoading2(true);
+    dispatch(sendTestEmail({email, cb: (data) => {
+      setLoading2(false);
+      if(data.status==='success') {
+        openNotificationWithIcon('success', 'Success', 'Successfully sent.')
+      } else {
+        openNotificationWithIcon('error', 'Error', data?.message)
+      }
+    }}))
+  }
+
   useEffect(()=> {
     dispatch(fetchEmailValues())
   }, []);
 
   useEffect(()=>{
+    // console.log(email_cc)
     form.setFieldsValue({
       subject: email_subject,
-      body: email_body
+      body: email_body,
+      emails: email_cc
     });
-  },[email_subject, email_body]);
+  },[email_subject, email_body, email_cc]);
   
   return (
     <>
     {contextHolder}
+      <Divider orientation="left" orientationMargin="0">
+        Email Settings
+      </Divider>
       <Form
         form = {form}
         layout="vertical" 
         validateMessages={validateMessages}
         onFinish={(e)=>formSubmit(e)}
       >
-        <h3>Email Settings</h3>
         <Form.Item
           label="Subject"
           name="subject"
@@ -111,10 +137,45 @@ export default function EmailSettings() {
         >
           <Input/>
         </Form.Item>
-
+        <Form.Item
+          label="CC"
+        >
+          <Form.List name="emails">
+            {(fields, { add, remove }) => (
+              <>
+                {fields.map(({ key, name, ...restField }) => (
+                  <Space
+                    key={key}
+                    style={{
+                      display: 'flex',
+                      marginBottom: 8
+                    }}
+                    align="baseline"
+                  >
+                    <Form.Item
+                      {...restField}
+                      style={{flex: '100%'}}
+                      name={[name, 'cc']}
+                      rules={[{ type: 'email' }]}
+                    >
+                      <Input />
+                    </Form.Item>
+                    <MinusCircleOutlined onClick={() => remove(name)} />
+                  </Space>
+                ))}
+                <Form.Item>
+                  <Button type="dashed" onClick={() => add()} block icon={<PlusOutlined />}>
+                    Add field
+                  </Button>
+                </Form.Item>
+              </>
+            )}
+          </Form.List>
+        </Form.Item>
         <Form.Item
           label="Body"
           name="body"
+          tooltip="Template tag {customer_name} will be replaced with the user name."
           rules={[
             {
               required: true,
@@ -136,6 +197,33 @@ export default function EmailSettings() {
         <Form.Item label=" ">
           <Button type="primary" htmlType="submit" onClick={()=>errorCheck()} loading={loading}>
             Save
+          </Button>
+        </Form.Item>
+      </Form>
+      <Divider orientation="left" orientationMargin="0">
+        Send a Test Email
+      </Divider>
+      <Form
+        name="basic"
+        validateMessages={validateMessages}
+        style={{
+          display: 'flex',
+          gap: '10px'
+        }}
+        onFinish={(e)=>formSendTestEmail(e)}
+      >
+        <Form.Item
+          label="Email"
+          name="email"
+          rules={[{ type: 'email' }]}
+        >
+          <Input style={{width: '400px'}}/>
+        </Form.Item>
+
+        <Form.Item
+        >
+          <Button type="primary" htmlType="submit" loading={loading2}>
+            Send
           </Button>
         </Form.Item>
       </Form>
