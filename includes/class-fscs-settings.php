@@ -276,8 +276,9 @@ class FSCS_Settings
 
         try{
 
-            // add_filter('fscs_bypass_generate_pdf_security', '__return_true');
-
+            add_filter('fscs_bypass_generate_pdf_security', '__return_true');
+            add_filter('fscs_bypass_recaptcha_security', '__return_true');
+            
             $email = isset($_POST['email']) ? sanitize_email($_POST['email']) : '';
 
             $test_data = array(
@@ -302,9 +303,7 @@ class FSCS_Settings
             $_POST = $test_data;
             global $fscs;
             $fscs->_fscs_generate_pdf_report->fscs_generate_pdf();
-            // error_log(print_r($fscs,true));
             
-            // error_log(print_r($email,true));
             wp_send_json(array(
                 'status' => 'success',
             ));

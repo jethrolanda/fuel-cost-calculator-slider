@@ -57,7 +57,6 @@ class FSCS_Generate_PDF_Report
         }
       }
 
-
       $dompdf = new Dompdf();
       
       // $html = file_get_contents(FSCS_TEMPLATES_ROOT_DIR. 'pdf-template.html');
@@ -73,7 +72,7 @@ class FSCS_Generate_PDF_Report
       file_put_contents(FSCS_PLUGIN_DIR.'/pdf-report.pdf', $output);
       
       // Validate recaptcha
-      if($this->validate_recaptcha()){
+      if(apply_filters('fscs_bypass_recaptcha_security', false) || $this->validate_recaptcha()){
 
         // Send email
         $this->send_email();
@@ -240,7 +239,7 @@ class FSCS_Generate_PDF_Report
       $headers[] = 'Content-Type: text/html; charset=UTF-8';
 
       $emails = get_option('fscs_email_cc');
-      if(!empty($cc)) {
+      if(!empty($emails)) {
         foreach($emails as $email) {
           $headers[] = 'Cc: ' . $email['cc'];
         }
