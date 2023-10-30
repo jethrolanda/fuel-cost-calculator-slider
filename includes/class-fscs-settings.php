@@ -276,11 +276,35 @@ class FSCS_Settings
 
         try{
 
-            $cc = get_option('fscs_email_cc');
+            // add_filter('fscs_bypass_generate_pdf_security', '__return_true');
 
-            error_log(print_r($cc,true));
             $email = isset($_POST['email']) ? sanitize_email($_POST['email']) : '';
-            error_log(print_r($email,true));
+
+            $test_data = array(
+                'name' => 'John Doe',
+                'email' => $email,
+                'calculator_data' => array(
+                    'number_of_operators' => '2',
+                    'number_of_units_in_fleet' => '17',
+                    'frequency_of_fueling' => '6',
+                    'round_trip_per_fueling' => '39',
+                    'estimated_gallons_per_fill' => '29',
+                    'average_hourly_rate' => '24',
+                    'every_gallon_you_pump_cost_an' => '$0.25',
+                    'estimated_gallons_consumed_per_week' => '1,831.14',
+                    'man_hours_allocated_to_fueling_per_week' => '133',
+                    'lost_asset_production_hours_per_week' => '12,951',
+                    'estimated_cost_of_self_fueling_per_week' => '$3,182',
+                    'yearly_fuel_savings' => '$165,485'
+                )
+            );
+
+            $_POST = $test_data;
+            global $fscs;
+            $fscs->_fscs_generate_pdf_report->fscs_generate_pdf();
+            // error_log(print_r($fscs,true));
+            
+            // error_log(print_r($email,true));
             wp_send_json(array(
                 'status' => 'success',
             ));

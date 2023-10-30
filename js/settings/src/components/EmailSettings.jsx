@@ -38,7 +38,7 @@ export default function EmailSettings() {
     toolbar: [
       [{ 'header': [1, 2, false] }],
       ['bold', 'italic', 'underline','strike', 'blockquote'],
-      [{'list': 'ordered'}, {'list': 'bullet'}, {'indent': '-1'}, {'indent': '+1'}],
+      [{'list': 'ordered'}, {'list': 'bullet'} /*, {'indent': '-1'}, {'indent': '+1'}*/],
       ['link'], //'image'
       // ['clean']
     ],
@@ -72,7 +72,7 @@ export default function EmailSettings() {
     } else if(bodyValue === "") {
       openNotificationWithIcon('error', 'Error', 'Body is required.')
     }
-// console.log(fields)
+
   }
 
   // Save Email Setting
@@ -106,7 +106,6 @@ export default function EmailSettings() {
   }, []);
 
   useEffect(()=>{
-    // console.log(email_cc)
     form.setFieldsValue({
       subject: email_subject,
       body: email_body,

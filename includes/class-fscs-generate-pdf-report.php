@@ -44,24 +44,21 @@ class FSCS_Generate_PDF_Report
      */
     public function fscs_generate_pdf() {
       
-      if (!defined('DOING_AJAX') || !DOING_AJAX) {
-        wp_die();
+      if(apply_filters('fscs_bypass_generate_pdf_security', false) === false) {
+        if (!defined('DOING_AJAX') || !DOING_AJAX) {
+          wp_die();
+        }
+  
+        /**
+         * Verify nonce
+         */
+        if (isset($_POST['_wpnonce']) && !wp_verify_nonce($_POST['_wpnonce'], 'submit_pdf_report')) {
+          wp_die();
+        }
       }
 
-      /**
-       * Verify nonce
-       */
-      if (isset($_POST['_wpnonce']) && !wp_verify_nonce($_POST['_wpnonce'], 'submit_pdf_report')) {
-        wp_die();
-      }
 
-      // Get html data
-      // ob_start();
-      // include_once FSCS_TEMPLATES_ROOT_DIR. 'pdf-template.html';
-      // $data = ob_get_clean();
       $dompdf = new Dompdf();
-      // $dompdf->set_option('isRemoteEnabled', true);
-      // $dompdf->set_option('isHtml5ParserEnabled', true);
       
       // $html = file_get_contents(FSCS_TEMPLATES_ROOT_DIR. 'pdf-template.html');
       $dompdf->loadHtml($this->pdf_template());

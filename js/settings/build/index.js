@@ -25026,11 +25026,7 @@ function EmailSettings() {
       'list': 'ordered'
     }, {
       'list': 'bullet'
-    }, {
-      'indent': '-1'
-    }, {
-      'indent': '+1'
-    }], ['link'] //'image'
+    } /*, {'indent': '-1'}, {'indent': '+1'}*/], ['link'] //'image'
     // ['clean']
     ],
 
@@ -25055,7 +25051,6 @@ function EmailSettings() {
     } else if (bodyValue === "") {
       openNotificationWithIcon('error', 'Error', 'Body is required.');
     }
-    // console.log(fields)
   };
 
   // Save Email Setting
@@ -25095,7 +25090,6 @@ function EmailSettings() {
     dispatch((0,_store_reducer_emailSlice__WEBPACK_IMPORTED_MODULE_3__.fetchEmailValues)());
   }, []);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    // console.log(email_cc)
     form.setFieldsValue({
       subject: email_subject,
       body: email_body,
