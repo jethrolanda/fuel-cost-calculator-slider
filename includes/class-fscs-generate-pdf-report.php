@@ -69,13 +69,35 @@ class FSCS_Generate_PDF_Report
       $dompdf->render();
 
       $output = $dompdf->output();
-      file_put_contents(FSCS_PLUGIN_DIR.'/pdf-report.pdf', $output);
+
+      // Store to wp uploads folder
+      $upload_dir = wp_upload_dir();
+      $base_dir = $upload_dir['basedir'] . '/fuel-savings-calculator-slider/';
+
+      // Creates the dir
+      if ( ! is_dir( $base_dir ) ) {
+        wp_mkdir_p( $base_dir );
+      }
+
+      $current_datetime = current_datetime()->format('Y-m-d--H-i-s');
+      $file_name = str_replace( ' ', '-', strtolower($_POST['name'])) . '--fuel-savings-report--' . $current_datetime .'.pdf';
       
+      file_put_contents($base_dir . $file_name, $output);
+      
+      global $fscs;
+
+      // Save entry data to db
+      $name = isset($_POST['name']) ? $_POST['name'] : '';
+      $email = isset($_POST['email']) ? $_POST['email'] : '';
+      $pdf_file = $upload_dir['baseurl'] . '/fuel-savings-calculator-slider/'. $file_name;
+      $slider_data = isset($_POST['calculator_data']) ? maybe_serialize($_POST['calculator_data']) : '';
+      $fscs->_fscs_data_store->save_entry($name, $email, $pdf_file, $slider_data);
+
       // Validate recaptcha
-      if(apply_filters('fscs_bypass_recaptcha_security', false) || $this->validate_recaptcha()){
+      if(apply_filters('fscs_bypass_recaptcha_security', false) || $fscs->_fscs_recaptcha->validate_recaptcha()){
 
         // Send email
-        $this->send_email();
+        $fscs->_fscs_email->send_email();
         wp_send_json(array('status' => 'success'));
 
       } else {
@@ -218,63 +240,6 @@ class FSCS_Generate_PDF_Report
       <?php
 
       return ob_get_clean();
-
-    }
-
-    /**
-     * Send email
-     * 
-     * @since 1.0
-     */
-    private function send_email() {
-
-      $subject = get_option('fscs_email_subject');
-      $subject = empty($subject) ? FSCS_EMAIL_SUBJECT : $subject;
-
-      $body = get_option('fscs_email_body');
-      $body = empty($body) ? FSCS_EMAIL_BODY : $body;
-
-      $body = str_replace('{customer_name}', $_POST['name'], $body);
-      $body = wp_unslash($body);
-      $headers[] = 'Content-Type: text/html; charset=UTF-8';
-
-      $emails = get_option('fscs_email_cc');
-      if(!empty($emails)) {
-        foreach($emails as $email) {
-          $headers[] = 'Cc: ' . $email['cc'];
-        }
-      }
-      
-      // wp_mail( $to, $subject, $message, $headers, $attachments );
-      $test = wp_mail( $_POST['email'], $subject, $body, $headers, array(FSCS_PLUGIN_DIR.'/pdf-report.pdf') );
-
-    }
-
-    /**
-     * Validate google recaptcha
-     * 
-     * @since 1.0
-     */
-    private function validate_recaptcha() {
-
-      // Google reCAPTCHA API keys settings 
-      $secretKey  = get_option('fscs_secret_key'); 
-
-      // Validate reCAPTCHA checkbox 
-      if(isset($_POST['g_recaptcha_response']) && !empty($_POST['g_recaptcha_response'])) { 
-
-        // Verify the reCAPTCHA API response 
-        $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$secretKey.'&response='.$_POST['g_recaptcha_response']); 
-             
-          // Decode JSON data of API response 
-          $responseData = json_decode($verifyResponse); 
-           
-          // If the reCAPTCHA API response is valid 
-          return $responseData->success;
-
-      }
-
-      return false;
 
     }
 

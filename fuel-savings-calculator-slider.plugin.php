@@ -9,6 +9,9 @@ require_once FSCS_INCLUDES_ROOT_DIR . 'class-fscs-slider-shortcode.php';
 require_once FSCS_INCLUDES_ROOT_DIR . 'class-fscs-pdf-report-shortcode.php';
 require_once FSCS_INCLUDES_ROOT_DIR . 'class-fscs-generate-pdf-report.php';
 require_once FSCS_INCLUDES_ROOT_DIR . 'class-fscs-settings.php';
+require_once FSCS_INCLUDES_ROOT_DIR . 'class-fscs-data-store.php';
+require_once FSCS_INCLUDES_ROOT_DIR . 'class-fscs-email.php';
+require_once FSCS_INCLUDES_ROOT_DIR . 'class-fscs-recaptcha.php';
 
 
 class Fuel_Savings_Calculator_Slider {
@@ -25,6 +28,9 @@ class Fuel_Savings_Calculator_Slider {
     public $_fscs_pdf_report_shortcode;
     public $_fscs_generate_pdf_report;
     public $_fscs_settings;
+    public $_fscs_data_store;
+    public $_fscs_email;
+    public $_fscs_recaptcha;
 
     const VERSION = '1.0';
 
@@ -46,6 +52,9 @@ class Fuel_Savings_Calculator_Slider {
       $this->_fscs_pdf_report_shortcode = FSCS_PDF_Report_Shortcode::instance();
       $this->_fscs_generate_pdf_report = FSCS_Generate_PDF_Report::instance();
       $this->_fscs_settings = FSCS_Settings::instance();
+      $this->_fscs_data_store = FSCS_Data_Store::instance();
+      $this->_fscs_email = FSCS_Email::instance();
+      $this->_fscs_recaptcha = FSCS_Recaptcha::instance();
 
     }
 
@@ -78,8 +87,10 @@ class Fuel_Savings_Calculator_Slider {
       
       if(get_option('fscs_email_body') == "") {
         update_option('fscs_email_body', FSCS_EMAIL_BODY);
-        error_log(print_r(FSCS_EMAIL_BODY,true));
       }
+
+      // Create custom table
+      $this->_fscs_data_store->create_custom_db_table();
 
     }
 
@@ -112,6 +123,9 @@ class Fuel_Savings_Calculator_Slider {
       $this->_fscs_pdf_report_shortcode->run();
       $this->_fscs_generate_pdf_report->run();
       $this->_fscs_settings->run();
+      $this->_fscs_data_store->run();
+      $this->_fscs_email->run();
+      $this->_fscs_recaptcha->run();
 
     }
 

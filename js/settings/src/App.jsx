@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
-import { AppstoreOutlined, MailOutlined } from '@ant-design/icons';
+import { HomeOutlined, AppstoreOutlined, MailOutlined } from '@ant-design/icons';
 import { Menu, Layout } from 'antd';
 const { Content } = Layout;
 import RecaptchaSettings from './components/RecaptchaSettings';
 import EmailSettings from './components/EmailSettings';
+import Home from './components/Home';
  
 const items = [
+  {
+    label: 'Home',
+    key: 'home',
+    icon: <HomeOutlined />,
+  },
   {
     label: 'Email',
     key: 'mail',
@@ -19,8 +25,9 @@ const items = [
 ];
 
 const LoadSettingsPage = ({current}) => {
-
-  if(current === 'mail'){
+  if(current === 'home'){
+    return <Home/>
+  } else if(current === 'mail'){
     return <EmailSettings/>
   } else {
     return <RecaptchaSettings/>
@@ -28,7 +35,7 @@ const LoadSettingsPage = ({current}) => {
   
 }
 const App = () => {
-  const [current, setCurrent] = useState('mail');
+  const [current, setCurrent] = useState('home');
   const onClick = (e) => {
     setCurrent(e.key);
   };
