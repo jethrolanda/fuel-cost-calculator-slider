@@ -1,5 +1,5 @@
 <div class="fuel-savings-pdf-report-wrapper">
-  <a href="#" class="pdf-report-btn">📄EMAIL ME THE REPORT</a>
+  <p><a href="#" class="pdf-report-btn">📄EMAIL ME THE REPORT</a></p>
   <form id="pdf-report" class="modal">
     <p>
       <label>Name:</label>
