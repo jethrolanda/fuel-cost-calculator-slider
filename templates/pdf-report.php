@@ -9,10 +9,10 @@
       <label>Email:</label>
       <input type="email" id="email">
     </p>
-    <p class="actions">
+    <span class="actions">
       <div class="g-recaptcha" data-sitekey="<?php echo get_option('fscs_site_key'); ?>"></div>
       <img src="<?php echo FSCS_IMAGES_ROOT_URL; ?>spinner.gif"><button id="send-pdf-report" class="btn-m btn-primary">Submit</button>
-    </p class="actions">
+    </span>
     <?php wp_nonce_field( 'submit_pdf_report' ); ?>
   </form>
 </div>
