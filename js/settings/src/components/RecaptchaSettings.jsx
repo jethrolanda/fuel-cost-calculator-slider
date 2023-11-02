@@ -70,6 +70,7 @@ const RecaptchaSettings = () => {
       <Divider orientation="left" orientationMargin="0">
         Recaptcha Settings
       </Divider>
+      <p>Create google recaptcha v2 api key in google and paste the site and secrey key in the form below. Link <a target="_blank" href="https://developers.google.com/recaptcha/intro">here</a>.</p>
       <Form
           form = {form}
           layout="vertical"

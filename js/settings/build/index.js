@@ -39966,7 +39966,10 @@ const RecaptchaSettings = () => {
   return fetched === false ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(antd__WEBPACK_IMPORTED_MODULE_5__["default"], null) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, contextHolder, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(antd__WEBPACK_IMPORTED_MODULE_6__["default"], {
     orientation: "left",
     orientationMargin: "0"
-  }, "Recaptcha Settings"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(antd__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  }, "Recaptcha Settings"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "Create google recaptcha v2 api key in google and paste the site and secrey key in the form below. Link ", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
+    target: "_blank",
+    href: "https://developers.google.com/recaptcha/intro"
+  }, "here"), "."), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(antd__WEBPACK_IMPORTED_MODULE_4__["default"], {
     form: form,
     layout: "vertical",
     style: {
