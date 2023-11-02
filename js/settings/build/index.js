@@ -39587,7 +39587,8 @@ function EmailSettings() {
     form: form,
     layout: "vertical",
     validateMessages: validateMessages,
-    onFinish: e => formSubmit(e)
+    onFinish: e => formSubmit(e),
+    className: "email-settings"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(antd__WEBPACK_IMPORTED_MODULE_5__["default"].Item, {
     label: "Subject",
     name: "subject",

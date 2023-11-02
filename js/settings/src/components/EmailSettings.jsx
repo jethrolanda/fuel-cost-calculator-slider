@@ -131,6 +131,7 @@ export default function EmailSettings() {
         layout="vertical" 
         validateMessages={validateMessages}
         onFinish={(e)=>formSubmit(e)}
+        className="email-settings"
       >
         <Form.Item
           label="Subject"
