@@ -47,6 +47,7 @@ class FSCS_Email
       $body = empty($body) ? FSCS_EMAIL_BODY : $body;
 
       $name = isset($_POST['name']) ? $_POST['name'] : '';
+      $email = isset($_POST['email']) ? $_POST['email'] : '';
       $body = str_replace('{customer_name}', $name, $body);
       $body = wp_unslash($body);
       $headers[] = 'Content-Type: text/html; charset=UTF-8';
@@ -57,6 +58,12 @@ class FSCS_Email
           $headers[] = 'Cc: ' . $email['cc'];
         }
       }
+
+      // pdf file
+      $pdf_file = isset($_POST['pdf_file']) ? $_POST['pdf_file'] : '';
+
+      // wp_mail( $to, $subject, $message, $headers, $attachments );
+      wp_mail( $email, $subject, $body, $headers, array($pdf_file) );
 
     }
 

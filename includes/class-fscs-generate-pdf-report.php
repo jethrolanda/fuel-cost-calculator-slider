@@ -92,6 +92,7 @@ class FSCS_Generate_PDF_Report
 
       // PDF location
       $pdf_file = $upload_dir['baseurl'] . '/fuel-savings-calculator-slider/'. $file_name;
+      $_POST['pdf_file'] = $pdf_file;
 
       // Slider data
       $slider_data = isset($_POST['calculator_data']) ? maybe_serialize($_POST['calculator_data']) : '';
