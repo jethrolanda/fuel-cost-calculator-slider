@@ -253,27 +253,36 @@
 
 // PDF Report
 .fuel-savings-pdf-report-wrapper{
-  a{
+  a.pdf-report-btn{
     background-color: #1e73be;
     border: 1px solid #1e73be;
     color: #ffffff;
     padding: 10px 16px;
+    display: inline-block;
   }
 }
 
 #pdf-report.modal{
   padding: 40px 50px;
-  
+  max-width: 600px;
+
   p{
     display: grid;
     grid-template-columns: 80px 1fr;
     padding: 10px 0px;
   }
 
-  span{
+  input{
+    padding: 8px;
+  }
+
+  p.actions{
     text-align: right;
-    display: inline-block;
+    display: flex;
     width: 100%;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-around;
   }
   
   img{
@@ -282,5 +291,7 @@
   
   button{
     margin-left: 10px;
+    border: none;
+    display: inline-block;
   }
 }
