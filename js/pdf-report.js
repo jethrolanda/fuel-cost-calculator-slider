@@ -48,9 +48,9 @@ jQuery(document).ready(function ($) {
           $('#pdf-report').find('img').hide();
 
           // Reload page after sending the auto generated pdf
-          // setTimeout(function() {
-          //   location.reload();
-          // }, 1000);
+          setTimeout(function() {
+            location.reload();
+          }, 1000);
           
       })
       .fail(function(jqXHR, textStatus, errorThrown){
