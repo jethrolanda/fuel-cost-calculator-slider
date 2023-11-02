@@ -16,3 +16,16 @@
 .ant-tooltip{
   z-index: 9999;
 }
+
+.ant-dropdown,
+.ant-modal-mask{
+  z-index: 9999!important;
+}
+
+.ant-modal-wrap{
+  z-index: 99999!important;
+}
+
+.ant-space-item{
+  flex: none;
+}

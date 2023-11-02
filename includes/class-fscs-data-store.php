@@ -50,7 +50,7 @@ class FSCS_Data_Store
         date datetime DEFAULT '0000-00-00 00:00:00' NOT NULL,
         name tinytext NOT NULL,
         email VARCHAR(100) NOT NULL,
-        pdf_url varchar(150) DEFAULT '' NOT NULL,
+        pdf_url varchar(250) DEFAULT '' NOT NULL,
         calculator_data text NOT NULL,
         PRIMARY KEY  (id)
       ) $charset_collate;";
@@ -84,7 +84,54 @@ class FSCS_Data_Store
           '%s'
         )
       );
+      
+    }
 
+    /**
+     * Get fuel savings data.
+     * 
+     * @since 1.0
+     */
+    public function fscs_get_fuel_savings_data() {
+        
+      if (!defined('DOING_AJAX') || !DOING_AJAX) {
+          wp_die();
+      }
+
+      /**
+       * Verify nonce
+       */
+      if (isset($_POST['nonce']) && !wp_verify_nonce($_POST['nonce'], 'settings_nonce')) {
+          wp_die();
+      }  
+
+      try{
+
+        global $wpdb;
+
+        $table_name = $wpdb->prefix . 'fuel_savings_report ORDER BY date DESC';
+        $data = $wpdb->get_results ( "SELECT * FROM $table_name");
+
+        $total = $wpdb->get_var("SELECT COUNT(*) FROM $table_name");
+        $pagination = array(
+          'total' => intval($total),
+        );
+
+        wp_send_json(array(
+            'status' => 'success',
+            'data' => $data,
+            'pagination' => $pagination
+        ));
+
+      } catch (Exception $e) {
+
+          wp_send_json(array(
+              'status' => 'error',
+              'message' => $e->getMessage()
+          ));
+
+      }
+      
     }
 
     /**
@@ -94,6 +141,9 @@ class FSCS_Data_Store
      * @access public
      */
     public function run() { 
+
+      // Fetch recaptcha setting via ajax 
+      add_action("wp_ajax_fscs_get_fuel_savings_data", array($this, 'fscs_get_fuel_savings_data'));
 
     }
     

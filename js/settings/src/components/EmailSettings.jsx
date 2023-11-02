@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react'
 import ReactQuill from 'react-quill';
 import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
-import { Button, Form, Input, notification, Space, Divider } from 'antd';
+import { Button, Form, Input, notification, Space, Divider, Skeleton } from 'antd';
 import 'react-quill/dist/quill.snow.css';
 
 import {
+  loaded,
   subject,
   body,
   cc,
@@ -16,8 +17,8 @@ import { useSelector, useDispatch } from 'react-redux';
 
 export default function EmailSettings() {
 
-  const [loading, setLoading] = useState(false);
-  const [loading2, setLoading2] = useState(false);
+  const [saveLoading, setSaveLoading] = useState(false);
+  const [testEmailLoading, setTestEmailLoading] = useState(false);
   const [form] = Form.useForm();
 
   const [api, contextHolder] = notification.useNotification();
@@ -32,7 +33,7 @@ export default function EmailSettings() {
   let email_subject = useSelector(subject);
   let email_body = useSelector(body);
   let email_cc = useSelector(cc);
-
+  let fetched = useSelector(loaded);
 
   const modules = {
     toolbar: [
@@ -77,9 +78,9 @@ export default function EmailSettings() {
 
   // Save Email Setting
   const formSubmit = (values) => {
-    setLoading(true);
+    setSaveLoading(true);
     dispatch(saveEmailValues({values, cb: (data) => {
-      setLoading(false);
+      setSaveLoading(false);
       if(data.status==='success') {
         openNotificationWithIcon('success', 'Success', 'Successfully saved.')
       } else {
@@ -90,20 +91,25 @@ export default function EmailSettings() {
 
   // Send Test Email
   const formSendTestEmail = ({email}) => {
-    setLoading2(true);
-    dispatch(sendTestEmail({email, cb: (data) => {
-      setLoading2(false);
-      if(data.status==='success') {
-        openNotificationWithIcon('success', 'Success', 'Successfully sent.')
-      } else {
-        openNotificationWithIcon('error', 'Error', data?.message)
-      }
-    }}))
+
+    if(typeof email !== "undefined") {
+      setTestEmailLoading(true);
+      dispatch(sendTestEmail({email, cb: (data) => {
+        setTestEmailLoading(false);
+        if(data.status==='success') {
+          openNotificationWithIcon('success', 'Success', 'Successfully sent.')
+        } else {
+          openNotificationWithIcon('error', 'Error', data?.message)
+        }
+      }}))
+    }
+    
   }
 
   useEffect(()=> {
-    dispatch(fetchEmailValues())
-  }, []);
+    if(fetched === false)
+      dispatch(fetchEmailValues())
+  }, [fetched]);
 
   useEffect(()=>{
     form.setFieldsValue({
@@ -113,7 +119,8 @@ export default function EmailSettings() {
     });
   },[email_subject, email_body, email_cc]);
   
-  return (
+  return ( 
+    fetched === false ? <Skeleton /> :
     <>
     {contextHolder}
       <Divider orientation="left" orientationMargin="0">
@@ -194,7 +201,7 @@ export default function EmailSettings() {
         </Form.Item>
 
         <Form.Item label=" ">
-          <Button type="primary" htmlType="submit" onClick={()=>errorCheck()} loading={loading}>
+          <Button type="primary" htmlType="submit" onClick={()=>errorCheck()} loading={saveLoading}>
             Save
           </Button>
         </Form.Item>
@@ -221,7 +228,7 @@ export default function EmailSettings() {
 
         <Form.Item
         >
-          <Button type="primary" htmlType="submit" loading={loading2}>
+          <Button type="primary" htmlType="submit" loading={testEmailLoading}>
             Send
           </Button>
         </Form.Item>

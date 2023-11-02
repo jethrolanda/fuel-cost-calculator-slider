@@ -41,7 +41,7 @@ const App = () => {
   };
   
   return <>
-    <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items} />
+    <Menu theme="dark" onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items} />
     <Content style={{ padding: '10px 20px', marginTop: '10px', background: '#fff'}}>
         <div className="site-layout-content">
           <LoadSettingsPage current={current}/>
@@ -50,4 +50,4 @@ const App = () => {
   
   </>;
 };
-export default App;
+export default React.memo(App);

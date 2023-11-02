@@ -1,6 +1,14 @@
 {
+  "moduleResolution": "node",
   "compilerOptions": {
-    "baseUrl": "src"
-  },
+    "baseUrl": "./src",
+    "target": "es6",
+    "paths": {
+      "@components/*": ["./components/*"],
+      "@helpers/*": ["./helpers/*"],
+      "@slice/*": ["./store/reducer/*"],
+  }
+},
+  "exclude": ["node_modules"],
   "include": ["src"]
 }

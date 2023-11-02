@@ -6,11 +6,15 @@ const qs = require("qs");
 export const emailSlice = createSlice({
   name: 'emailState',
   initialState: {
+    loaded: false,
     subject: '',
     cc: '',
     body: ''
   },
   reducers: {
+    setLoaded: (state, action) => {
+      state.loaded = action.payload;
+    },
     setSubject: (state, action) => {
       state.subject = action.payload;
     },
@@ -23,11 +27,12 @@ export const emailSlice = createSlice({
   },
 })
 
-export const { setSubject, setCC, setBody } = emailSlice.actions
+export const { setLoaded, setSubject, setCC, setBody } = emailSlice.actions
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of
 // in the slice file. For example: `useSelector((state) => state.counter.value)`
+export const loaded = (state) => state.emailState.loaded
 export const subject = (state) => state.emailState.subject
 export const cc = (state) => state.emailState.cc
 export const body = (state) => state.emailState.body
@@ -40,6 +45,7 @@ export const fetchEmailValues = () => (dispatch) => {
     nonce: fscs_settings.settings_nonce,
     data: []
   })).then(({data}) => {
+    dispatch(setLoaded(true));
     dispatch(setSubject(data?.subject));
     dispatch(setCC(data?.cc));
     dispatch(setBody(data?.body));

@@ -1,7 +1,8 @@
 import {useState, useEffect} from 'react';
-import { Button, Form, Input, notification, Divider } from 'antd';
+import { Button, Form, Input, notification, Divider, Skeleton } from 'antd';
 
 import {
+  loaded,
   siteKey,
   secretKey,
   fetchRecaptchaValues,
@@ -20,6 +21,7 @@ const RecaptchaSettings = () => {
   };
   const [form] = Form.useForm();
   const dispatch = useDispatch();
+  let fetched = useSelector(loaded);
   let site_key = useSelector(siteKey);
   let secret_key = useSelector(secretKey);
   
@@ -53,8 +55,9 @@ const RecaptchaSettings = () => {
   }
 
   useEffect(()=> {
-    dispatch(fetchRecaptchaValues())
-  }, []);
+    if(fetched === false)
+      dispatch(fetchRecaptchaValues())
+  }, [fetched]);
 
   useEffect(()=>{
     form.setFieldsValue({
@@ -62,7 +65,7 @@ const RecaptchaSettings = () => {
     });
   }, [site_key, secret_key]);
 
-  return <>
+  return fetched === false ? <Skeleton /> : <>
       {contextHolder}
       <Divider orientation="left" orientationMargin="0">
         Recaptcha Settings

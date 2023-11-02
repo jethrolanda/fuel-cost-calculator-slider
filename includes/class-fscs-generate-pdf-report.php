@@ -79,19 +79,28 @@ class FSCS_Generate_PDF_Report
         wp_mkdir_p( $base_dir );
       }
 
+      $name = isset($_POST['name']) ? $_POST['name'] : '';
+      $email = isset($_POST['email']) ? $_POST['email'] : '';
+
       $current_datetime = current_datetime()->format('Y-m-d--H-i-s');
-      $file_name = str_replace( ' ', '-', strtolower($_POST['name'])) . '--fuel-savings-report--' . $current_datetime .'.pdf';
-      
+      $file_name = 'fuel-savings-report--' . $current_datetime . '--' . str_replace( ' ', '-', strtolower($name)) . '.pdf';
+
+      // Save file to wp-uploads/fuel-savings-calculator-slider
       file_put_contents($base_dir . $file_name, $output);
       
       global $fscs;
 
-      // Save entry data to db
-      $name = isset($_POST['name']) ? $_POST['name'] : '';
-      $email = isset($_POST['email']) ? $_POST['email'] : '';
+      // PDF location
       $pdf_file = $upload_dir['baseurl'] . '/fuel-savings-calculator-slider/'. $file_name;
+
+      // Slider data
       $slider_data = isset($_POST['calculator_data']) ? maybe_serialize($_POST['calculator_data']) : '';
-      $fscs->_fscs_data_store->save_entry($name, $email, $pdf_file, $slider_data);
+
+      // Save new entry to db
+      // Dont save when using send test email feature
+      if(apply_filters('fscs_send_test_email', false) === false) {
+        $fscs->_fscs_data_store->save_entry($name, $email, $pdf_file, $slider_data);
+      }
 
       // Validate recaptcha
       if(apply_filters('fscs_bypass_recaptcha_security', false) || $fscs->_fscs_recaptcha->validate_recaptcha()){

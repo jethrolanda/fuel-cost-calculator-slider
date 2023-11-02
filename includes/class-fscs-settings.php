@@ -278,6 +278,7 @@ class FSCS_Settings
 
             add_filter('fscs_bypass_generate_pdf_security', '__return_true');
             add_filter('fscs_bypass_recaptcha_security', '__return_true');
+            add_filter('fscs_send_test_email', '__return_true');
             
             $email = isset($_POST['email']) ? sanitize_email($_POST['email']) : '';
 
