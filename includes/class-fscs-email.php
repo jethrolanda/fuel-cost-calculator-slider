@@ -54,8 +54,8 @@ class FSCS_Email
 
       $emails = get_option('fscs_email_cc');
       if(!empty($emails)) {
-        foreach($emails as $email) {
-          $headers[] = 'Cc: ' . $email['cc'];
+        foreach($emails as $e) {
+          $headers[] = 'Cc: ' . $e['cc'];
         }
       }
 
