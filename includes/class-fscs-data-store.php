@@ -135,6 +135,68 @@ class FSCS_Data_Store
     }
 
     /**
+     * Delete fuel savings data item.
+     * 
+     * @since 1.0
+     */
+    public function fscs_delete_fuel_savings_data_item() {
+        
+      if (!defined('DOING_AJAX') || !DOING_AJAX) {
+          wp_die();
+      }
+
+      /**
+       * Verify nonce
+       */
+      if (isset($_POST['nonce']) && !wp_verify_nonce($_POST['nonce'], 'settings_nonce')) {
+          wp_die();
+      }  
+
+      try{
+
+        global $wpdb;
+
+        $id = isset($_POST['id']) ? (int) $_POST['id'] : '';
+        
+        if($id) {
+
+          $table_name = $wpdb->prefix . 'fuel_savings_report';
+          $result = $wpdb->delete( $table_name, array( 'id' => $id ));
+
+          if($result) {
+            wp_send_json(array(
+              'status' => 'success',
+              'message' => 'The item is now deleted.',
+              'id' => $id
+            ));
+          } else {
+            wp_send_json(array(
+              'status' => 'error',
+              'message' => 'Unable to delete.'
+            ));
+          }
+
+        } else {
+
+          wp_send_json(array(
+            'status' => 'error',
+            'message' => 'Invalid item id.'
+          ));
+
+        }
+        
+      } catch (Exception $e) {
+
+          wp_send_json(array(
+              'status' => 'error',
+              'message' => $e->getMessage()
+          ));
+
+      }
+      
+    }
+
+    /**
      * Execute Model.
      *
      * @since 1.0
@@ -142,8 +204,11 @@ class FSCS_Data_Store
      */
     public function run() { 
 
-      // Fetch recaptcha setting via ajax 
+      // Fetch fuel savings data items via ajax 
       add_action("wp_ajax_fscs_get_fuel_savings_data", array($this, 'fscs_get_fuel_savings_data'));
+
+      // Delete item via ajax 
+      add_action("wp_ajax_fscs_delete_fuel_savings_data_item", array($this, 'fscs_delete_fuel_savings_data_item'));
 
     }
     

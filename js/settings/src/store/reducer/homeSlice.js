@@ -24,10 +24,13 @@ export const homeSlice = createSlice({
     setPagination: (state, action) => {
       state.pagination = {...state.pagination, ...action.payload };
     },
+    removeData: (state, action) => {
+      state.fuel_savings_data = state.fuel_savings_data.filter((data)=> data.id !== action.payload);
+    }
   },
 })
 
-export const { setLoaded, setData, setPagination } = homeSlice.actions
+export const { setLoaded, setData, setPagination, removeData } = homeSlice.actions
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of
@@ -47,6 +50,19 @@ export const fetchFuelSavingsData = ({cb}) => (dispatch) => {
     dispatch(setLoaded(true));
     dispatch(setData(data?.data));
     dispatch(setPagination({...data?.pagination}));
+    if (typeof cb === "function") cb(data);
+  });
+  
+}
+
+// Delete Item
+export const deleteItem = ({id, cb}) => (dispatch) => {
+  axios.post(fscs_settings.ajax_url, qs.stringify({
+    action: "fscs_delete_fuel_savings_data_item",
+    nonce: fscs_settings.settings_nonce,
+    id
+  })).then(({data}) => {
+    dispatch(removeData(id));
     if (typeof cb === "function") cb(data);
   });
   

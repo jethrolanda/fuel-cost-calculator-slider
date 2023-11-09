@@ -25,11 +25,11 @@ jQuery(document).ready(function ($) {
     var g_recaptcha_response = $("#g-recaptcha-response").val();
 
     if (name === "" || email === "") 
-      toastr.info('Name and Email are required.')
+      toastr.error('Name and Email are required.')
     else if (!validateEmail(email))
-      toastr.info('The email is invalid.')
+      toastr.error('The email is invalid.')
     else if(g_recaptcha_response === "")
-      toastr.info('Recaptcha is required.')
+      toastr.error('Recaptcha is required.')
     else {
       // Display loader
       $('#pdf-report').find('img').show();
@@ -42,7 +42,7 @@ jQuery(document).ready(function ($) {
       .done(function (data, textStatus, jqXHR) {
         
         if(data.status === 'success')
-          toastr.info('Email sent')
+          toastr.success('Email sent')
 
           // Hide loader
           $('#pdf-report').find('img').hide();

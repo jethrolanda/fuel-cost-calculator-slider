@@ -183,72 +183,74 @@
     }
   }
 
+  .ct-shortcode{
+    width: 100%;
+  }
+
   // RESPONSIVE
-@media only screen and (max-width: 767px) {
-  #fuel-savings-calculator{
-    .row{
-      grid-template-columns: 1fr;
-      gap: 0px;
+  @media only screen and (max-width: 767px) {
+    #fuel-savings-calculator{
+      .row{
+        grid-template-columns: 1fr;
+        gap: 0px;
 
-      .help-tip{
-        position: relative;
-        top: 0px;
-        right: 0px;
-        display: inline-block;
+        .help-tip{
+          position: relative;
+          top: 0px;
+          right: 0px;
+          display: inline-block;
 
-        p{
-          left: 50%;
-          margin-left: -150px;
-          top: -96px;
-
-          &:before{
-            content: " ";
-            top: 100%; /* At the bottom of the tooltip */
+          p{
             left: 50%;
-            right: auto;
-            margin-left: -5px;
-            margin-top: 0px;
-            border-width: 5px;
-            border-color: rgb(65, 65, 65) transparent transparent transparent;
+            margin-left: -150px;
+            top: -96px;
+
+            &:before{
+              content: " ";
+              top: 100%; /* At the bottom of the tooltip */
+              left: 50%;
+              right: auto;
+              margin-left: -5px;
+              margin-top: 0px;
+              border-width: 5px;
+              border-color: rgb(65, 65, 65) transparent transparent transparent;
+            }
           }
         }
+        
+        .range-value{
+          padding-top: 20px;
+          text-align: left; 
+        }
       }
-      
-      .range-value{
-        padding-top: 20px;
-        text-align: left; 
+      .range-slider{
+        padding-left: 0px;
+        padding-right: 0px;
       }
     }
-    .range-slider{
-      padding-left: 0px;
-      padding-right: 0px;
-    }
-  }
-  .estimated-savings{
-    grid-template-columns: 1fr;
-    gap: 20px;
+    .estimated-savings{
+      grid-template-columns: 1fr;
+      gap: 20px;
 
-    div{
-      width: 100%;
-      max-width: 100%;
-    }
-  }
-}
-
-@media only screen and (max-width: 480px) {
-  #fuel-savings-calculator{
-    .label{
-      .help-tip{
-        display: none;
+      div{
+        width: 100%;
+        max-width: 100%;
       }
     }
   }
-}
+
+  @media only screen and (max-width: 480px) {
+    #fuel-savings-calculator{
+      .label{
+        .help-tip{
+          display: none;
+        }
+      }
+    }
+  }
 }
 
-.ct-shortcode{
-  width: 100%;
-}
+
 
 
 // PDF Report
@@ -278,12 +280,10 @@
 
   span.actions{
     padding: 10px 0px;
-    text-align: right;
-    display: flex;
     width: 100%;
-    flex-wrap: nowrap;
-    align-items: center;
-    justify-content: space-around;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
   }
   
   img{
@@ -291,8 +291,22 @@
   }
   
   button{
-    margin-left: 10px;
     border: none;
     display: inline-block;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  #pdf-report.modal{
+    p, span.actions{
+      grid-template-columns: 1fr;
+
+      div.g-recaptcha{
+        div{
+          width: 100%!important;
+          text-align: center;
+        }
+      }
+    }
   }
 }

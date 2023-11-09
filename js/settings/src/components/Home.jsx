@@ -1,13 +1,14 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { Table, Divider, Button, Modal, Input, Space } from 'antd';
-import { FilePdfOutlined, SearchOutlined } from '@ant-design/icons';
+import { Table, Divider, Button, Modal, Input, Space, Popconfirm, notification } from 'antd';
+import { FilePdfOutlined, SearchOutlined, DeleteOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
 import {
   loaded,
   pagination,
   fuel_savings_data,
   fetchFuelSavingsData,
-  setPagination
+  setPagination,
+  deleteItem
 } from '../store/reducer/homeSlice';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -29,6 +30,14 @@ const Home = () => {
   const [loading, setLoading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [pdfURL, setPDFURL] = useState('');
+
+  const [api, contextHolder] = notification.useNotification();
+  const openNotificationWithIcon = (type, message, description) => {
+    api[type]({
+      message,
+      description,
+    });
+  };
 
   const dispatch = useDispatch();
   let fetched = useSelector(loaded);
@@ -143,6 +152,17 @@ const Home = () => {
       ),
   });
 
+  const confirm = (id) => {
+    console.log(id)
+    
+    dispatch(deleteItem({ id, cb: (data) => {
+      if(data?.status === 'success')
+        openNotificationWithIcon('success', 'Success', data?.message);
+      else
+        openNotificationWithIcon('error', 'Error', data?.message);
+    }}))
+  };
+
   const columns = [
     {
       title: 'Name',
@@ -165,10 +185,24 @@ const Home = () => {
       sorter: (a, b) => new Date(a.date) - new Date(b.date),
     },
     {
-      title: 'PDF',
+      title: 'Action',
       dataIndex: 'pdf_url',
       key: 'pdf_url',
-      render: (text) => <a href="#"onClick={() =>showModal(text)}><FilePdfOutlined /></a>,
+      render: (text,record) => <>
+        <Space>
+          <a href="#" onClick={() => showModal(text)}><FilePdfOutlined /></a>
+          <Popconfirm
+            title="Delete this item"
+            description="Are you sure to delete this item?"
+            onConfirm={()=>confirm(record?.id)}
+            okText="Yes"
+            cancelText="No"
+          >
+            <a href="#"><DeleteOutlined style={{color:'red'}}/></a>
+          </Popconfirm>
+          
+        </Space>
+      </>,
       
     }
   ];
@@ -181,6 +215,7 @@ const Home = () => {
   }, [fetched]);
   
   return <>
+          {contextHolder}
           <Divider orientation="left" orientationMargin="0">
             PDF Report
           </Divider>
@@ -190,6 +225,7 @@ const Home = () => {
             dataSource={data} 
             pagination={{
               ...paginationData,
+              showTotal: (total, range) => `${range[0]}-${range[1]} of ${total} items`,
               position: ['bottomCenter'],
               'onChange': (page, pageSize) => {
                 dispatch(setPagination({

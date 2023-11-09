@@ -97,9 +97,9 @@ export default function EmailSettings() {
       dispatch(sendTestEmail({email, cb: (data) => {
         setTestEmailLoading(false);
         if(data.status==='success') {
-          openNotificationWithIcon('success', 'Success', 'Successfully sent.')
+          openNotificationWithIcon('success', 'Success', 'Successfully sent.');
         } else {
-          openNotificationWithIcon('error', 'Error', data?.message)
+          openNotificationWithIcon('error', 'Error', data?.message);
         }
       }}))
     }
