@@ -339,10 +339,18 @@
 @media only screen and (max-width: 767px) {
   #pdf-report.modal{
     padding: 20px;
+
+    input[type=text]{
+      width: 100%;
+    }
+
     p, span.actions{
       grid-template-columns: 1fr;
 
       div.g-recaptcha{
+        transform: scale(0.77);
+        transform-origin: 0 0;
+
         div{
           width: 100%!important;
           text-align: center;
@@ -352,3 +360,11 @@
   }
 }
 
+@media only screen and (max-width: 480px) {
+  #pdf-report.modal{
+    div.g-recaptcha{
+      transform: scale(0.77);
+      transform-origin: 0 0;
+    }
+  }
+}
