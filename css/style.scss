@@ -338,6 +338,7 @@
 
 @media only screen and (max-width: 767px) {
   #pdf-report.modal{
+    padding: 20px;
     p, span.actions{
       grid-template-columns: 1fr;
 
