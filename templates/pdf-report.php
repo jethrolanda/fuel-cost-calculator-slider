@@ -11,7 +11,7 @@
     </p>
     <span class="actions">
       <div class="g-recaptcha" data-sitekey="<?php echo get_option('fscs_site_key'); ?>"></div>
-      <img src="<?php echo FSCS_IMAGES_ROOT_URL; ?>spinner.gif"><button id="send-pdf-report" class="btn-m btn-primary">Submit</button>
+      <div><button id="send-pdf-report" class="btn-m btn-primary"><span class="button__text">Submit</span></button></div>
     </span>
     <?php wp_nonce_field( 'submit_pdf_report' ); ?>
   </form>

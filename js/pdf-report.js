@@ -32,7 +32,7 @@ jQuery(document).ready(function ($) {
       toastr.error('Recaptcha is required.')
     else {
       // Display loader
-      $('#pdf-report').find('img').show();
+      $('#send-pdf-report').addClass('button--loading');
       jQuery.ajax({
           url         :   "/wp-admin/admin-ajax.php",
           type        :   "POST",
@@ -41,6 +41,7 @@ jQuery(document).ready(function ($) {
       })
       .done(function (data, textStatus, jqXHR) {
         
+        $('#send-pdf-report').removeClass('button--loading');
         if(data.status === 'success')
           toastr.success('Email sent')
 
