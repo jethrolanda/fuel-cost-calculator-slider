@@ -340,12 +340,12 @@
   #pdf-report.modal{
     padding: 20px;
 
-    input[type=text]{
+    input[type=text], input[type=email]{
       width: 100%;
     }
 
     p, span.actions{
-      grid-template-columns: 1fr;
+      grid-template-columns: 100%;
 
       div.g-recaptcha{
 
