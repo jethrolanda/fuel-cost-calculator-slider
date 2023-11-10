@@ -14,6 +14,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 const Home = () => {
 
+  const [, forceUpdate] = useState('');
   const [searchText, setSearchText] = useState('');
   const [searchedColumn, setSearchedColumn] = useState('');
   const searchInput = useRef(null);
@@ -153,12 +154,10 @@ const Home = () => {
   });
 
   const confirm = (id) => {
-    console.log(id)
-    
     dispatch(deleteItem({ id, cb: (data) => {
-      if(data?.status === 'success')
+      if(data?.status === 'success'){
         openNotificationWithIcon('success', 'Success', data?.message);
-      else
+      } else
         openNotificationWithIcon('error', 'Error', data?.message);
     }}))
   };
