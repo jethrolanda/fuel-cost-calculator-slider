@@ -6,6 +6,7 @@ import 'react-quill/dist/quill.snow.css';
 
 import {
   loaded,
+  modal_redirect_url,
   subject,
   body,
   cc,
@@ -30,6 +31,8 @@ export default function EmailSettings() {
   };
   
   const dispatch = useDispatch();
+  
+  let redirect_url = useSelector(modal_redirect_url);
   let email_subject = useSelector(subject);
   let email_body = useSelector(body);
   let email_cc = useSelector(cc);
@@ -113,6 +116,7 @@ export default function EmailSettings() {
 
   useEffect(()=>{
     form.setFieldsValue({
+      modal_redirect_url: redirect_url,
       subject: email_subject,
       body: email_body,
       emails: email_cc
@@ -123,9 +127,6 @@ export default function EmailSettings() {
     fetched === false ? <Skeleton /> :
     <>
     {contextHolder}
-      <Divider orientation="left" orientationMargin="0">
-        Email Settings
-      </Divider>
       <Form
         form = {form}
         layout="vertical" 
@@ -133,6 +134,19 @@ export default function EmailSettings() {
         onFinish={(e)=>formSubmit(e)}
         className="email-settings"
       >
+        <Divider orientation="left" orientationMargin="0">
+          Modal Popup
+        </Divider>
+        <Form.Item
+          label="Redirect URL on submit"
+          name="modal_redirect_url"
+          tooltip="If empty, page will refresh after 1 second."
+        >
+          <Input/>
+        </Form.Item>
+        <Divider orientation="left" orientationMargin="0">
+          Email Settings
+        </Divider>
         <Form.Item
           label="Subject"
           name="subject"
@@ -182,7 +196,7 @@ export default function EmailSettings() {
         <Form.Item
           label="Body"
           name="body"
-          tooltip="Template tag {customer_name} will be replaced with the user name."
+          tooltip="Tags: {customer_name} and {estimated_yearly_savings}"
           rules={[
             {
               required: true,

@@ -46,9 +46,14 @@ class FSCS_Email
       $body = get_option('fscs_email_body');
       $body = empty($body) ? FSCS_EMAIL_BODY : $body;
 
-      $name = isset($_POST['name']) ? $_POST['name'] : '';
-      $email = isset($_POST['email']) ? $_POST['email'] : '';
+      $name = isset($_POST['name']) ? sanitize_text_field($_POST['name']) : '';
+      $email = isset($_POST['email']) ? sanitize_text_field($_POST['email']) : '';
+      $yearly_fuel_savings = isset($_POST['calculator_data']) && isset($_POST['calculator_data']['yearly_fuel_savings']) ? sanitize_text_field($_POST['calculator_data']['yearly_fuel_savings']) : '';
+
+      // Email Tags
       $body = str_replace('{customer_name}', $name, $body);
+      $body = str_replace('{estimated_yearly_savings}', $yearly_fuel_savings, $body);
+
       $body = wp_unslash($body);
       $headers[] = 'Content-Type: text/html; charset=UTF-8';
 
@@ -58,7 +63,7 @@ class FSCS_Email
           $headers[] = 'Cc: ' . $e['cc'];
         }
       }
-
+error_log(print_r($body,true));
       // pdf file
       $pdf_file = isset($_POST['pdf_file']) ? $_POST['pdf_file'] : '';
 

@@ -166,12 +166,14 @@ class FSCS_Settings
         
         try {
 
+            $redirect_url = get_option('fscs_modal_redirect_url', '');
             $subject = get_option('fscs_email_subject', '');
             $cc = get_option('fscs_email_cc', '');
             $body = get_option('fscs_email_body', '');
             
             wp_send_json(array(
                 'status' => 'success',
+                'redirect_url' => $redirect_url,
                 'subject' => $subject,
                 'cc' => $cc,
                 'body' => wp_unslash($body)
@@ -208,6 +210,8 @@ class FSCS_Settings
 
         try {
             
+            $redirect_url = isset($_POST['modal_redirect_url']) ? esc_url_raw($_POST['modal_redirect_url']) : '';
+
             $subject = isset($_POST['subject']) ? sanitize_text_field($_POST['subject']) : '';
             $cc = isset($_POST['emails']) ? $_POST['emails'] : '';
             
@@ -234,12 +238,14 @@ class FSCS_Settings
             $body = isset($_POST['body']) ? wp_kses_post($_POST['body'], $allowed_tags) : '';
             $body = str_replace("\t", '&nbsp;&nbsp;&nbsp;&nbsp;', $body);
 
+            update_option('fscs_modal_redirect_url', $redirect_url);
             update_option('fscs_email_subject', $subject);
             update_option('fscs_email_cc', $cc);
             update_option('fscs_email_body', $body);
             
             wp_send_json(array(
                 'status' => 'success',
+                'redirect_url' => $redirect_url,
                 'subject' => $subject,
                 'cc' => $cc,
                 'body' => wp_unslash($body)

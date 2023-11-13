@@ -14,7 +14,6 @@ import { useSelector, useDispatch } from 'react-redux';
 
 const Home = () => {
 
-  const [, forceUpdate] = useState('');
   const [searchText, setSearchText] = useState('');
   const [searchedColumn, setSearchedColumn] = useState('');
   const searchInput = useRef(null);
@@ -231,7 +230,6 @@ const Home = () => {
                   ...paginationData,
                   current: page
                 }));
-                // console.log(page, pageSize)
               },
             }}
           />

@@ -32,7 +32,7 @@ jQuery(document).ready(function ($) {
       toastr.error('Recaptcha is required.')
     else {
       // Display loader
-      $('#send-pdf-report').addClass('button--loading');
+      $('#send-pdf-report').addClass('button--loading').attr('disabled', true);
       jQuery.ajax({
           url         :   "/wp-admin/admin-ajax.php",
           type        :   "POST",
@@ -41,18 +41,21 @@ jQuery(document).ready(function ($) {
       })
       .done(function (data, textStatus, jqXHR) {
         
-        $('#send-pdf-report').removeClass('button--loading');
+        $('#send-pdf-report').removeClass('button--loading').removeAttr('disabled');
         if(data.status === 'success')
-          toastr.success('Email sent')
+          toastr.success('Email sent');
 
-          // Hide loader
-          $('#pdf-report').find('img').hide();
+        var redirect_url = $("#pdf-report").find("#redirect_url").val();
 
+        if(redirect_url) {
+          window.location.replace(redirect_url);
+        } else {
           // Reload page after sending the auto generated pdf
           setTimeout(function() {
             location.reload();
           }, 1000);
-          
+        }
+        
       })
       .fail(function(jqXHR, textStatus, errorThrown){
         console.log(jqXHR)

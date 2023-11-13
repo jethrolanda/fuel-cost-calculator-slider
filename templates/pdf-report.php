@@ -1,6 +1,7 @@
 <div class="fuel-savings-pdf-report-wrapper">
   <p><a href="#" class="pdf-report-btn">📄EMAIL ME THE REPORT</a></p>
   <form id="pdf-report" class="modal">
+    <input id="redirect_url" type="hidden" value="<?php echo get_option('fscs_modal_redirect_url'); ?>">
     <p>
       <label>Name:</label>
       <input type="text" id="name">
