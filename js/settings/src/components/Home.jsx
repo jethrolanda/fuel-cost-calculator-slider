@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { Table, Divider, Button, Modal, Input, Space, Popconfirm, notification } from 'antd';
-import { FilePdfOutlined, SearchOutlined, DeleteOutlined } from '@ant-design/icons';
+import { Table, Divider, Button, Modal, Input, Space, Popconfirm, notification, Flex } from 'antd';
+import { FilePdfOutlined, SearchOutlined, DeleteOutlined, DownloadOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
 import {
   loaded,
@@ -11,6 +11,7 @@ import {
   deleteItem
 } from '../store/reducer/homeSlice';
 import { useSelector, useDispatch } from 'react-redux';
+import { CSVLink } from "react-csv";
 
 const Home = () => {
 
@@ -217,6 +218,9 @@ const Home = () => {
           <Divider orientation="left" orientationMargin="0">
             PDF Report
           </Divider>
+
+          <CSVLink data={data} filename={"fuel-savings-report.csv"} style={{ float: 'right', marginBottom: '15px'}}><DownloadOutlined /> Download CSV</CSVLink>
+
           <Table 
             loading={loading} 
             columns={columns} 

@@ -111,12 +111,23 @@ class FSCS_Data_Store
 
         $table_name = $wpdb->prefix . 'fuel_savings_report ORDER BY date DESC';
         $data = $wpdb->get_results ( "SELECT * FROM $table_name");
+        $updated_data = array();
 
         $total = $wpdb->get_var("SELECT COUNT(*) FROM $table_name");
         $pagination = array(
           'total' => intval($total),
         );
 
+        if($data){
+          foreach($data as $d) {
+            foreach(maybe_unserialize($d->calculator_data) as $k => $cd){
+              $d->{$k} = $cd;
+            }
+            unset($d->calculator_data);
+          }
+          error_log(print_r($data,true));
+        }
+        
         wp_send_json(array(
             'status' => 'success',
             'data' => $data,

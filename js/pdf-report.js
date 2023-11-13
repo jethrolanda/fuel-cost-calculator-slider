@@ -41,7 +41,6 @@ jQuery(document).ready(function ($) {
       })
       .done(function (data, textStatus, jqXHR) {
         
-        $('#send-pdf-report').removeClass('button--loading').removeAttr('disabled');
         if(data.status === 'success')
           toastr.success('Email sent');
 
