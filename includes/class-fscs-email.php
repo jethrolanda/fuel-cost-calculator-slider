@@ -63,7 +63,7 @@ class FSCS_Email
           $headers[] = 'Cc: ' . $e['cc'];
         }
       }
-error_log(print_r($body,true));
+
       // pdf file
       $pdf_file = isset($_POST['pdf_file']) ? $_POST['pdf_file'] : '';
 

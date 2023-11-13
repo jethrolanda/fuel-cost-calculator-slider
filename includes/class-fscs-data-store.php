@@ -125,7 +125,6 @@ class FSCS_Data_Store
             }
             unset($d->calculator_data);
           }
-          error_log(print_r($data,true));
         }
         
         wp_send_json(array(
