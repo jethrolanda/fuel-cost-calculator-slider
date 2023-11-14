@@ -57,7 +57,7 @@ $body .= "<p>If you have any questions or would like to discuss the report in mo
 $body .= "<p>Thank you for considering Fuel Logic. We look forward to the opportunity to help you optimize your fueling strategy and boost your bottom line.</p>";
 
 $body .= "<p>Name: {customer_name}</p>";
-$body .= "<p>Email: {customer_name}</p>";
+$body .= "<p>Email: {customer_email}</p>";
 $body .= "<p>Calculated savings: {estimated_yearly_savings}</p>";
 
 $body .= "<p>Warm regards,</p>";
