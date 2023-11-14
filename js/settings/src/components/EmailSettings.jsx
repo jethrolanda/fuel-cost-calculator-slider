@@ -196,7 +196,7 @@ export default function EmailSettings() {
         <Form.Item
           label="Body"
           name="body"
-          tooltip="Tags: {customer_name} and {estimated_yearly_savings}"
+          tooltip="Tags: {customer_name}, {customer_email} and {estimated_yearly_savings}"
           rules={[
             {
               required: true,

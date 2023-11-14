@@ -52,6 +52,7 @@ class FSCS_Email
 
       // Email Tags
       $body = str_replace('{customer_name}', $name, $body);
+      $body = str_replace('{customer_email}', $email, $body);
       $body = str_replace('{estimated_yearly_savings}', $yearly_fuel_savings, $body);
 
       $body = wp_unslash($body);
