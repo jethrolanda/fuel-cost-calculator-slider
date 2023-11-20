@@ -9,7 +9,8 @@ export const emailSlice = createSlice({
     loaded: false,
     modal_redirect_url: '',
     subject: '',
-    cc: '',
+    cc: [],
+    bcc: [],
     body: ''
   },
   reducers: {
@@ -25,13 +26,16 @@ export const emailSlice = createSlice({
     setCC: (state, action) => {
       state.cc = action.payload;
     },
+    setBCC: (state, action) => {
+      state.bcc = action.payload;
+    },
     setBody: (state, action) => {
       state.body = action.payload;
     },
   },
 })
 
-export const { setLoaded, setModalRedirectURL, setSubject, setCC, setBody } = emailSlice.actions
+export const { setLoaded, setModalRedirectURL, setSubject, setCC, setBCC, setBody } = emailSlice.actions
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of
@@ -40,6 +44,7 @@ export const loaded = (state) => state.emailState.loaded
 export const modal_redirect_url = (state) => state.emailState.modal_redirect_url
 export const subject = (state) => state.emailState.subject
 export const cc = (state) => state.emailState.cc
+export const bcc = (state) => state.emailState.bcc
 export const body = (state) => state.emailState.body
 
 // Get email values
@@ -54,6 +59,7 @@ export const fetchEmailValues = () => (dispatch) => {
     dispatch(setModalRedirectURL(data?.redirect_url));
     dispatch(setSubject(data?.subject));
     dispatch(setCC(data?.cc));
+    dispatch(setBCC(data?.bcc));
     dispatch(setBody(data?.body));
   });
   
@@ -69,6 +75,7 @@ export const saveEmailValues = ({values, cb}) => (dispatch) => {
     dispatch(setModalRedirectURL(data?.redirect_url));
     dispatch(setSubject(data?.subject));
     dispatch(setCC(data?.cc));
+    dispatch(setBCC(data?.bcc));
     dispatch(setBody(data?.body));
     if (typeof cb === "function") cb(data);
   });

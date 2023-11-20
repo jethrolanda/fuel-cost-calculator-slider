@@ -10,6 +10,7 @@ import {
   subject,
   body,
   cc,
+  bcc,
   fetchEmailValues,
   saveEmailValues,
   sendTestEmail
@@ -36,6 +37,7 @@ export default function EmailSettings() {
   let email_subject = useSelector(subject);
   let email_body = useSelector(body);
   let email_cc = useSelector(cc);
+  let email_bcc = useSelector(bcc);
   let fetched = useSelector(loaded);
 
   const modules = {
@@ -119,7 +121,8 @@ export default function EmailSettings() {
       modal_redirect_url: redirect_url,
       subject: email_subject,
       body: email_body,
-      emails: email_cc
+      cc_emails: email_cc,
+      bcc_emails: email_bcc,
     });
   },[email_subject, email_body, email_cc]);
   
@@ -161,7 +164,7 @@ export default function EmailSettings() {
         <Form.Item
           label="CC"
         >
-          <Form.List name="emails">
+          <Form.List name="cc_emails">
             {(fields, { add, remove }) => (
               <>
                 {fields.map(({ key, name, ...restField }) => (
@@ -186,7 +189,42 @@ export default function EmailSettings() {
                 ))}
                 <Form.Item>
                   <Button type="dashed" onClick={() => add()} block icon={<PlusOutlined />}>
-                    Add field
+                    Add CC
+                  </Button>
+                </Form.Item>
+              </>
+            )}
+          </Form.List>
+        </Form.Item>
+        <Form.Item
+          label="BCC"
+        >
+          <Form.List name="bcc_emails">
+            {(fields, { add, remove }) => (
+              <>
+                {fields.map(({ key, name, ...restField }) => (
+                  <Space
+                    key={key}
+                    style={{
+                      display: 'flex',
+                      marginBottom: 8
+                    }}
+                    align="baseline"
+                  >
+                    <Form.Item
+                      {...restField}
+                      style={{flex: '100%'}}
+                      name={[name, 'bcc']}
+                      rules={[{ type: 'email' }]}
+                    >
+                      <Input />
+                    </Form.Item>
+                    <MinusCircleOutlined onClick={() => remove(name)} />
+                  </Space>
+                ))}
+                <Form.Item>
+                  <Button type="dashed" onClick={() => add()} block icon={<PlusOutlined />}>
+                    Add BCC
                   </Button>
                 </Form.Item>
               </>

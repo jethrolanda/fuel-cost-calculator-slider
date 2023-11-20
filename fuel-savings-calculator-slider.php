@@ -45,7 +45,7 @@ $body .= "<p>Attached to this email, you'll find a detailed report outlining the
 $body .= "<p>Key highlights from your report:</p>";
 
 $body .= "<ul>";
-$body .= "<li>Potential Annual Savings: On average, our clients save $21,840 annually.</li>";
+$body .= "<li>Your Potential Annual Savings: {estimated_yearly_savings}</li>";
 $body .= "<li>Efficiency Boost: Reduce downtime, streamline refueling, and ensure your fleet is always ready.</li>";
 $body .= "<li>Transparent Pricing: Experience the benefits of clear, upfront pricing with no hidden fees.</li>";
 $body .= "</ul>";
@@ -55,10 +55,6 @@ $body .= "<p>At Fuel Logic, we pride ourselves on offering tailored solutions th
 $body .= "<p>If you have any questions or would like to discuss the report in more detail, our team of fuel experts is here to assist. Feel free to reply to this email, call us at 866-311-3571, or book a virtual consultation.</p>";
 
 $body .= "<p>Thank you for considering Fuel Logic. We look forward to the opportunity to help you optimize your fueling strategy and boost your bottom line.</p>";
-
-$body .= "<p>Name: {customer_name}</p>";
-$body .= "<p>Email: {customer_email}</p>";
-$body .= "<p>Calculated savings: {estimated_yearly_savings}</p>";
 
 $body .= "<p>Warm regards,</p>";
 

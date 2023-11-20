@@ -58,10 +58,19 @@ class FSCS_Email
       $body = wp_unslash($body);
       $headers[] = 'Content-Type: text/html; charset=UTF-8';
 
-      $emails = get_option('fscs_email_cc');
-      if(!empty($emails)) {
-        foreach($emails as $e) {
+      // CC
+      $cc_emails = get_option('fscs_email_cc');
+      if(!empty($cc_emails)) {
+        foreach($cc_emails as $e) {
           $headers[] = 'Cc: ' . $e['cc'];
+        }
+      }
+
+      // BCC
+      $bcc_emails = get_option('fscs_email_bcc');
+      if(!empty($bcc_emails)) {
+        foreach($bcc_emails as $e) {
+          $headers[] = 'Bcc: ' . $e['bcc'];
         }
       }
 

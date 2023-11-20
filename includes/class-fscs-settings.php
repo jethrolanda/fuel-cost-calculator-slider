@@ -169,6 +169,7 @@ class FSCS_Settings
             $redirect_url = get_option('fscs_modal_redirect_url', '');
             $subject = get_option('fscs_email_subject', '');
             $cc = get_option('fscs_email_cc', '');
+            $bcc = get_option('fscs_email_bcc', '');
             $body = get_option('fscs_email_body', '');
             
             wp_send_json(array(
@@ -176,6 +177,7 @@ class FSCS_Settings
                 'redirect_url' => $redirect_url,
                 'subject' => $subject,
                 'cc' => $cc,
+                'bcc' => $bcc,
                 'body' => wp_unslash($body)
             ));
 
@@ -213,7 +215,8 @@ class FSCS_Settings
             $redirect_url = isset($_POST['modal_redirect_url']) ? esc_url_raw($_POST['modal_redirect_url']) : '';
 
             $subject = isset($_POST['subject']) ? sanitize_text_field($_POST['subject']) : '';
-            $cc = isset($_POST['emails']) ? $_POST['emails'] : '';
+            $cc = isset($_POST['cc_emails']) ? $_POST['cc_emails'] : '';
+            $bcc = isset($_POST['bcc_emails']) ? $_POST['bcc_emails'] : '';
             
             $allowed_tags = array( 
                 'a' => array(
@@ -241,6 +244,7 @@ class FSCS_Settings
             update_option('fscs_modal_redirect_url', $redirect_url);
             update_option('fscs_email_subject', $subject);
             update_option('fscs_email_cc', $cc);
+            update_option('fscs_email_bcc', $bcc);
             update_option('fscs_email_body', $body);
             
             wp_send_json(array(
@@ -248,6 +252,7 @@ class FSCS_Settings
                 'redirect_url' => $redirect_url,
                 'subject' => $subject,
                 'cc' => $cc,
+                'bcc' => $bcc,
                 'body' => wp_unslash($body)
             ));
 
