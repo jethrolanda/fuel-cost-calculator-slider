@@ -24,16 +24,14 @@ class Hubspot_Users
    */
   protected static $_instance = null;
 
-  private $api_key = 'pat-na1-ea9eaf04-a1c7-40be-a34d-dc7ca6686c0a';
+  private $api_key = '';
 
   /**
    * Class constructor.
    *
    * @since 1.0.0
    */
-  public function __construct()
-  {
-  }
+  public function __construct() {}
 
   /**
    * Main Instance.
