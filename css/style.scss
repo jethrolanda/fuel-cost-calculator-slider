@@ -255,18 +255,22 @@
 
 // PDF Report
 .fuel-savings-pdf-report-wrapper{
+  a.pdf-report-salesperson-btn,
   a.pdf-report-btn{
     background-color: #1e73be;
     border: 1px solid #1e73be;
     color: #ffffff;
     padding: 10px 16px;
     display: inline-block;
+    cursor: pointer;
   }
 }
 
+#pdf-report-salesperson.modal,
 #pdf-report.modal{
   padding: 40px 50px;
   max-width: 600px;
+  display: none;
 
   p{
     display: grid;
@@ -274,7 +278,7 @@
     padding: 10px 0px;
   }
 
-  input{
+  input, select{
     padding: 8px;
   }
 
@@ -337,7 +341,16 @@
   }
 }
 
+#pdf-report-salesperson.modal{
+  p{
+    display: grid;
+    grid-template-columns: 1fr;
+    padding: 10px 0px;
+  }
+}
+
 @media only screen and (max-width: 767px) {
+  #pdf-report-salesperson.modal,
   #pdf-report.modal{
     padding: 20px;
 
@@ -360,6 +373,7 @@
 }
 
 @media only screen and (max-width: 480px) {
+  #pdf-report-salesperson.modal,
   #pdf-report.modal{
     div.g-recaptcha{
       transform: scale(0.77);
