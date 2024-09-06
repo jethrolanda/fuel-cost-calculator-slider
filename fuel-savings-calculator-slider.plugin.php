@@ -26,6 +26,7 @@ class Fuel_Savings_Calculator_Slider
   public $email;
   public $recaptcha;
   public $hubspot_users;
+  public $blocks;
 
   const VERSION = '1.0';
 
@@ -52,6 +53,7 @@ class Fuel_Savings_Calculator_Slider
     $this->email = FSCS\Plugin\Email::instance();
     $this->recaptcha = FSCS\Plugin\Recaptcha::instance();
     $this->hubspot_users = FSCS\Plugin\Hubspot_Users::instance();
+    $this->blocks = FSCS\Plugin\Blocks::instance();
 
     // Register Activation Hook
     register_activation_hook(FSCS_PLUGIN_DIR . 'fuel-savings-calculator-slider.php', array($this, 'activate'));
@@ -102,7 +104,5 @@ class Fuel_Savings_Calculator_Slider
    *
    * @since 1.0.0
    */
-  public function deactivate()
-  {
-  }
+  public function deactivate() {}
 }
