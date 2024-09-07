@@ -67,7 +67,12 @@ class Scripts
 
         global $post, $fscs;
 
+        // Range Slider
+        wp_register_style('range-slider-style-custom',  FSCS_CSS_ROOT_URL . 'style.min.css', array(), $this->hours_in_seconds);
+        wp_register_style('range-slider-style', FSCS_CSS_ROOT_URL . 'rangeslider.min.css', array(), $this->hours_in_seconds);
 
+        wp_register_script('range-slider-script', FSCS_JS_ROOT_URL . 'rangeslider.min.js', array('jquery'), $this->hours_in_seconds, false);
+        wp_register_script('range-slider-setup-script', FSCS_JS_ROOT_URL . 'slider-options.js', array('jquery'), $this->hours_in_seconds, false);
 
         if ($post && has_shortcode($post->post_content, 'fuel_savings_calculator_slider')) {
 
@@ -94,14 +99,12 @@ class Scripts
      */
     public function plugin_scripts()
     {
-        global $fscs;
 
-        // Range Slider
-        wp_enqueue_style('range-slider-style-custom', FSCS_CSS_ROOT_URL . 'style.min.css', array(), $this->hours_in_seconds);
-        wp_enqueue_style('range-slider-style', FSCS_CSS_ROOT_URL . 'rangeslider.min.css', array(), $this->hours_in_seconds);
+        wp_enqueue_style('range-slider-style-custom');
+        wp_enqueue_style('range-slider-style');
 
-        wp_enqueue_script('range-slider-script', FSCS_JS_ROOT_URL . 'rangeslider.min.js', array('jquery'), $this->hours_in_seconds, false);
-        wp_enqueue_script('range-slider-setup-script', FSCS_JS_ROOT_URL . 'slider-options.js', array('jquery'), $this->hours_in_seconds, false);
+        wp_enqueue_script('range-slider-script');
+        wp_enqueue_script('range-slider-setup-script');
 
         // jQuery modal
         wp_enqueue_script('pdf-report-script', FSCS_JS_ROOT_URL . 'pdf-report.js', array('jquery'), $this->hours_in_seconds, false);

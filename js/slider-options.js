@@ -1,7 +1,6 @@
 jQuery(document).ready(function ($) {
-  var fuel_savings_calculator_wrapper = $("body").find(
-    ".fuel-savings-calculator-wrapper"
-  );
+  var fuel_savings_calculator = $("body").find("#fuel-savings-calculator");
+
   var weeks = 52;
   var months = 12;
   var rate_per_minute = 0;
@@ -99,7 +98,7 @@ jQuery(document).ready(function ($) {
     );
   };
 
-  fuel_savings_calculator_wrapper.find('input[type="range"]').rangeslider({
+  fuel_savings_calculator.find('input[type="range"]').rangeslider({
     // Feature detection the default is `true`.
     // Set this to `false` if you want to use
     // the polyfill also in Browsers which support
@@ -117,6 +116,7 @@ jQuery(document).ready(function ($) {
     // Callback function
     onInit: function () {
       calculateSavedFuel();
+      console.log("initialized");
     },
 
     // Callback function
@@ -134,38 +134,36 @@ jQuery(document).ready(function ($) {
     onSlideEnd: function (position, value) {}
   });
 
-  fuel_savings_calculator_wrapper
-    .find('input[type="text"]')
-    .on("keyup", function () {
-      var id = $(this).attr("id");
-      var value = parseInt(this.value);
+  fuel_savings_calculator.find('input[type="text"]').on("keyup", function () {
+    var id = $(this).attr("id");
+    var value = parseInt(this.value);
 
-      if (value === undefined) return;
+    if (value === undefined) return;
 
-      switch (id) {
-        case "estimated-gallons-per-fill-input":
-          $("#estimated-gallons-per-fill").val(value).change();
-          break;
+    switch (id) {
+      case "estimated-gallons-per-fill-input":
+        $("#estimated-gallons-per-fill").val(value).change();
+        break;
 
-        case "number-of-units-input":
-          $("#number-of-units").val(value).change();
-          break;
+      case "number-of-units-input":
+        $("#number-of-units").val(value).change();
+        break;
 
-        case "number-of-operators-input":
-          $("#number-of-operators").val(value).change();
-          break;
+      case "number-of-operators-input":
+        $("#number-of-operators").val(value).change();
+        break;
 
-        case "hourly-rate-input":
-          $("#hourly-rate").val(value).change();
-          break;
+      case "hourly-rate-input":
+        $("#hourly-rate").val(value).change();
+        break;
 
-        case "round-trip-per-fueling-input":
-          $("#round-trip-per-fueling").val(value).change();
-          break;
+      case "round-trip-per-fueling-input":
+        $("#round-trip-per-fueling").val(value).change();
+        break;
 
-        case "frequency-of-fueling-input":
-          $("#frequency-of-fueling").val(value).change();
-          break;
-      }
-    });
+      case "frequency-of-fueling-input":
+        $("#frequency-of-fueling").val(value).change();
+        break;
+    }
+  });
 });
