@@ -83,7 +83,8 @@ const HubspotSettings = () => {
         Hubspot API Settings
       </Divider>
       <p>
-        Create api key in hubspot private app. See Link{" "}
+        Create api key in hubspot private app. The api is used to fetch all
+        users under the Sales Team. See Link{" "}
         <a
           target="_blank"
           href="https://developers.hubspot.com/docs/api/private-apps"
