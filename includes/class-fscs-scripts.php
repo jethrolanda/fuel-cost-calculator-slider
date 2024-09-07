@@ -67,12 +67,34 @@ class Scripts
 
         global $post, $fscs;
 
-        // Range Slider
+        // Range Slider Styles
         wp_register_style('range-slider-style-custom',  FSCS_CSS_ROOT_URL . 'style.min.css', array(), $this->hours_in_seconds);
         wp_register_style('range-slider-style', FSCS_CSS_ROOT_URL . 'rangeslider.min.css', array(), $this->hours_in_seconds);
 
+        // Range Slider Scripts
         wp_register_script('range-slider-script', FSCS_JS_ROOT_URL . 'rangeslider.min.js', array('jquery'), $this->hours_in_seconds, false);
         wp_register_script('range-slider-setup-script', FSCS_JS_ROOT_URL . 'slider-options.js', array('jquery'), $this->hours_in_seconds, false);
+
+        // PDF REPORT
+        wp_register_script('pdf-report-script', FSCS_JS_ROOT_URL . 'pdf-report.js', array('jquery'), $this->hours_in_seconds, false);
+        wp_localize_script(
+            'pdf-report-script',
+            'options',
+            array(
+                'ajax' => admin_url('admin-ajax.php')
+            )
+        );
+
+        // JQUERY MODAL
+        wp_register_script('pdf-report-modal-script', FSCS_JS_ROOT_URL . 'jquery-modal/jquery.modal.min.js', array('jquery'), $this->hours_in_seconds, false);
+        wp_register_style('pdf-report-modal-style', FSCS_JS_ROOT_URL . 'jquery-modal/jquery.modal.min.css', array(), $this->hours_in_seconds);
+
+        // Toastr
+        wp_register_script('pdf-report-toastr-script', FSCS_JS_ROOT_URL . 'toastr/toastr.min.js', array('jquery'), $this->hours_in_seconds, false);
+        wp_register_style('pdf-report-toastr-style', FSCS_JS_ROOT_URL . 'toastr/toastr.min.css', array(), $this->hours_in_seconds);
+
+        // Google Recaptcha
+        wp_register_script('pdf-report-google-recaptcha-script', 'https://www.google.com/recaptcha/api.js', array('jquery'), $this->hours_in_seconds, false);
 
         if ($post && has_shortcode($post->post_content, 'fuel_savings_calculator_slider')) {
 
@@ -106,25 +128,19 @@ class Scripts
         wp_enqueue_script('range-slider-script');
         wp_enqueue_script('range-slider-setup-script');
 
-        // jQuery modal
-        wp_enqueue_script('pdf-report-script', FSCS_JS_ROOT_URL . 'pdf-report.js', array('jquery'), $this->hours_in_seconds, false);
-        wp_localize_script(
-            'pdf-report-script',
-            'options',
-            array(
-                'ajax' => admin_url('admin-ajax.php')
-            )
-        );
+        // PDF REPORT
+        wp_enqueue_script('pdf-report-script');
 
-        wp_enqueue_script('pdf-report-modal-script', FSCS_JS_ROOT_URL . 'jquery-modal/jquery.modal.min.js', array('jquery'), $this->hours_in_seconds, false);
-        wp_enqueue_style('pdf-report-modal-style', FSCS_JS_ROOT_URL . 'jquery-modal/jquery.modal.min.css', array(), $this->hours_in_seconds);
+        // JQUERY MODAL
+        wp_enqueue_script('pdf-report-modal-script');
+        wp_enqueue_style('pdf-report-modal-style');
 
         // Toastr
-        wp_enqueue_script('pdf-report-toastr-script', FSCS_JS_ROOT_URL . 'toastr/toastr.min.js', array('jquery'), $this->hours_in_seconds, false);
-        wp_enqueue_style('pdf-report-toastr-style', FSCS_JS_ROOT_URL . 'toastr/toastr.min.css', array(), $this->hours_in_seconds);
+        wp_enqueue_script('pdf-report-toastr-script');
+        wp_enqueue_style('pdf-report-toastr-style');
 
         // Google Recaptcha
-        wp_enqueue_script('pdf-report-google-recaptcha-script', 'https://www.google.com/recaptcha/api.js', array('jquery'), $this->hours_in_seconds, false);
+        wp_enqueue_script('pdf-report-google-recaptcha-script');
     }
 
     /**
