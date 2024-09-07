@@ -1,6 +1,6 @@
 <?php
 global $fscs;
-$sales_persons = array(); // $fscs->hubspot_users->get_all_users();
+$sales_persons = $fscs->hubspot_users->get_all_users();
 ?>
 <form id="pdf-report-salesperson" class="modal">
   <input id="redirect_url" type="hidden" value="<?php echo get_option('fscs_modal_redirect_url'); ?>">

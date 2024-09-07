@@ -61,6 +61,10 @@ class Settings
 
         // Send test email via ajax
         add_action("wp_ajax_fscs_settings_send_test_email", array($this, 'fscs_settings_send_test_email'));
+
+        // Fetch and save hubspot api key 
+        add_action("wp_ajax_fscs_settings_get_hubspot_api_key_data", array($this, 'fscs_settings_get_hubspot_api_key_data'));
+        add_action("wp_ajax_fscs_settings_save_hubspot_api_key_data", array($this, 'fscs_settings_save_hubspot_api_key_data'));
     }
 
     /**
@@ -344,6 +348,78 @@ class Settings
 
             wp_send_json(array(
                 'status' => 'success',
+            ));
+        } catch (\Exception $e) {
+
+            wp_send_json(array(
+                'status' => 'error',
+                'message' => $e->getMessage()
+            ));
+        }
+    }
+    /**
+     * Save hubspot settings.
+     * 
+     * @since 1.0
+     */
+    public function fscs_settings_get_hubspot_api_key_data()
+    {
+        if (!defined('DOING_AJAX') || !DOING_AJAX) {
+            wp_die();
+        }
+
+        /**
+         * Verify nonce
+         */
+        if (isset($_POST['nonce']) && !wp_verify_nonce($_POST['nonce'], 'settings_nonce')) {
+            wp_die();
+        }
+
+        try {
+
+            $api_key = get_option('fscs_huspot_api_key', '');
+
+            wp_send_json(array(
+                'status' => 'success',
+                'api_key' => $api_key
+            ));
+        } catch (\Exception $e) {
+
+            wp_send_json(array(
+                'status' => 'error',
+                'message' => $e->getMessage()
+            ));
+        }
+    }
+
+    /**
+     * Save hubspot settings.
+     * 
+     * @since 1.0
+     */
+    public function fscs_settings_save_hubspot_api_key_data()
+    {
+
+        if (!defined('DOING_AJAX') || !DOING_AJAX) {
+            wp_die();
+        }
+
+        /**
+         * Verify nonce
+         */
+        if (isset($_POST['nonce']) && !wp_verify_nonce($_POST['nonce'], 'settings_nonce')) {
+            wp_die();
+        }
+
+        try {
+
+            $api_key = isset($_POST['api_key']) ? sanitize_text_field($_POST['api_key']) : '';
+
+            update_option('fscs_huspot_api_key', $api_key);
+
+            wp_send_json(array(
+                'status' => 'success',
+                'api_key' => $api_key
             ));
         } catch (\Exception $e) {
 

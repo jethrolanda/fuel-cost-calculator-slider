@@ -31,7 +31,10 @@ class Hubspot_Users
    *
    * @since 1.0.0
    */
-  public function __construct() {}
+  public function __construct()
+  {
+    $this->api_key =  get_option('fscs_huspot_api_key', '');
+  }
 
   /**
    * Main Instance.
