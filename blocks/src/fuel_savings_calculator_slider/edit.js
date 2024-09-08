@@ -207,12 +207,14 @@ export default function Edit() {
 				});
 		});
 	}, []);
+
 	return (
 		<div class="fuel-savings-calculator-wrapper" {...useBlockProps()}>
 			<div id="fuel-savings-calculator">
 				<div class="row">
 					<div class="label">
 						Number Of Units In Fleet
+						<small>(Total Vehicles)</small>
 						<div class="help-tip">
 							<p>
 								How many vehicles do you have in your fleet? Include gas and
@@ -225,7 +227,7 @@ export default function Edit() {
 							id="number-of-units"
 							type="range"
 							min="0"
-							max="100"
+							max="80"
 							step="1"
 							value="17"
 							data-orientation="horizontal"
@@ -246,6 +248,7 @@ export default function Edit() {
 				<div class="row">
 					<div class="label">
 						Frequency Of Fueling
+						<small>(Days)</small>
 						<div class="help-tip">
 							<p>
 								On average, how many days per week are you fueling your fleet?
@@ -257,7 +260,7 @@ export default function Edit() {
 							id="frequency-of-fueling"
 							type="range"
 							min="0"
-							max="20"
+							max="14"
 							step="1"
 							value="6"
 							data-orientation="horizontal"
@@ -310,6 +313,7 @@ export default function Edit() {
 				<div class="row">
 					<div class="label">
 						Round-Trip Per Fueling
+						<small>(Minutes)</small>
 						<div class="help-tip">
 							<p>
 								How many minutes does it take to drive to the fuel station, fill
@@ -322,7 +326,7 @@ export default function Edit() {
 							id="round-trip-per-fueling"
 							type="range"
 							min="0"
-							max="120"
+							max="60"
 							step="1"
 							value="39"
 							data-orientation="horizontal"
