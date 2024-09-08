@@ -3,12 +3,13 @@
 
     <div class="row">
       <div class="label">Number Of Units In Fleet
+        <small>(Total Vehicles)</small>
         <div class="help-tip">
           <p>How many vehicles do you have in your fleet? Include gas and diesel.</p>
         </div>
       </div>
       <div class="range-slider">
-        <input id="number-of-units" type="range" min="0" max="100" step="1" value="17" data-orientation="horizontal">
+        <input id="number-of-units" type="range" min="0" max="80" step="1" value="17" data-orientation="horizontal">
       </div>
       <div class="range-value">
         <input id="number-of-units-input" type="text" size="4" min="20" max="1500" value="17">
@@ -17,12 +18,13 @@
 
     <div class="row">
       <div class="label">Frequency Of Fueling
+        <small>(Days)</small>
         <div class="help-tip">
           <p>On average, how many days per week are you fueling your fleet?</p>
         </div>
       </div>
       <div class="range-slider">
-        <input id="frequency-of-fueling" type="range" min="0" max="20" step="1" value="6" data-orientation="horizontal">
+        <input id="frequency-of-fueling" type="range" min="0" max="14" step="1" value="6" data-orientation="horizontal">
       </div>
       <div class="range-value">
         <input id="frequency-of-fueling-input" type="text" size="4" min="20" max="1500" value="6">
@@ -45,12 +47,13 @@
 
     <div class="row">
       <div class="label">Round-Trip Per Fueling
+        <small>(Minutes)</small>
         <div class="help-tip">
           <p>How many minutes does it take to drive to the fuel station, fill up, and drive back?</p>
         </div>
       </div>
       <div class="range-slider">
-        <input id="round-trip-per-fueling" type="range" min="0" max="120" step="1" value="39" data-orientation="horizontal">
+        <input id="round-trip-per-fueling" type="range" min="0" max="60" step="1" value="39" data-orientation="horizontal">
       </div>
       <div class="range-value">
         <input id="round-trip-per-fueling-input" type="text" size="4" min="20" max="1500" value="39">
@@ -70,7 +73,7 @@
         <input id="number-of-operators-input" type="text" size="4" min="20" max="1500" value="2">
       </div>
     </div>
-    
+
     <div class="row">
       <div class="label">Average Hourly Rate
         <div class="help-tip">
@@ -84,13 +87,13 @@
         <input id="hourly-rate-input" type="text" size="4" min="20" max="1500" value="24">
       </div>
     </div>
-    
+
   </div>
 
-  <br/>
+  <br />
   <p class="desc">See how much you could save annually by optimizing your fueling process with our service.</p>
   <h5>Estimated Yearly Savings: <span id="estimated-savings-annually">$0</span></h5>
-  <br/><br/>
+  <br /><br />
 
   <div class="estimated-savings">
     <div><span id="lost-assets-and-labor-hours">0</span>Lost Assets & Labor Hours Per Week</div>
