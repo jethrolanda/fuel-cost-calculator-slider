@@ -4,6 +4,18 @@
  * Replace them with your own styles or remove the file completely.
  */
  .wp-block-create-block-fuel-savings-calculator-slider{
+  // PDF Report btn
+  a.pdf-report-salesperson-btn,
+  a.pdf-report-btn{
+    padding: 10px 16px;
+    display: inline-block;
+    cursor: pointer;
+    background-color: #f5824f;
+    border: 1px solid #f5824f;
+    color: #fff;
+    font-weight: 600;
+  }
+
   #fuel-savings-calculator{
     font-size: 18px;
 
@@ -70,6 +82,39 @@
     input[type=range]{
       display: none;
     }
+
+    /* Start Custom Style For Calculator - from oxygen styles*/
+    .rangeslider__handle {
+      background: #a9d447;
+      width: 26px;
+      height: 26px;
+      border: 7px solid #81a431;
+      top: -8px;
+    }
+    .rangeslider__fill {
+      height: 12px;
+      background: #a9d445;
+    }
+    .rangeslider {
+      background: rgb(0 0 0 / 12%);
+      height: 12px;
+    }
+    .row {
+      padding: 13px 0px;
+    }
+    .label {
+      font-weight: bold;
+    }
+    input[type=text] {
+      border: none;
+      width: 100%;
+      font-weight: bold;
+      background-color: rgb(0 0 0 / 6%);
+      font-size: 23px;
+      color: #575b4c;
+    }
+    /* End Custom Style For Calculator - from oxygen styles*/
+    
   }
 
   .estimated-savings{
@@ -108,7 +153,7 @@
     right: 0px;
     margin-left: 10px;
     text-align: center;
-    background-color: rgb(65, 65, 65);
+    background-color: #575b4c; 
     border-radius: 50%;
     width: 20px;
     height: 20px;
@@ -174,19 +219,29 @@
     }
     
   }
-  
-  .desc{
-    text-align: center;
-  }
-
+   
   h5{
     text-align: center;
-    font-weight: 300;
+    // New style below - from oxygen - Ty
+    font-weight: bold;
+    font-size: 18px;
+    text-transform: uppercase;
+    margin-top: 30px;
 
     #estimated-savings-annually{
-      color: #A2CC3A;
+      // color: #A2CC3A;
+      // font-weight: 600;
+      // border-bottom: 2px solid #a2cc3a;
+      color: #a2cc3a;
       font-weight: 600;
-      border-bottom: 2px solid #a2cc3a;
+      border-bottom: 8px solid #a9d445;
+      display: block;
+      font-size: 60px;
+      background: rgb(219 233 188);
+      border-radius: 13px;
+      margin-top: 10px;
+      padding-top: 2px;
+      padding-bottom: 3px;
     }
   }
 
@@ -242,6 +297,24 @@
       div{
         width: 100%;
         max-width: 100%;
+        border: 0;
+        border-radius: 13px;
+        box-shadow: none;
+        padding: 15px 20px;
+        transition: none;
+        font-size: 16px;
+        background-color: rgb(0 0 0 / 6%);
+        margin-top: 9px;
+
+        &:hover {
+          box-shadow: none;
+        }
+
+        span{
+          font-weight: bold;
+          font-size: 40px;
+          display: block;
+        }
       }
     }
   }
@@ -258,133 +331,4 @@
 }
 
 
-
-
-// PDF Report
-.fuel-savings-pdf-report-wrapper{
-  a.pdf-report-salesperson-btn,
-  a.pdf-report-btn{
-    background-color: #1e73be;
-    border: 1px solid #1e73be;
-    color: #ffffff;
-    padding: 10px 16px;
-    display: inline-block;
-    cursor: pointer;
-  }
-}
-
-#pdf-report-salesperson.modal,
-#pdf-report.modal{
-  padding: 40px 50px;
-  max-width: 600px;
-  display: none;
-
-  p{
-    display: grid;
-    grid-template-columns: 80px 1fr;
-    padding: 10px 0px;
-  }
-
-  input, select{
-    padding: 8px;
-  }
-
-  span.actions{
-    padding: 10px 0px;
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    align-items: center;
-  }
-  
-  img{
-    display: none;
-  }
-  
-  button{
-    border: none;
-    display: inline-block;
-    position: relative;
-    cursor: pointer;
-  }
-
-  #send-pdf-report{
-    transition: all 0.2s;
-    width: 100%;
-  }
-
-  .button--loading {
-    &::after {
-      content: "";
-      position: absolute;
-      width: 16px;
-      height: 16px;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      margin: auto;
-      border: 4px solid transparent;
-      border-top-color: #ffffff;
-      border-radius: 50%;
-      animation: button-loading-spinner 1s ease infinite;
-    }
-
-    .button__text {
-      visibility: hidden;
-      opacity: 0;
-    }
-  }
-
-  @keyframes button-loading-spinner {
-    from {
-      transform: rotate(0turn);
-    }
-  
-    to {
-      transform: rotate(1turn);
-    }
-  }
-}
-
-#pdf-report-salesperson.modal{
-  p{
-    display: grid;
-    grid-template-columns: 1fr;
-    padding: 10px 0px;
-  }
-}
-
-@media only screen and (max-width: 767px) {
-  #pdf-report-salesperson.modal,
-  #pdf-report.modal{
-    padding: 20px;
-
-    input[type=text], input[type=email]{
-      width: 100%;
-    }
-
-    p, span.actions{
-      grid-template-columns: 100%;
-
-      div.g-recaptcha{
-
-        div{
-          width: 100%!important;
-          text-align: center;
-        }
-      }
-    }
-  }
-}
-
-@media only screen and (max-width: 480px) {
-  #pdf-report-salesperson.modal,
-  #pdf-report.modal{
-    div.g-recaptcha{
-      transform: scale(0.77);
-      transform-origin: 0 0;
-    }
-  }
-}
+ 

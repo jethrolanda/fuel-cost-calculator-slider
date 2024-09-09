@@ -91,7 +91,7 @@
   </div>
 
   <br />
-  <p class="desc">See how much you could save annually by optimizing your fueling process with our service.</p>
+
   <h5>Estimated Yearly Savings: <span id="estimated-savings-annually">$0</span></h5>
   <br /><br />
 
