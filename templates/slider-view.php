@@ -90,10 +90,8 @@
 
   </div>
 
-  <br />
-
-  <h5>Estimated Yearly Savings: <span id="estimated-savings-annually">$0</span></h5>
-  <br /><br />
+  <span id="estimated-savings-annually-text">Estimated Yearly Savings:</span>
+  <span id="estimated-savings-annually">$0</span>
 
   <div class="estimated-savings">
     <div><span id="lost-assets-and-labor-hours">0</span>Lost Assets & Labor Hours Per Week</div>

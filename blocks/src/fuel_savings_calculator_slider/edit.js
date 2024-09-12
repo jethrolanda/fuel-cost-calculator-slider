@@ -153,7 +153,6 @@ export default function Edit() {
 				// Callback function
 				onInit: function () {
 					calculateSavedFuel();
-					console.log("initialized");
 				},
 
 				// Callback function
@@ -408,12 +407,10 @@ export default function Edit() {
 				</div>
 			</div>
 
-			<h5>
-				Estimated Yearly Savings:{" "}
-				<span id="estimated-savings-annually">$0</span>
-			</h5>
-			<br />
-			<br />
+			<span id="estimated-savings-annually-text">
+				Estimated Yearly Savings:
+			</span>
+			<span id="estimated-savings-annually">$0</span>
 
 			<div class="estimated-savings">
 				<div>

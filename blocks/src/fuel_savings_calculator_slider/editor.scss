@@ -217,28 +217,27 @@
     
   }
    
-  h5{
-    text-align: center;
-    // New style below - from oxygen - Ty
+  #estimated-savings-annually-text{
     font-weight: bold;
     font-size: 18px;
     text-transform: uppercase;
     margin-top: 30px;
+    display: block;
+    text-align: center;
+  }
 
-    #estimated-savings-annually{
-      // color: #A2CC3A;
-      // font-weight: 600;
-      // border-bottom: 2px solid #a2cc3a;
-      color: #a2cc3a;
-      font-weight: 600;
-      border-bottom: 8px solid #a9d445;
-      display: block;
-      font-size: 60px;
-      background: rgb(219 233 188);
-      border-radius: 13px;
-      margin-top: 10px;
-      padding: 20px 0px;
-    }
+  #estimated-savings-annually{
+    color: #a2cc3a;
+    font-weight: 600;
+    border-bottom: 8px solid #a9d445;
+    display: block;
+    font-size: 60px;
+    background: rgb(219 233 188);
+    border-radius: 13px;
+    margin-top: 10px;
+    padding: 20px 0px;
+    text-align: center;
+    margin-bottom: 40px;
   }
 
   .ct-shortcode{
