@@ -1,0 +1,1 @@
+(()=>{"use strict";const t=window.wp.interactivity,{state:e}=(0,t.store)("myPlugin",{state:{likes:0,getDoubleLikes:()=>2*e.likes},actions:{toggle:()=>{const e=(0,t.getContext)();e.isOpen=!e.isOpen}},callbacks:{logIsOpen:()=>{const e=(0,t.getContext)();console.log(`Is open: ${e.isOpen}`)}}})})();

@@ -116,7 +116,6 @@ jQuery(document).ready(function ($) {
     // Callback function
     onInit: function () {
       calculateSavedFuel();
-      console.log("initialized");
     },
 
     // Callback function
