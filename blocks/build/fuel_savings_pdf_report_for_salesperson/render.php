@@ -7,5 +7,5 @@ $fscs->scripts->plugin_scripts();
 
 ?>
 <div <?php echo get_block_wrapper_attributes(); ?>>
-	<?php echo $fscs->pdf_report_shortcode->fuel_savings_sales_pdf_report_shortcode(); ?>
+	<?php echo $fscs->pdf_report_shortcode->fuel_savings_sales_pdf_report_shortcode($attributes); ?>
 </div>

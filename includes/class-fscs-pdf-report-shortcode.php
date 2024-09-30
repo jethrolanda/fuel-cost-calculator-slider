@@ -57,13 +57,22 @@ class PDF_Report_Shortcode
    * @since 1.0
    * @access public
    */
-  public function fuel_savings_pdf_report_shortcode()
+  public function fuel_savings_pdf_report_shortcode($atts = array())
   {
+    $atts = shortcode_atts(array(
+      'title' => '📄EMAIL ME THE REPORT',
+    ), $atts);
+
+    extract($atts);
+
+    if (empty($title)) {
+      $title = '📄EMAIL ME THE REPORT';
+    }
 
     ob_start();
 
     echo '<div class="fuel-savings-pdf-report-wrapper">';
-    echo '<p><a class="pdf-report-btn">📄EMAIL ME THE REPORT</a></p>';
+    echo '<p><a class="pdf-report-btn">' . $title . '</a></p>';
     require_once(FSCS_TEMPLATES_ROOT_DIR . '/pdf-report-modal-form.php');
     echo '</div>';
 
@@ -78,13 +87,23 @@ class PDF_Report_Shortcode
    * @since 1.0
    * @access public
    */
-  public function fuel_savings_sales_pdf_report_shortcode()
+  public function fuel_savings_sales_pdf_report_shortcode($atts = array())
   {
+
+    $atts = shortcode_atts(array(
+      'title' => '📄EMAIL REPORT TO CUSTOMER',
+    ), $atts);
+
+    extract($atts);
+
+    if (empty($title)) {
+      $title = '📄EMAIL REPORT TO CUSTOMER';
+    }
 
     ob_start();
 
     echo '<div class="fuel-savings-pdf-report-wrapper">';
-    echo '<p><a class="pdf-report-salesperson-btn">📄EMAIL REPORT TO CUSTOMER</a></p>';
+    echo '<p><a class="pdf-report-salesperson-btn">' . $title . '</a></p>';
     require_once(FSCS_TEMPLATES_ROOT_DIR . '/pdf-report-salesperson-modal-form.php');
     echo '</div>';
 

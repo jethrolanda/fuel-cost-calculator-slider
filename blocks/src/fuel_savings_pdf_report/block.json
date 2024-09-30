@@ -5,6 +5,12 @@
 	"version": "0.1.0",
 	"title": "Fuel Savings PDF Report Button",
 	"category": "fuel-savings-calculator-slider-blocks",
+	"attributes": {
+		"title": {
+			"type": "string",
+			"default": "📄EMAIL ME THE REPORT"
+		}
+	},
 	"icon": "button",
 	"description": "Example block scaffolded with Create Block tool.",
 	"example": {},
