@@ -18,7 +18,7 @@
 
     <div class="row">
       <div class="label">Frequency Of Fueling
-        <small>(Days)</small>
+        <small>DAYS</small>
         <div class="help-tip">
           <p>On average, how many days per week are you fueling your fleet?</p>
         </div>
@@ -48,7 +48,7 @@
 
     <div class="row">
       <div class="label">Round-Trip Per Fueling
-        <small>(Minutes)</small>
+        <small>MINUTES</small>
         <div class="help-tip">
           <p>How many minutes does it take to drive to the fuel station, fill up, and drive back?</p>
         </div>
