@@ -76,6 +76,12 @@
       position: relative;
       display: flex;
       flex-direction: column;
+
+      small{
+        text-transform: uppercase; 
+        letter-spacing: 1px; 
+        font-size: 12px;
+      }
     }
   
     input[type=range]{
@@ -131,7 +137,8 @@
       box-shadow: none;
       padding: 15px 20px;
       transition: none;
-      background-color: rgb(0 0 0 / 6%);
+      // background-color: rgb(0 0 0 / 6%);
+      background-color: rgb(255 0 0 / 15%); 
       margin-top: 9px;
     }
     

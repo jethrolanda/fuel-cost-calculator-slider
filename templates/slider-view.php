@@ -3,7 +3,7 @@
 
     <div class="row">
       <div class="label">Number Of Units In Fleet
-        <small>(Total Vehicles)</small>
+        <small>TOTAL VEHICLES</small>
         <div class="help-tip">
           <p>How many vehicles do you have in your fleet? Include gas and diesel.</p>
         </div>
@@ -33,6 +33,7 @@
 
     <div class="row">
       <div class="label">Estimated Gallons Per Fill
+        <small>OF EACH VEHICLE</small>
         <div class="help-tip">
           <p>On average, how many gallons are you pumping into each vehicle?</p>
         </div>
@@ -62,6 +63,7 @@
 
     <div class="row">
       <div class="label">Number Of Operators
+        <small>TOTAL EMPLOYEES</small>
         <div class="help-tip">
           <p>How many employees are typically in the vehicle?</p>
         </div>
@@ -76,6 +78,7 @@
 
     <div class="row">
       <div class="label">Average Hourly Rate
+        <small>PER EMPLOYEE</small>
         <div class="help-tip">
           <p>What’s the average hourly rate? Include burden, insurance, and vacation.</p>
         </div>
