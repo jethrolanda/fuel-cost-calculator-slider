@@ -140,13 +140,14 @@
       // background-color: rgb(0 0 0 / 6%);
       background-color: rgb(255 0 0 / 15%); 
       margin-top: 9px;
-    }
-    
-    div span{
       font-weight: bold;
-      font-size: 40px;
-      display: block;
-    } 
+      
+      span.computed-value{
+        font-size: 40px;
+        display: block;
+      }
+    }
+     
   }
   
   /* TOOLTIP */
@@ -223,7 +224,7 @@
     
   }
    
-  #estimated-savings-annually-text{
+  span.heading-text{
     font-weight: bold;
     font-size: 18px;
     text-transform: uppercase;
@@ -306,13 +307,13 @@
         font-size: 16px;
         background-color: rgb(0 0 0 / 6%);
         margin-top: 9px;
+        font-weight: bold;
 
         &:hover {
           box-shadow: none;
         }
 
         span{
-          font-weight: bold;
           font-size: 40px;
           display: block;
         }

@@ -94,8 +94,8 @@ export default function Edit() {
 						additional_costs.toLocaleString("en-US", {
 							maximumFractionDigits: 2,
 						});
-					$("#every-gallon-you-pump-costs-an-additional").text(
-						additional_costs,
+					$("#every-gallon-you-pump-costs-an-additional").html(
+						"<span style='color: #ce5353;'>+</span>" + additional_costs,
 					);
 				}
 
@@ -407,22 +407,49 @@ export default function Edit() {
 				</div>
 			</div>
 
-			<span id="estimated-savings-annually-text">
-				Estimated Yearly Savings:
+			<span className="heading-text">
+				ESTIMATED YEARLY SAVINGS WITH FUEL LOGIC:
 			</span>
 			<span id="estimated-savings-annually">$0</span>
 
+			<span class="heading-text">
+				ESTIMATED WEEKLY COST WITHOUT FUEL LOGIC:
+			</span>
 			<div class="estimated-savings">
 				<div>
-					<span id="lost-assets-and-labor-hours">0</span>Lost Assets & Labor
-					Hours Per Week
+					<span className="computed-value" id="lost-assets-and-labor-hours">
+						0
+					</span>
+					Hours Lost Per Week
+					<br />
+					<small>
+						This is the time your fleet is not on the road. Lost Assets & Labor
+						Hours Per Week
+					</small>
 				</div>
 				<div>
-					<span id="labor-savings-per-week">$0</span>Labor Savings Per Week
+					<span className="computed-value" id="labor-savings-per-week">
+						$0
+					</span>
+					Labor Cost Per Week
+					<br />
+					<small>
+						This is how much you pay your employee's to fill up your equipment
+					</small>
 				</div>
 				<div>
-					<span id="every-gallon-you-pump-costs-an-additional">$0</span>Every
-					Gallon You Pump Costs You An Additional
+					<span
+						className="computed-value"
+						id="every-gallon-you-pump-costs-an-additional"
+					>
+						$0
+					</span>
+					Added Cost Per Gallon
+					<br />
+					<small>
+						Every gallon you pump (XXXX gallons per week) costs an additional
+						$XX.XX per gallon
+					</small>
 				</div>
 			</div>
 		</div>

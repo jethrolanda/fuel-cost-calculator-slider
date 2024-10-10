@@ -59,7 +59,9 @@ jQuery(document).ready(function ($) {
       additional_costs =
         "$" +
         additional_costs.toLocaleString("en-US", { maximumFractionDigits: 2 });
-      $("#every-gallon-you-pump-costs-an-additional").text(additional_costs);
+      $("#every-gallon-you-pump-costs-an-additional").html(
+        "<span style='color: #ce5353;'>+</span>" + additional_costs
+      );
     }
 
     // Estimated Savings Annually Display
