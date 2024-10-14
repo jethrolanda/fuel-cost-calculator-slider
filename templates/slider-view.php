@@ -108,7 +108,7 @@
     </div>
     <div>
       <span class="computed-value" id="every-gallon-you-pump-costs-an-additional">$0</span>Added Cost Per Gallon<br />
-      <small>Every gallon you pump (XXXX gallons per week) costs an additional $XX.XX per gallon</small>
+      <small>Every gallon you pump (<span id="gallons-per-week">XXXX</span> gallons per week) costs an additional <span id="per-gallon">$XX.XX</span> per gallon</small>
     </div>
   </div>
 

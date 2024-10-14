@@ -99,6 +99,9 @@ export default function Edit() {
 					);
 				}
 
+				$("span#gallons-per-week").text(b * f * a);
+				$("span#per-gallon").text(additional_costs);
+
 				// Estimated Savings Annually Display
 				estimated_savings_annually = Math.round(estimated_savings_annually);
 				estimated_savings_annually =
@@ -447,8 +450,9 @@ export default function Edit() {
 					Added Cost Per Gallon
 					<br />
 					<small>
-						Every gallon you pump (XXXX gallons per week) costs an additional
-						$XX.XX per gallon
+						Every gallon you pump (<span id="gallons-per-week">XXXX</span>{" "}
+						gallons per week) costs an additional{" "}
+						<span id="per-gallon">$XX.XX</span> per gallon
 					</small>
 				</div>
 			</div>

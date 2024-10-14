@@ -34,7 +34,7 @@ jQuery(document).ready(function ($) {
       man_hours_allocated_to_fueling_per_week
     );
 
-    // Lost Assets and Labor Hours
+    // Hours Lost Per Week / Lost Assets and Labor Hours
     var lost_assets_and_labor_hours = (b * e * f) / minutes_in_an_hour;
     if (lost_assets_and_labor_hours > 0) {
       lost_assets_and_labor_hours = lost_assets_and_labor_hours.toLocaleString(
@@ -46,13 +46,13 @@ jQuery(document).ready(function ($) {
       $("#lost-assets-and-labor-hours").text(lost_assets_and_labor_hours);
     }
 
-    // Estimated Cost of Self Fueling / Labor Savings Per Week
+    // Labor Cost Per Week / Estimated Cost of Self Fueling / Labor Savings Per Week
     var labor_savings_per_week = rate_per_minute * e * c * b * f;
     labor_savings_per_week = Math.round(labor_savings_per_week);
     labor_savings_per_week = "$" + labor_savings_per_week.toLocaleString();
     $("#labor-savings-per-week").text(labor_savings_per_week);
 
-    // Every Gallon You Pump Costs You An Additional
+    // Added Cost Per Gallon / Every Gallon You Pump Costs You An Additional
     var additional_costs = "$0";
     if (total_gallons > 0 && estimated_savings_annually > 0) {
       additional_costs = estimated_savings_annually / total_gallons;
@@ -63,6 +63,9 @@ jQuery(document).ready(function ($) {
         "<span style='color: #ce5353;'>+</span>" + additional_costs
       );
     }
+
+    $("span#gallons-per-week").text(b * f * a);
+    $("span#per-gallon").text(additional_costs);
 
     // Estimated Savings Annually Display
     estimated_savings_annually = Math.round(estimated_savings_annually);
